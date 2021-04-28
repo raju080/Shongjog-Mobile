@@ -13,10 +13,10 @@ export type BottomTabParamList = {
   TabTwo: undefined;
 };
 
-export type TabOneParamList = {
-  TabOneScreen: undefined;
+export type HomeTabParamList = {
+	HomeScreen: undefined;
 };
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+export type FindTutorTabParamList = {
+	FindTutorScreen: undefined;
 };

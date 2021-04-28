@@ -10,9 +10,9 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import HomeScreen from '../screens/HomeScreen';
+import FindTutorScreen from '../screens/FindTutorScreen';
+import { BottomTabParamList, HomeTabParamList, FindTutorTabParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -25,16 +25,16 @@ export default function BottomTabNavigator() {
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
         name="TabOne"
-        component={TabOneNavigator}
+        component={HomeScreenNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="TabTwo"
-        component={TabTwoNavigator}
+        component={FindTutorScreenNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-search" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -49,30 +49,30 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const HomeStack = createStackNavigator<HomeTabParamList>();
 
-function TabOneNavigator() {
+function HomeScreenNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
-      />
-    </TabOneStack.Navigator>
-  );
+		<HomeStack.Navigator>
+			<HomeStack.Screen
+				name='HomeScreen'
+				component={HomeScreen}
+				options={{ headerTitle: 'Home' }}
+			/>
+		</HomeStack.Navigator>
+	);
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const FindTutorStack = createStackNavigator<FindTutorTabParamList>();
 
-function TabTwoNavigator() {
+function FindTutorScreenNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
-      />
-    </TabTwoStack.Navigator>
-  );
+		<FindTutorStack.Navigator>
+			<FindTutorStack.Screen
+				name='FindTutorScreen'
+				component={FindTutorScreen}
+				options={{ headerTitle: 'Find Tutors' }}
+			/>
+		</FindTutorStack.Navigator>
+	);
 }
