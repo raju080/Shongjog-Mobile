@@ -3,6 +3,10 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
+/**
+ * React Navigation Types
+ */
+
 export type RootStackParamList = {
 	Root: undefined;
 	NotFound: undefined;
@@ -17,7 +21,7 @@ export type DrawerParamList = {
 
 export type BottomTabParamList = {
 	Home: undefined;
-	FindTutor: undefined;
+	'Find Tutor': undefined;
 };
 
 export type HomeTabParamList = {
@@ -47,17 +51,39 @@ export type NavigationProp = {
 };
 
 export type RouteProp = {
-	key: any,
-  name: any,
-  params: any,
+	key: any;
+	name: any;
+	params: any;
 };
 
 export type ReactNavigationProps = {
-	route: 	RouteProp;
+	route: RouteProp;
 	navigation: NavigationProp;
 };
+
+/**
+ * React Components Types
+ */
+
+// Header
 
 export type HeaderProp = {
 	title: string;
 	navigation: NavigationProp;
+};
+
+/**
+ * Custom Data Types
+ */
+
+export type Tutor = {
+	name: string;
+	imageUri: string;
+	university: string;
+	department: string;
+	location: string;
+	tuitionFees: {
+		college: number;
+		school: number;
+	};
 };

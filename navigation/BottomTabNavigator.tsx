@@ -13,18 +13,14 @@ import {
 } from '@react-navigation/drawer';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import { BottomTabParamList } from '../types';
+import { BottomTabParamList, ReactNavigationProps } from '../types';
 
 import { HomeScreenNavigator, FindTutorScreenNavigator } from './NavigatorStacks';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-type Props = {
-	navigation: any;
-	route: any;
-};
 
-export default function BottomTabNavigator({ navigation }: Props) {
+export default function BottomTabNavigator({ navigation }: ReactNavigationProps) {
 	const colorScheme = useColorScheme();
 
 	const isDrawerOpen = useIsDrawerOpen();
@@ -52,7 +48,7 @@ export default function BottomTabNavigator({ navigation }: Props) {
 				}}
 			/>
 			<BottomTab.Screen
-				name='FindTutor'
+				name='Find Tutor'
 				component={FindTutorScreenNavigator}
 				options={{
 					tabBarIcon: ({ color }) => (
