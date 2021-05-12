@@ -24,16 +24,16 @@ const cardProperties = {
 
 type Props = {
 	tutor: Tutor;
-	navigation: NavigationProp;
+	onClick: (tutor: Tutor) => void;
 };
 
-const TutorPreviewCardCol = ({ tutor, navigation }: Props) => {
+const TutorPreviewCardCol = ({ tutor, onClick }: Props) => {
 	return (
 		<TouchableHighlight
 			underlayColor={COLORS.light}
 			activeOpacity={0.9}
 			style={styles.card}
-			onPress={() => navigation.navigate('Find Tutor')}
+			onPress={() => onClick(tutor)}
 		>
 			<View>
 				<View style={{ alignItems: 'center' }}>

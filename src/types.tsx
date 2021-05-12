@@ -30,6 +30,7 @@ export type HomeTabParamList = {
 
 export type FindTutorTabParamList = {
 	FindTutorScreen: undefined;
+	TutorDetailsScreen: undefined;
 };
 
 export type AboutUsParamList = {

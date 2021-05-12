@@ -6,6 +6,7 @@ import { Button } from 'react-native';
 import Header from '../components/Header';
 import HomeScreen from '../screens/HomeScreen';
 import FindTutorScreen from '../screens/FindTutorScreen';
+import TutorDetailsScreen from '../screens/TutorDetailsScreen';
 import AboutUsScreen from '../screens/AboutUsScreen';
 
 import {
@@ -51,6 +52,15 @@ export function FindTutorScreenNavigator({ navigation }: ReactNavigationProps) {
 						<Header title='Find Tutors' navigation={navigation} />
 					),
 				}}
+			/>
+			<FindTutorStack.Screen
+				name='TutorDetailsScreen'
+				component={TutorDetailsScreen}
+				// options={{
+				// 	headerTitle: () => (
+				// 		<Header title='Find Tutors' navigation={navigation} />
+				// 	),
+				// }}
 			/>
 		</FindTutorStack.Navigator>
 	);

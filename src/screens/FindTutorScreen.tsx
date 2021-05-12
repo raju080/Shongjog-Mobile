@@ -11,6 +11,10 @@ export default function FindTutorScreen({ navigation }: ReactNavigationProps) {
 	const tutors = useAppSelector((state): Tutor[] => state.tutor.tutors);
 	const dispatch = useAppDispatch();
 
+  const handleTutorClick = (tutor: Tutor) => {
+    navigation.push('TutorDetailsScreen');
+  }
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Find Tutor Screen</Text>
@@ -18,7 +22,7 @@ export default function FindTutorScreen({ navigation }: ReactNavigationProps) {
 				data={tutors}
 				numColumns={2}
 				renderItem={({ item }) => (
-					<TutorPreviewCardCol tutor={item} navigation={navigation} />
+					<TutorPreviewCardCol tutor={item} onClick={handleTutorClick} />
 				)}
 			/>
 			{/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
