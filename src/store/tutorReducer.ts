@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import { Tutor, TutorState, ChangeTutorAction } from './StateTypes';
+import { Tutor, TutorState, ChangeTutorAction } from '../StateTypes';
 
 import { tutors } from '../shared/tutors';
 

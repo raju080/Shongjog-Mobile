@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import * as StateTypes from './StateTypes';
+import * as StateTypes from '../StateTypes';
 import { AppDispatch } from './store';
 
 import { Dispatch } from 'redux';

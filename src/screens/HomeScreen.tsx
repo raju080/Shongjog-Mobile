@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 
 import { useAppSelector, useAppDispatch } from '../hooks/reactReduxHooks';
 
 import { Text, View } from '../components/Themed';
-import TutorPreviewCardRow from '../components/TutorPreviewCardRow';
 import TutorPreviewCardCol from '../components/TutorPreviewCardCol';
 
 import { ReactNavigationProps } from '../types';
@@ -12,18 +11,18 @@ import { ReactNavigationProps } from '../types';
 import { changeCurrentTutor } from '../store/actionCreators';
 
 export default function HomeScreen({ navigation }: ReactNavigationProps) {
-  const tutor = useAppSelector(state => state.tutor);
-  const dispatch = useAppDispatch();
+	const tutor = useAppSelector((state) => state.tutor);
+	const dispatch = useAppDispatch();
 
-  const changeTutor = () => {
-    dispatch(changeCurrentTutor(tutor.tutors[1]))
-  }
+	const changeTutor = () => {
+		dispatch(changeCurrentTutor(tutor.tutors[(tutor.currentTutor.id + 1) % 3]));
+	};
 
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Home Screen</Text>
 			<TutorPreviewCardCol tutor={tutor.currentTutor} navigation={navigation} />
-			<TutorPreviewCardRow tutor={tutor.currentTutor} onClick={changeTutor} />
+			<Button title='Change Tutor' onPress={() => changeTutor()} />
 			<View
 				style={styles.separator}
 				lightColor='#eee'
@@ -34,18 +33,18 @@ export default function HomeScreen({ navigation }: ReactNavigationProps) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+	container: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	title: {
+		fontSize: 20,
+		fontWeight: 'bold',
+	},
+	separator: {
+		marginVertical: 30,
+		height: 1,
+		width: '80%',
+	},
 });

@@ -4,6 +4,7 @@
 
 // data types
 export type Tutor = {
+	id: number;
 	name: string;
 	imageUri: string;
 	university: string;

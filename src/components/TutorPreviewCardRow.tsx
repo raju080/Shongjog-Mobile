@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import { Tutor } from '../store/StateTypes';
+import { Tutor } from '../StateTypes';
 
 type Props = {
 	tutor: Tutor;

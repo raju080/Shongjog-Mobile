@@ -11,7 +11,9 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS } from '../constants/Colors';
 import { NavigationProp } from '../types';
-import { Tutor } from '../store/StateTypes';
+import { Tutor } from '../StateTypes';
+
+import { requireTutorImage } from '../shared/tutors';
 
 const screenWidth = Dimensions.get('screen').width;
 const cardProperties = {
@@ -35,9 +37,7 @@ const TutorPreviewCardCol = ({ tutor, navigation }: Props) => {
 			<View style={styles.card}>
 				<View style={{ alignItems: 'center' }}>
 					<Image
-						source={{
-							uri: tutor.imageUri,
-						}}
+						source={requireTutorImage(tutor.id)}
 						style={{
 							height: cardProperties.cardHeight / 2,
 							width: cardProperties.cardWidth,
