@@ -72,18 +72,3 @@ export type HeaderProp = {
 	navigation: NavigationProp;
 };
 
-/**
- * Custom Data Types
- */
-
-export type Tutor = {
-	name: string;
-	imageUri: string;
-	university: string;
-	department: string;
-	location: string;
-	tuitionFees: {
-		college: number;
-		school: number;
-	};
-};

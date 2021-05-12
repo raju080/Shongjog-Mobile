@@ -10,7 +10,8 @@ import {
 
 import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS } from '../constants/Colors';
-import { NavigationProp, Tutor } from '../types';
+import { NavigationProp } from '../types';
+import { Tutor } from '../store/StateTypes';
 
 const screenWidth = Dimensions.get('screen').width;
 const cardProperties = {

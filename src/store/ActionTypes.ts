@@ -1,0 +1,2 @@
+export const ADD_NEW_TUTOR = 'ADD_NEW_TUTOR';
+export const CHANGE_CURRENT_TUTOR = 'CHANGE_CURRENT_TUTOR';
