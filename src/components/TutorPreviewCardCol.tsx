@@ -32,9 +32,10 @@ const TutorPreviewCardCol = ({ tutor, navigation }: Props) => {
 		<TouchableHighlight
 			underlayColor={COLORS.light}
 			activeOpacity={0.9}
+			style={styles.card}
 			onPress={() => navigation.navigate('Find Tutor')}
 		>
-			<View style={styles.card}>
+			<View>
 				<View style={{ alignItems: 'center' }}>
 					<Image
 						source={requireTutorImage(tutor.id)}

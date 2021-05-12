@@ -1,15 +1,29 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 
+import { useAppSelector, useAppDispatch } from '../hooks/reactReduxHooks';
 import { Text, View } from '../components/Themed';
+import { ReactNavigationProps } from '../types';
+import TutorPreviewCardCol from '../components/TutorPreviewCardCol';
+import { Tutor } from '../StateTypes';
 
-export default function FindTutorScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Find Tutor Screen</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-    </View>
-  );
+export default function FindTutorScreen({ navigation }: ReactNavigationProps) {
+	const tutors = useAppSelector((state): Tutor[] => state.tutor.tutors);
+	const dispatch = useAppDispatch();
+
+	return (
+		<View style={styles.container}>
+			<Text style={styles.title}>Find Tutor Screen</Text>
+			<FlatList
+				data={tutors}
+				numColumns={2}
+				renderItem={({ item }) => (
+					<TutorPreviewCardCol tutor={item} navigation={navigation} />
+				)}
+			/>
+			{/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
