@@ -17,6 +17,7 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import MainScreen from '../screens/MainScreen';
 import { RootStackParamList, MainStackParamList } from '../types';
 import DrawerNavigatorStudent from './DrawerNavigatorStudent';
+import DrawerNavigatorTutor from './DrawerNavigatorTutor';
 // import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation({
@@ -61,7 +62,7 @@ function MainNavigator() {
 		<MainStack.Navigator initialRouteName='Main' screenOptions={{ headerShown: false }}>
 			<MainStack.Screen name='Main' component={MainScreen} />
 			<MainStack.Screen name='Student' component={DrawerNavigatorStudent} />
-			<MainStack.Screen name='Tutor' component={DrawerNavigatorStudent} />
+			<MainStack.Screen name='Tutor' component={DrawerNavigatorTutor} />
 		</MainStack.Navigator>
 	);
 }

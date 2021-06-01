@@ -4,10 +4,14 @@ import { createStackNavigator, StackNavigationProp } from '@react-navigation/sta
 import { Button } from 'react-native';
 
 import Header from '../components/Header';
+
 import HomeScreenStudent from '../screens/student/HomeScreenStudent';
 import FindTutorScreenStudent from '../screens/student/FindTutorScreenStudent';
 import TutorDetailsScreenStudent from '../screens/student/TutorDetailsScreenStudent';
 import ProfileScreenStudent from '../screens/student/ProfileScreenStudent';
+
+import HomeScreenTutor from '../screens/tutor/HomeScreenTutor';
+
 import AboutUsScreen from '../screens/AboutUsScreen';
 import MainScreen from '../screens/MainScreen';
 
@@ -16,6 +20,9 @@ import {
 	HomeTabParamListStudent,
 	FindTutorTabParamListStudent,
 	ProfileTabParamListStudent,
+	HomeTabParamListTutor,
+	ProfileTabParamListTutor,
+	LeaderBoardTabParamListTutor,
   AboutUsParamList,
 	ReactNavigationProps
 } from '../types';
@@ -101,6 +108,25 @@ export function ProfileScreenNavigatorStudent({ navigation }: ReactNavigationPro
 ** Navigation stacks for tutor part
 */ 
 
+
+const HomeStackTutor = createStackNavigator<HomeTabParamListTutor>();
+
+export function HomeScreenNavigatorTutor({
+	navigation,
+}: ReactNavigationProps) {
+	return (
+		<HomeStackTutor.Navigator>
+			<HomeStackTutor.Screen
+				name='HomeScreenTutor'
+				component={HomeScreenTutor}
+				options={{
+					headerTitle: () => <Header title='Home' navigation={navigation} />,
+					headerLeft: () => null,
+				}}
+			/>
+		</HomeStackTutor.Navigator>
+	);
+}
 
 
 /*  
