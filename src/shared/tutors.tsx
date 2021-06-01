@@ -1,4 +1,4 @@
-import { Tutor } from '../StateTypes';
+import { Tutor } from '../types_store';
 
 
 export const tutors: Tutor[] = [

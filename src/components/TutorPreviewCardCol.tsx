@@ -11,7 +11,7 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS } from '../constants/Colors';
 import { NavigationProp } from '../types';
-import { Tutor } from '../StateTypes';
+import { Tutor } from '../types_store';
 
 import { requireTutorImage } from '../shared/tutors';
 
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 		marginTop: 50,
 		borderRadius: cardProperties.cardRadius,
-		elevation: 5,
+		elevation: 3,
 		backgroundColor: COLORS.white,
 	},
 	addToCartBtn: {

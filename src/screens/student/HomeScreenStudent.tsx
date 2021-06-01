@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { StyleSheet, Button, FlatList } from 'react-native';
 
-import { useAppSelector, useAppDispatch } from '../hooks/reactReduxHooks';
+import { useAppSelector, useAppDispatch } from '../../hooks/reactReduxHooks';
 
-import { Text, View } from '../components/Themed';
-import TutorPreviewCardCol from '../components/TutorPreviewCardCol';
+import { Text, View } from '../../components/Themed';
+import TutorPreviewCardCol from '../../components/TutorPreviewCardCol';
 
-import { ReactNavigationProps } from '../types';
-import { Tutor } from '../StateTypes';
+import { ReactNavigationProps } from '../../types';
+import { Tutor } from '../../types_store';
 
-import { changeCurrentTutor } from '../store/actionCreators';
+import { changeCurrentTutor } from '../../store/actionCreators';
 
-export default function HomeScreen({ navigation }: ReactNavigationProps) {
+export default function HomeScreenStudent({ navigation }: ReactNavigationProps) {
 	const tutors = useAppSelector((state): Tutor[] => state.tutor.tutors);
 	const currentTutor = useAppSelector((state) => state.tutor.currentTutor);
 	const dispatch = useAppDispatch();

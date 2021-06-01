@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 
-import { useAppSelector, useAppDispatch } from '../hooks/reactReduxHooks';
-import { Text, View } from '../components/Themed';
-import { ReactNavigationProps } from '../types';
-import TutorPreviewCardCol from '../components/TutorPreviewCardCol';
-import { Tutor } from '../StateTypes';
+import { useAppSelector, useAppDispatch } from '../../hooks/reactReduxHooks';
+import { Text, View } from '../../components/Themed';
+import { ReactNavigationProps } from '../../types';
+import TutorPreviewCardCol from '../../components/TutorPreviewCardCol';
+import { Tutor } from '../../types_store';
 
-export default function FindTutorScreen({ navigation }: ReactNavigationProps) {
+export default function FindTutorScreenStudent({ navigation }: ReactNavigationProps) {
 	const tutors = useAppSelector((state): Tutor[] => state.tutor.tutors);
 	const dispatch = useAppDispatch();
 
   const handleTutorClick = (tutor: Tutor) => {
-    navigation.push('TutorDetailsScreen');
+    navigation.push('TutorDetailsScreenStudent');
   }
 
 	return (

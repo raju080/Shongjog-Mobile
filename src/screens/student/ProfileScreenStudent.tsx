@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const TutorDetailsScreen = () => {
-  return (
+const ProfileScreenStudent = () => {
+	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Tutor Details Screen</Text>
+			<Text style={styles.title}>Student Profile Screen</Text>
 		</View>
 	);
-}
+};
 
-export default TutorDetailsScreen;
+export default ProfileScreenStudent;
 
 const styles = StyleSheet.create({
 	container: {

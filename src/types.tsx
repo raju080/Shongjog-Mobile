@@ -12,25 +12,36 @@ export type RootStackParamList = {
 	NotFound: undefined;
 };
 
-export type DrawerParamList = {
+export type MainStackParamList = {
+	Main: undefined;
+	Student: undefined;
+	Tutor: undefined;
+};
+
+export type DrawerParamListStudent = {
 	Home: undefined;
 	AboutUs: undefined;
 	Settings: undefined;
 	LoginLogout: undefined;
 };
 
-export type BottomTabParamList = {
-	Home: undefined;
-	'Find Tutor': undefined;
+export type BottomTabParamListStudent = {
+	HomeStudent: undefined;
+	FindTutorStudent: undefined;
+	ProfileStudent: undefined;
 };
 
-export type HomeTabParamList = {
-	HomeScreen: undefined;
+export type HomeTabParamListStudent = {
+	HomeScreenStudent: undefined;
 };
 
-export type FindTutorTabParamList = {
-	FindTutorScreen: undefined;
-	TutorDetailsScreen: undefined;
+export type FindTutorTabParamListStudent = {
+	FindTutorScreenStudent: undefined;
+	TutorDetailsScreenStudent: undefined;
+};
+
+export type ProfileTabParamListStudent = {
+	ProfileScreenStudent: undefined;
 };
 
 export type AboutUsParamList = {

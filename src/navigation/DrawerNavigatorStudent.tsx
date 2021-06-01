@@ -5,18 +5,18 @@ import {
 	useIsDrawerOpen,
 } from '@react-navigation/drawer';
 
-import BottomTabNavigator from './BottomTabNavigator';
+import BottomTabNavigatorStudent from './BottomTabNavigatorStudent';
 import { AboutUsScreenNavigator } from './NavigatorStacks';
-import { DrawerParamList } from '../types';
+import { DrawerParamListStudent } from '../types';
 
-const Drawer = createDrawerNavigator<DrawerParamList>()
+const Drawer = createDrawerNavigator<DrawerParamListStudent>()
 
 // type Props = {
 // 	navigation: any;
 // 	route: any;
 // };
 
-export default function DrawerNavigator() {
+export default function DrawerNavigatorStudent() {
   // const isDrawerOpen = useIsDrawerOpen();
 
   // const handleDrawerOpen = () => {
@@ -29,7 +29,7 @@ export default function DrawerNavigator() {
 
   return (
 		<Drawer.Navigator initialRouteName='Home'>
-			<Drawer.Screen name='Home' component={BottomTabNavigator} />
+			<Drawer.Screen name='Home' component={BottomTabNavigatorStudent} />
 			<Drawer.Screen name='AboutUs' component={AboutUsScreenNavigator} />
 		</Drawer.Navigator>
 	);
