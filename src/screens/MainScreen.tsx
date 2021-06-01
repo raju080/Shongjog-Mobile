@@ -16,8 +16,13 @@ const MainScreen = ({ navigation }: ReactNavigationProps) => {
 
 	return (
 		<View style={styles.container}>
-			<View style={styles.logo}>
-				<Logo />
+			<View style={styles.logoView}>
+				<View style={styles.logo}>
+					<Logo />
+				</View>
+				<View style={styles.welcomeText}>
+					<Text style={styles.logoText}>Welcome to Shongjog</Text>
+				</View>
 			</View>
 			<View style={styles.bottomView}>
 				<View style={styles.titleView}>
@@ -45,14 +50,29 @@ export default MainScreen;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
+	logoView: {
+		flex: 2,
+	},
 	logo: {
 		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginTop: 80,
+	},
+	welcomeText: {
+		flex: 1,
+	},
+	logoText: {
+		fontSize: 28,
+		fontWeight: '500',
+		color: '#1c313a',
 	},
 	bottomView: {
-		flex: 1,
+		flex: 3,
 	},
 	titleView: {
 		flex: 1,
@@ -67,7 +87,7 @@ const styles = StyleSheet.create({
 		flex: 4,
 	},
 	button: {
-		marginVertical: 10,
+		marginVertical: 20,
 	},
 	separator: {
 		marginVertical: 30,

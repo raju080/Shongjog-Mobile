@@ -39,9 +39,9 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 // 
 
 type CustomButtonProps = {
-  onPress: () => void;
+  onPress: any;
   text: string;
-  styleProp: {}
+  styleProp: undefined | any;
 }
 
 export const CustomButton = ({ text, onPress, styleProp }: CustomButtonProps) => {

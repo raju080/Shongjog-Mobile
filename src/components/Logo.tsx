@@ -8,7 +8,6 @@ const Logo = () => {
 					style={{ width: 70, height: 100 }}
 					source={require('../assets/images/logo2.png')}
 				/>
-				<Text style={styles.logoText}>Welcome to Shongjog</Text>
 			</View>
 		);
 }
@@ -20,10 +19,5 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-	},
-	logoText: {
-		fontSize: 28,
-    fontWeight: '500',
-		color: '#1c313a',
 	},
 });
