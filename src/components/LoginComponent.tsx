@@ -39,7 +39,6 @@ const LoginComponent = ({ onLogin, handleSignUp }: LoginComponentPropType) => {
 				<CustomButton
 					text='Login'
 					onPress={onLogin}
-					styleProp={{ marginTop: 10 }}
 				/>
 				<View style={styles.signUpTextView}>
 					<Text style={styles.signUpText}>Do not have an account yet?</Text>
