@@ -1,84 +1,184 @@
-import { Tutor } from '../types_store';
+import { TutorTypeStudent } from '../types_store';
 
 
-export const tutors: Tutor[] = [
+export const tutors: TutorTypeStudent[] = [
 	{
 		id: 0,
 		name: 'Asif Ahmed',
 		imageUri:
 			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		university: 'BUET',
-		department: 'CSE',
-		location: 'Azimpur, Dhaka',
-		tuitionFees: {
-			college: 10000,
-			school: 8000,
+		education: {
+			college: 'Government Science College, Dhaka',
+			version: 'Bangla',
+			university: 'BUET',
+			department: 'CSE',
+			levelOrYear: 4,
 		},
+		preference: {
+			gender: 'M',
+			subjects: {
+				hsc: ['physics', 'chemistry', 'mathematics'],
+				ssc: ['physics', 'chemistry', 'mathematics'],
+			},
+			versions: ['english', 'bangla'],
+			availability: '',
+			remunerations: {
+				hsc: { from: 10000, to: 12000 },
+				ssc: { from: 8000, to: 10000 },
+			},
+		},
+		rating: 5,
+		introText:
+			"Hello I'm Asif the copper. Tuition is my passion. And money is my motivation. Hire me if you wanna cop in BUET like me.",
+		introVideoLink: '',
+		subjectVideoLinks: [],
 	},
 	{
 		id: 1,
-		name: 'Iqbal Hossain',
+		name: 'Iqbal Hossain Raju',
 		imageUri:
 			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		university: 'BUET',
-		department: 'CSE',
-		location: 'Azimpur, Dhaka',
-		tuitionFees: {
-			college: 10000,
-			school: 8000,
+		education: {
+			college: 'Notre Dame College, Dhaka',
+			version: 'Bangla',
+			university: 'BUET',
+			department: 'CSE',
+			levelOrYear: 4,
 		},
+		preference: {
+			gender: 'M',
+			subjects: {
+				hsc: ['physics', 'chemistry', 'mathematics'],
+				ssc: ['physics', 'chemistry', 'mathematics'],
+			},
+			versions: ['english', 'bangla'],
+			availability: '',
+			remunerations: {
+				hsc: 12000,
+			},
+		},
+		rating: 4,
+		introText: "Hello I'm Asif the copper. Hire me",
+		introVideoLink: '',
+		subjectVideoLinks: [],
 	},
 	{
 		id: 2,
-		name: 'Abdur Rashid',
+		name: 'Abdur Rashid Tushar',
 		imageUri:
 			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		university: 'BUET',
-		department: 'CSE',
-		location: 'Azimpur, Dhaka',
-		tuitionFees: {
-			college: 10000,
-			school: 8000,
+		education: {
+			college: 'Notre Dame College, Dhaka',
+			version: 'Bangla',
+			university: 'BUET',
+			department: 'CSE',
+			levelOrYear: 4,
 		},
+		preference: {
+			gender: 'M',
+			subjects: {
+				hsc: ['physics', 'chemistry', 'mathematics'],
+				ssc: ['physics', 'chemistry', 'mathematics'],
+			},
+			versions: ['english', 'bangla'],
+			availability: '',
+			remunerations: {
+				hsc: 12000,
+			},
+		},
+		rating: 4.5,
+		introText: "Hello I'm Asif the copper. Hire me",
+		introVideoLink: '',
+		subjectVideoLinks: [],
 	},
 	{
-		id: 3,
+		id: 0,
 		name: 'Asif Ahmed',
 		imageUri:
 			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		university: 'BUET',
-		department: 'CSE',
-		location: 'Azimpur, Dhaka',
-		tuitionFees: {
-			college: 10000,
-			school: 8000,
+		education: {
+			college: 'Government Science College, Dhaka',
+			version: 'Bangla',
+			university: 'BUET',
+			department: 'CSE',
+			levelOrYear: 4,
 		},
+		preference: {
+			gender: 'M',
+			subjects: {
+				hsc: ['physics', 'chemistry', 'mathematics'],
+				ssc: ['physics', 'chemistry', 'mathematics'],
+			},
+			versions: ['english', 'bangla'],
+			availability: '',
+			remunerations: {
+				hsc: { from: 10000, to: 12000 },
+				ssc: { from: 8000, to: 10000 },
+			},
+		},
+		rating: 5,
+		introText:
+			"Hello I'm Asif the copper. Tuition is my passion. And money is my motivation. Hire me if you wanna cop in BUET like me.",
+		introVideoLink: '',
+		subjectVideoLinks: [],
 	},
 	{
-		id: 4,
-		name: 'Iqbal Hossain',
+		id: 1,
+		name: 'Iqbal Hossain Raju',
 		imageUri:
 			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		university: 'BUET',
-		department: 'CSE',
-		location: 'Azimpur, Dhaka',
-		tuitionFees: {
-			college: 10000,
-			school: 8000,
+		education: {
+			college: 'Notre Dame College, Dhaka',
+			version: 'Bangla',
+			university: 'BUET',
+			department: 'CSE',
+			levelOrYear: 4,
 		},
+		preference: {
+			gender: 'M',
+			subjects: {
+				hsc: ['physics', 'chemistry', 'mathematics'],
+				ssc: ['physics', 'chemistry', 'mathematics'],
+			},
+			versions: ['english', 'bangla'],
+			availability: '',
+			remunerations: {
+				hsc: 12000,
+			},
+		},
+		rating: 4,
+		introText: "Hello I'm Asif the copper. Hire me",
+		introVideoLink: '',
+		subjectVideoLinks: [],
 	},
 	{
-		id: 5,
-		name: 'Abdur Rashid',
+		id: 2,
+		name: 'Abdur Rashid Tushar',
 		imageUri:
 			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		university: 'BUET',
-		department: 'CSE',
-		location: 'Azimpur, Dhaka',
-		tuitionFees: {
-			college: 10000,
-			school: 8000,
+		education: {
+			college: 'Notre Dame College, Dhaka',
+			version: 'Bangla',
+			university: 'BUET',
+			department: 'CSE',
+			levelOrYear: 4,
 		},
+		preference: {
+			gender: 'M',
+			subjects: {
+				hsc: ['physics', 'chemistry', 'mathematics'],
+				ssc: ['physics', 'chemistry', 'mathematics'],
+			},
+			versions: ['english', 'bangla'],
+			availability: '',
+			remunerations: {
+				hsc: 12000,
+			},
+		},
+		rating: 4.5,
+		introText: "Hello I'm Asif the copper. Hire me",
+		introVideoLink: '',
+		subjectVideoLinks: [],
 	},
 ];
 

@@ -5,19 +5,19 @@ import { useAppSelector, useAppDispatch } from '../../hooks/reactReduxHooks';
 import { Text, View } from '../../components/Themed';
 import { ReactNavigationProps } from '../../types';
 import TutorPreviewCardCol from '../../components/TutorPreviewCardCol';
-import { Tutor } from '../../types_store';
+import { TutorTypeStudent } from '../../types_store';
 
 export default function FindTutorScreenStudent({ navigation }: ReactNavigationProps) {
-	const tutors = useAppSelector((state): Tutor[] => state.tutor.tutors);
+	const tutors = useAppSelector((state): TutorTypeStudent[] => state.tutor.tutors);
 	const dispatch = useAppDispatch();
 
-  const handleTutorClick = (tutor: Tutor) => {
+  const handleTutorClick = (tutor: TutorTypeStudent) => {
     navigation.push('TutorDetailsScreenStudent');
   }
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Find Tutor Screen</Text>
+      
 			<FlatList
 				data={tutors}
 				numColumns={2}

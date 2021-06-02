@@ -38,31 +38,54 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 // Component: Custom Button
 // 
 
+let BUTTON_WIDTH: number = 300;
+let BUTTON_FONT_SIZE: number = 18;
+let BUTTON_VERTICAL_PADDING: number = 14;
+let BUTTON_BG_COLOR: string = '#1c313a';
+
 type CustomButtonProps = {
   onPress: any;
   text: string;
-  styleProp: undefined | any;
+  height?: number;
+	width?: number;
+	bgColor?: string;
 }
 
-export const CustomButton = ({ text, onPress, styleProp }: CustomButtonProps) => {
+export const CustomButton = ({ text, onPress, height, width, bgColor }: CustomButtonProps) => {
+	if (height) {
+		BUTTON_VERTICAL_PADDING = (height-BUTTON_FONT_SIZE)/2;
+	}
+	if (width) {
+		BUTTON_WIDTH = width;
+	}
+	if (bgColor) {
+		BUTTON_BG_COLOR = bgColor
+	}
+
   return (
-		<View style={styleProp}>
-			<TouchableOpacity style={buttonStyles.button} onPress={onPress}>
-				<Text style={buttonStyles.buttonText}>{text}</Text>
-			</TouchableOpacity>
-		</View>
+		<TouchableOpacity
+			style={{
+				width: BUTTON_WIDTH,
+				backgroundColor: BUTTON_BG_COLOR,
+				borderRadius: 25,
+				paddingVertical: BUTTON_VERTICAL_PADDING,
+			}}
+			onPress={onPress}
+		>
+			<Text style={buttonStyles.buttonText}>{text}</Text>
+		</TouchableOpacity>
 	);
 }
 
 const buttonStyles = StyleSheet.create({
 	button: {
-		width: 300,
+		width: BUTTON_WIDTH,
 		backgroundColor: '#1c313a',
 		borderRadius: 25,
-		paddingVertical: 15,
+		paddingVertical: BUTTON_VERTICAL_PADDING,
 	},
 	buttonText: {
-		fontSize: 18,
+		fontSize: BUTTON_FONT_SIZE,
 		fontWeight: '500',
 		color: '#ffffff',
 		textAlign: 'center',

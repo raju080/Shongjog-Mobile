@@ -4,7 +4,7 @@ import { StyleSheet, Button, FlatList, View, Text } from 'react-native';
 import { useAppSelector, useAppDispatch } from '../../hooks/reactReduxHooks';
 
 import { ReactNavigationProps } from '../../types';
-import { Tutor } from '../../types_store';
+import { TutorType } from '../../types_store';
 
 import { changeCurrentTutor } from '../../store/actionCreators';
 

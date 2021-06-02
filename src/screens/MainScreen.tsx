@@ -29,16 +29,12 @@ const MainScreen = ({ navigation }: ReactNavigationProps) => {
 					<Text style={styles.title}>Are You A?</Text>
 				</View>
 				<View style={styles.buttonsView}>
-					<CustomButton
-						text='Student'
-						onPress={handleStudentClick}
-						styleProp={styles.button}
-					/>
-					<CustomButton
-						text='Tutor'
-						onPress={handleTutorClick}
-						styleProp={styles.button}
-					/>
+					<View style={{ marginVertical: 15 }}>
+						<CustomButton text='Student' onPress={handleStudentClick} />
+					</View>
+					<View style={{ marginVertical: 15 }}>
+						<CustomButton text='Tutor' onPress={handleTutorClick} />
+					</View>
 				</View>
 			</View>
 		</View>

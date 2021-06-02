@@ -3,10 +3,10 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import { Tutor } from '../types_store';
+import { TutorType } from '../types_store';
 
 type Props = {
-	tutor: Tutor;
+	tutor: TutorType;
 	onClick: () => void;
 }
 

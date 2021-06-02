@@ -4,18 +4,14 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-nativ
 import Logo from '../components/Logo';
 import { CustomButton } from './CustomComponents';
 
+type LoginComponentPropType = {
+  onLogin: any;
+  handleSignUp: any;
+}
 
-const LoginComponent = () => {
+const LoginComponent = ({ onLogin, handleSignUp }: LoginComponentPropType) => {
 	const [mobileNum, onChangeMobileNum] = useState<string>();
 	const [password, onChangePassword] = useState<string>();
-
-	const onSubmit = (data: any) => {
-		console.log(data);
-	};
-
-  const handleSignUp = () => {
-		console.log("Sign Up");
-	};
 
 	return (
 		<View style={styles.container}>
@@ -42,7 +38,7 @@ const LoginComponent = () => {
 				></TextInput>
 				<CustomButton
 					text='Login'
-					onPress={onSubmit}
+					onPress={onLogin}
 					styleProp={{ marginTop: 10 }}
 				/>
 				<View style={styles.signUpTextView}>
