@@ -3,8 +3,8 @@ import * as StateTypes from '../types_store';
 import { AppDispatch } from './store';
 
 
-export const changeCurrentTutor = (tutor: StateTypes.TutorTypeStudent) => ({
-	type: ActionTypes.CHANGE_CURRENT_TUTOR,
+export const changeSelectedTutor = (tutor: StateTypes.TutorTypeStudent) => ({
+	type: ActionTypes.CHANGE_SELECTED_TUTOR,
 	payload: tutor,
 });
 

@@ -10,7 +10,7 @@ import { ListItem, SearchBar, Button } from 'react-native-elements';
 import { useState } from 'react';
 
 import { FilterContext } from '../../store/contexts';
-import { toggleFilterDrawerOpen } from '../../store/actionCreators';
+import { changeSelectedTutor, toggleFilterDrawerOpen } from '../../store/actionCreators';
 
 export default function FindTutorScreenStudent({ navigation }: ReactNavigationProps) {
 	const tutors = useAppSelector((state): TutorTypeStudent[] => state.tutor.tutors);
@@ -19,6 +19,8 @@ export default function FindTutorScreenStudent({ navigation }: ReactNavigationPr
   const [search, setSearch] = useState('');
 
   const handleTutorClick = (tutor: TutorTypeStudent) => {
+		console.log("changing selected tutor " + tutor.name)
+		dispatch(changeSelectedTutor(tutor));
     navigation.push('TutorDetailsScreenStudent');
   }
 

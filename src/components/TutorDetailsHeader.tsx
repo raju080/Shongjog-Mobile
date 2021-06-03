@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ImageBackground, Image, Platform, Alert } from 
 import { Card, Icon, Button } from 'react-native-elements';
 
 import { CustomButton } from './CustomComponents';
-
+import { tutors, requireTutorImage } from '../shared/tutors';
 import { TutorTypeStudent } from '../types_store';
 
 type PropType = {
@@ -38,7 +38,8 @@ const TutorDetailsHeader = ({tutor}: PropType) => {
 						<View style={styles.tutorImageContainer}>
 							<Image
 								style={styles.tutorImage}
-								source={{ uri: tutor.imageUri }}
+								// source={{ uri: tutor.imageUri }}
+								source={requireTutorImage(tutor.id)}
 							/>
 						</View>
 						<View style={styles.favorite}>

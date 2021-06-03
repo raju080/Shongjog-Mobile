@@ -54,7 +54,8 @@ export const tutors: TutorTypeStudent[] = [
 			versions: ['english', 'bangla'],
 			availability: '',
 			remunerations: {
-				hsc: 12000,
+				hsc: { from: 10000, to: 12000 },
+				ssc: { from: 8000, to: 10000 },
 			},
 		},
 		rating: 4,
@@ -83,7 +84,8 @@ export const tutors: TutorTypeStudent[] = [
 			versions: ['english', 'bangla'],
 			availability: '',
 			remunerations: {
-				hsc: 12000,
+				hsc: { from: 10000, to: 12000 },
+				ssc: { from: 8000, to: 10000 },
 			},
 		},
 		rating: 4.5,
@@ -143,7 +145,8 @@ export const tutors: TutorTypeStudent[] = [
 			versions: ['english', 'bangla'],
 			availability: '',
 			remunerations: {
-				hsc: 12000,
+				hsc: { from: 10000, to: 12000 },
+				ssc: { from: 8000, to: 10000 },
 			},
 		},
 		rating: 4,
@@ -172,7 +175,8 @@ export const tutors: TutorTypeStudent[] = [
 			versions: ['english', 'bangla'],
 			availability: '',
 			remunerations: {
-				hsc: 12000,
+				hsc: { from: 10000, to: 12000 },
+				ssc: { from: 8000, to: 10000 },
 			},
 		},
 		rating: 4.5,

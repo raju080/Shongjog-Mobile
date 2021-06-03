@@ -1,10 +1,10 @@
 import { createStore, combineReducers } from "redux";
-import tutorReducer from "./tutorReducer";
+import tutorReducerStudent from "./tutorReducerStudent";
 import uIReducerStudent from "./uIReducerStudent";
 
 const rootReducer = combineReducers({
   uiStudent: uIReducerStudent,
-  tutor: tutorReducer,
+  tutor: tutorReducerStudent,
 });
 
 const store = createStore(rootReducer);

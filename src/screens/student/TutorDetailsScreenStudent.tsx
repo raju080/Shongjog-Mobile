@@ -4,15 +4,18 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 
 import TutorDetailsHeader from '../../components/TutorDetailsHeader';
+import { useAppSelector } from '../../hooks/reactReduxHooks';
 
-
-import { tutors } from '../../shared/tutors';
+import { TutorTypeStudent } from '../../types_store';
 
 const TutorDetailsScreenStudent = () => {
 
-	const tutor = tutors[0];
+	const tutor = useAppSelector(
+		(state): TutorTypeStudent | null => state.tutor.selectedTutor
+	);
 
 	return (
+		tutor === null ? <View></View> :
 		<View style={styles.container}>
 			<TutorDetailsHeader tutor={tutor} />
 			<ScrollView>

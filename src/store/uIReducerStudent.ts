@@ -2,7 +2,7 @@ import { Action } from 'redux';
 import * as ActionTypes from './ActionTypes';
 import {
 	TutorTypeStudent,
-	TutorStateTypeStudent,
+	StateTypeTutorStudent,
 	GeneralActionType,
 	StateTypeUIStudent,
 } from '../types_store';
@@ -11,7 +11,6 @@ import {
 const initialState: StateTypeUIStudent = {
 	isNavDrawerOpen: false,
 	isFilterDrawerOpen: false,
-	selectedTutor: null,
 };
 
 
@@ -22,9 +21,6 @@ const uIReducerStudent = (
 	console.log('in UI reducer')
 	console.log(action.type)
 	switch (action.type) {
-		case ActionTypes.CHANGE_CURRENT_TUTOR:
-			return { ...state, selectedTutor: action.payload };
-
 		case ActionTypes.TOGGLE_NAV_DRAWER_OPEN:
 			return { ...state, isNavDrawerOpen: !state.isNavDrawerOpen };
 

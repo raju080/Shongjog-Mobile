@@ -9,7 +9,7 @@ import TutorPreviewCardCol from '../../components/TutorPreviewCardCol';
 import { ReactNavigationProps } from '../../types';
 import { TutorTypeStudent } from '../../types_store';
 
-import { changeCurrentTutor } from '../../store/actionCreators';
+import { changeSelectedTutor } from '../../store/actionCreators';
 
 export default function HomeScreenStudent({ navigation }: ReactNavigationProps) {
 	const tutors = useAppSelector(
@@ -19,7 +19,7 @@ export default function HomeScreenStudent({ navigation }: ReactNavigationProps) 
 	const dispatch = useAppDispatch();
 
 	const changeTutor = () => {
-		dispatch(changeCurrentTutor(tutors[(currentTutor.id + 1) % 3]));
+		dispatch(changeSelectedTutor(tutors[(currentTutor.id + 1) % 3]));
 	};
 
 	return (

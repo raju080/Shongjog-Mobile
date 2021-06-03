@@ -6,7 +6,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks/reactReduxHooks';
 import { ReactNavigationProps } from '../../types';
 import { TutorType } from '../../types_store';
 
-import { changeCurrentTutor } from '../../store/actionCreators';
+import { changeSelectedTutor } from '../../store/actionCreators';
 
 export default function HomeScreenTutor({ navigation }: ReactNavigationProps) {
 
