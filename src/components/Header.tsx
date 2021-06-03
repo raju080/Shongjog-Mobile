@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
+import { Header as HeaderRNE } from 'react-native-elements';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { HeaderProp } from '../types';
 
@@ -15,6 +16,14 @@ const Header = ({ title, navigation } : HeaderProp) => {
 				<Text style={styles.headerTitle}>{title}</Text>
 			</View>
 		</View>
+		// <HeaderRNE
+		// 	leftComponent={{
+		// 		icon: 'menu',
+		// 		color: '#fff',
+		// 		onPress: menuPressHandler,
+		// 	}}
+		// 	centerComponent={{ text: title, style: styles.heading }}
+		// />
 	);
 }
 
@@ -29,14 +38,20 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 	},
 	headerTitle: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: '#333'
-  },
+		fontWeight: 'bold',
+		fontSize: 20,
+		// color: '#333',
+		color: 'white'
+	},
+	heading: {
+		color: 'white',
+		fontSize: 22,
+		fontWeight: 'bold',
+	},
 	menuButton: {
-    fontSize: 30,
-    padding: 10,
-    color: 'black',
-    marginRight: 20,
-  },
+		fontSize: 30,
+		padding: 10,
+		color: 'black',
+		marginRight: 20,
+	},
 });

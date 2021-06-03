@@ -50,8 +50,10 @@ export function HomeScreenNavigatorStudent({ navigation }: ReactNavigationProps)
 				name='HomeScreenStudent'
 				component={HomeScreenStudent}
 				options={{
-					headerTitle: () => <Header title='Home' navigation={navigation} />,
 					headerLeft: () => null,
+					headerTitle: () => <Header title='Home' navigation={navigation} />,
+					headerRight: () => null,
+					headerStyle: {backgroundColor: '#009B77'}
 				}}
 			/>
 		</HomeStackStudent.Navigator>
@@ -86,6 +88,8 @@ export function FindTutorScreenNavigatorStudent({ navigation }: ReactNavigationP
 							<Header title='Find Tutors' navigation={navigation} />
 						),
 						headerLeft: () => null,
+						headerRight: () => null,
+						headerStyle: { backgroundColor: '#009B77' },
 					}}
 				/>
 

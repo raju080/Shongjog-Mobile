@@ -31,7 +31,11 @@ export default function FindTutorDrawerNavigatorStudent() {
   // }
 
   return (
-		<Drawer.Navigator drawerContent={() => <TutorFilterSidebarStudent customText='hello' />} initialRouteName='FindTutorScreenStudent'>
+		<Drawer.Navigator
+			drawerPosition='right'
+			drawerContent={() => <TutorFilterSidebarStudent customText='hello' />}
+			initialRouteName='FindTutorScreenStudent'
+		>
 			<Drawer.Screen
 				name='FindTutorScreenStudent'
 				component={FindTutorScreenNavigatorStudent}
