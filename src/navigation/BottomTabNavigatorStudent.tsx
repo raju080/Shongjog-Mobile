@@ -15,24 +15,17 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import { BottomTabParamListStudent, ReactNavigationProps } from '../types';
 
+import { useAppSelector, useAppDispatch } from '../hooks/reactReduxHooks';
+
 import { HomeScreenNavigatorStudent } from './NavigatorStacks';
 import FindTutorDrawerNavigatorStudent from './FindTutorDrawerNavigatorStudent';
+import { UIContextStudent } from '../store/contexts';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamListStudent>();
 
 
 export default function BottomTabNavigatorStudent({ navigation }: ReactNavigationProps) {
 	const colorScheme = useColorScheme();
-
-	const isDrawerOpen = useIsDrawerOpen();
-
-	const handleDrawerOpen = () => {
-	  if (isDrawerOpen) {
-	    navigation.closeDrawer();
-	  } else {
-	    navigation.openDrawer();
-	  }
-	}
 
 	return (
 		<BottomTab.Navigator

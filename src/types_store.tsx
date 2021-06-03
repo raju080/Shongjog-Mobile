@@ -91,8 +91,14 @@ export type TutorStateTypeStudent = {
 	tutors: TutorTypeStudent[];
 };
 
+export type StateTypeUIStudent = {
+	isNavDrawerOpen: boolean;
+	isFilterDrawerOpen: boolean;
+	selectedTutor: TutorTypeStudent | null;
+};
+
 // action types student
-export type ChangeTutorActionTypeStudent = {
+export type GeneralActionType = {
 	type: string;
-	payload: TutorTypeStudent;
+	payload: any;
 };

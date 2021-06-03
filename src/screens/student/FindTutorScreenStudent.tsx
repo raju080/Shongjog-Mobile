@@ -10,6 +10,7 @@ import { ListItem, SearchBar, Button } from 'react-native-elements';
 import { useState } from 'react';
 
 import { FilterContext } from '../../store/contexts';
+import { toggleFilterDrawerOpen } from '../../store/actionCreators';
 
 export default function FindTutorScreenStudent({ navigation }: ReactNavigationProps) {
 	const tutors = useAppSelector((state): TutorTypeStudent[] => state.tutor.tutors);
@@ -36,7 +37,7 @@ export default function FindTutorScreenStudent({ navigation }: ReactNavigationPr
 					onChangeText={setSearch}
 					style={styles.searchInput}
 				></TextInput>
-				<FilterContext.Consumer>
+				{/* <FilterContext.Consumer>
 					{(value) => (
 						<Button
 							title='Filters'
@@ -49,7 +50,17 @@ export default function FindTutorScreenStudent({ navigation }: ReactNavigationPr
 							onPress={() => value.handleDrawerOpen()}
 						></Button>
 					)}
-				</FilterContext.Consumer>
+				</FilterContext.Consumer> */}
+				<Button
+					title='Filters'
+					buttonStyle={{
+						width: 80,
+						height: 45,
+						borderRadius: 25,
+						backgroundColor: '#871c4a',
+					}}
+					onPress={() => dispatch(toggleFilterDrawerOpen())}
+				></Button>
 			</ListItem>
 			<FlatList
 				data={tutors}

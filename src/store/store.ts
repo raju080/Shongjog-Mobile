@@ -1,7 +1,9 @@
 import { createStore, combineReducers } from "redux";
 import tutorReducer from "./tutorReducer";
+import uIReducerStudent from "./uIReducerStudent";
 
 const rootReducer = combineReducers({
+  uiStudent: uIReducerStudent,
   tutor: tutorReducer,
 });
 

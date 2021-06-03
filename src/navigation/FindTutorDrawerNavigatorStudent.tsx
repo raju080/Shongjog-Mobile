@@ -20,20 +20,11 @@ const Drawer = createDrawerNavigator<FindTutorDrawerParamListStudent>();
 // };
 
 export default function FindTutorDrawerNavigatorStudent() {
-  // const isDrawerOpen = useIsDrawerOpen();
-
-  // const handleDrawerOpen = () => {
-  //   if (isDrawerOpen) {
-  //     navigation.closeDrawer();
-  //   } else {
-  //     navigation.openDrawer();
-  //   }
-  // }
 
   return (
 		<Drawer.Navigator
 			drawerPosition='right'
-			drawerContent={() => <TutorFilterSidebarStudent customText='hello' />}
+			drawerContent={() => <TutorFilterSidebarStudent toggleSidebar={null} />}
 			initialRouteName='FindTutorScreenStudent'
 		>
 			<Drawer.Screen

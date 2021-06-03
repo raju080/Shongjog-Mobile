@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import {
 	createDrawerNavigator,
 	useIsDrawerOpen,
@@ -17,15 +17,6 @@ const Drawer = createDrawerNavigator<DrawerParamListStudent>()
 // };
 
 export default function DrawerNavigatorStudent() {
-  // const isDrawerOpen = useIsDrawerOpen();
-
-  // const handleDrawerOpen = () => {
-  //   if (isDrawerOpen) {
-  //     navigation.closeDrawer();
-  //   } else {
-  //     navigation.openDrawer();
-  //   }
-  // }
 
   return (
 		<Drawer.Navigator initialRouteName='Home'>

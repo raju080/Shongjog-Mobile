@@ -1,7 +1,9 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
 
 import { Button } from 'react-native';
+
+import { useAppSelector, useAppDispatch } from '../hooks/reactReduxHooks';
 
 import Header from '../components/Header';
 
@@ -30,12 +32,16 @@ import {
 	ReactNavigationProps
 } from '../types';
 import { useIsDrawerOpen } from '@react-navigation/drawer';
+import { toggleFilterDrawerOpen } from '../store/actionCreators';
 
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
 
 // type HomeScreenNavigationProp = StackNavigationProp<HomeTabParamList, 'HomeScreen'>;
+
+const HEADER_COLOR = '#34568b';
+
 
 /*  
 ** Navigation stacks for student part
@@ -53,7 +59,7 @@ export function HomeScreenNavigatorStudent({ navigation }: ReactNavigationProps)
 					headerLeft: () => null,
 					headerTitle: () => <Header title='Home' navigation={navigation} />,
 					headerRight: () => null,
-					headerStyle: {backgroundColor: '#009B77'}
+					headerStyle: {backgroundColor: HEADER_COLOR}
 				}}
 			/>
 		</HomeStackStudent.Navigator>
@@ -63,22 +69,29 @@ export function HomeScreenNavigatorStudent({ navigation }: ReactNavigationProps)
 const FindTutorStackStudent = createStackNavigator<FindTutorScreenParamListStudent>();
 
 export function FindTutorScreenNavigatorStudent({ navigation }: ReactNavigationProps) {
-
+	const dispatch = useAppDispatch();
+	const isFilterDrawerOpen = useAppSelector(
+		(state) => state.uiStudent.isFilterDrawerOpen
+	);
 	const isDrawerOpen = useIsDrawerOpen();
-
-	const handleFilterDrawerOpen = () => {
-		console.log('Filter drawer opening')
-		if (isDrawerOpen) {
-			navigation.closeDrawer();
-		} else {
-			navigation.openDrawer();
-		}
+	const handleFilterDrawerOpen = (isFilterDrawerOpen: boolean) => {
+		if (isFilterDrawerOpen != isDrawerOpen) {
+			navigation.toggleDrawer();
+		} 
 	};
 
+	useEffect(() => {
+		handleFilterDrawerOpen(isFilterDrawerOpen);
+	}, [isFilterDrawerOpen]);
+
+	useEffect(() => {
+		if (isFilterDrawerOpen != isDrawerOpen) {
+			dispatch(toggleFilterDrawerOpen());
+		}
+	}, [isDrawerOpen]);
+
 	return (
-		<FilterContext.Provider
-			value={{ handleDrawerOpen: handleFilterDrawerOpen }}
-		>
+		
 			<FindTutorStackStudent.Navigator>
 				<FindTutorStackStudent.Screen
 					name='FindTutorScreenStudent'
@@ -89,7 +102,7 @@ export function FindTutorScreenNavigatorStudent({ navigation }: ReactNavigationP
 						),
 						headerLeft: () => null,
 						headerRight: () => null,
-						headerStyle: { backgroundColor: '#009B77' },
+						headerStyle: { backgroundColor: HEADER_COLOR },
 					}}
 				/>
 
@@ -103,7 +116,6 @@ export function FindTutorScreenNavigatorStudent({ navigation }: ReactNavigationP
 					// }}
 				/>
 			</FindTutorStackStudent.Navigator>
-		</FilterContext.Provider>
 	);
 }
 

@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import { TutorType, TutorStateTypeStudent, ChangeTutorActionTypeStudent } from '../types_store';
+import { TutorTypeStudent, TutorStateTypeStudent, ChangeTutorActionTypeStudent } from '../types_store';
 
 import { tutors } from '../shared/tutors';
 

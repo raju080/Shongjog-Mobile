@@ -1,11 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, StatusBar } from 'react-native';
 
 import { CustomButton } from '../components/CustomComponents';
 import Logo from '../components/Logo';
 import { ReactNavigationProps } from '../types';
 
 const MainScreen = ({ navigation }: ReactNavigationProps) => {
+	// StatusBar.setBackgroundColor('#34568B');
+	StatusBar.setBackgroundColor('#5780c1');
+	StatusBar.setBarStyle('light-content');
+
 	const handleStudentClick = () => {
 		navigation.push('Student');
 	};

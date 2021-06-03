@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 	menuButton: {
 		fontSize: 30,
 		padding: 10,
-		color: 'black',
+		color: 'white',
 		marginRight: 20,
 	},
 });
