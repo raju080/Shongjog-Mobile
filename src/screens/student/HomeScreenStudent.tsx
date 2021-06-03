@@ -7,12 +7,14 @@ import { Text, View } from '../../components/Themed';
 import TutorPreviewCardCol from '../../components/TutorPreviewCardCol';
 
 import { ReactNavigationProps } from '../../types';
-import { TutorType } from '../../types_store';
+import { TutorTypeStudent } from '../../types_store';
 
 import { changeCurrentTutor } from '../../store/actionCreators';
 
 export default function HomeScreenStudent({ navigation }: ReactNavigationProps) {
-	const tutors = useAppSelector((state): TutorType[] => state.tutor.tutors);
+	const tutors = useAppSelector(
+		(state): TutorTypeStudent[] => state.tutor.tutors
+	);
 	const currentTutor = useAppSelector((state) => state.tutor.currentTutor);
 	const dispatch = useAppDispatch();
 

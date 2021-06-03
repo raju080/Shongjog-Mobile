@@ -9,6 +9,8 @@ import { TutorTypeStudent } from '../../types_store';
 import { ListItem, SearchBar, Button } from 'react-native-elements';
 import { useState } from 'react';
 
+import { FilterContext } from '../../store/contexts';
+
 export default function FindTutorScreenStudent({ navigation }: ReactNavigationProps) {
 	const tutors = useAppSelector((state): TutorTypeStudent[] => state.tutor.tutors);
 	const dispatch = useAppDispatch();
@@ -34,16 +36,20 @@ export default function FindTutorScreenStudent({ navigation }: ReactNavigationPr
 					onChangeText={setSearch}
 					style={styles.searchInput}
 				></TextInput>
-				<Button
-					title='Filters'
-					buttonStyle={{
-						width: 80,
-						height: 45,
-						borderRadius: 25,
-						backgroundColor: '#871c4a',
-					}}
-					onPress={() => null}
-				></Button>
+				<FilterContext.Consumer>
+					{(value) => (
+						<Button
+							title='Filters'
+							buttonStyle={{
+								width: 80,
+								height: 45,
+								borderRadius: 25,
+								backgroundColor: '#871c4a',
+							}}
+							onPress={() => value.handleDrawerOpen()}
+						></Button>
+					)}
+				</FilterContext.Consumer>
 			</ListItem>
 			<FlatList
 				data={tutors}

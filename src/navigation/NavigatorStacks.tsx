@@ -11,14 +11,17 @@ import TutorDetailsScreenStudent from '../screens/student/TutorDetailsScreenStud
 import ProfileScreenStudent from '../screens/student/ProfileScreenStudent';
 
 import HomeScreenTutor from '../screens/tutor/HomeScreenTutor';
-
 import AboutUsScreen from '../screens/AboutUsScreen';
 import MainScreen from '../screens/MainScreen';
+
+import FindTutorDrawerNavigatorStudent from './FindTutorDrawerNavigatorStudent';
+
+import { FilterContext } from '../store/contexts';
 
 import {
 	MainStackParamList,
 	HomeTabParamListStudent,
-	FindTutorTabParamListStudent,
+	FindTutorScreenParamListStudent,
 	ProfileTabParamListStudent,
 	HomeTabParamListTutor,
 	ProfileTabParamListTutor,
@@ -26,6 +29,7 @@ import {
   AboutUsParamList,
 	ReactNavigationProps
 } from '../types';
+import { useIsDrawerOpen } from '@react-navigation/drawer';
 
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -54,31 +58,48 @@ export function HomeScreenNavigatorStudent({ navigation }: ReactNavigationProps)
 	);
 }
 
-const FindTutorStackStudent = createStackNavigator<FindTutorTabParamListStudent>();
+const FindTutorStackStudent = createStackNavigator<FindTutorScreenParamListStudent>();
 
 export function FindTutorScreenNavigatorStudent({ navigation }: ReactNavigationProps) {
+
+	const isDrawerOpen = useIsDrawerOpen();
+
+	const handleFilterDrawerOpen = () => {
+		console.log('Filter drawer opening')
+		if (isDrawerOpen) {
+			navigation.closeDrawer();
+		} else {
+			navigation.openDrawer();
+		}
+	};
+
 	return (
-		<FindTutorStackStudent.Navigator>
-			<FindTutorStackStudent.Screen
-				name='FindTutorScreenStudent'
-				component={FindTutorScreenStudent}
-				options={{
-					headerTitle: () => (
-						<Header title='Find Tutors' navigation={navigation} />
-					),
-					headerLeft: () => null,
-				}}
-			/>
-			<FindTutorStackStudent.Screen
-				name='TutorDetailsScreenStudent'
-				component={TutorDetailsScreenStudent}
-				// options={{
-				// 	headerTitle: () => (
-				// 		<Header title='Find Tutors' navigation={navigation} />
-				// 	),
-				// }}
-			/>
-		</FindTutorStackStudent.Navigator>
+		<FilterContext.Provider
+			value={{ handleDrawerOpen: handleFilterDrawerOpen }}
+		>
+			<FindTutorStackStudent.Navigator>
+				<FindTutorStackStudent.Screen
+					name='FindTutorScreenStudent'
+					component={FindTutorScreenStudent}
+					options={{
+						headerTitle: () => (
+							<Header title='Find Tutors' navigation={navigation} />
+						),
+						headerLeft: () => null,
+					}}
+				/>
+
+				<FindTutorStackStudent.Screen
+					name='TutorDetailsScreenStudent'
+					component={TutorDetailsScreenStudent}
+					// options={{
+					// 	headerTitle: () => (
+					// 		<Header title='Find Tutors' navigation={navigation} />
+					// 	),
+					// }}
+				/>
+			</FindTutorStackStudent.Navigator>
+		</FilterContext.Provider>
 	);
 }
 

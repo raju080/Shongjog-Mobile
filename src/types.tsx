@@ -37,7 +37,11 @@ export type HomeTabParamListStudent = {
 	HomeScreenStudent: undefined;
 };
 
-export type FindTutorTabParamListStudent = {
+export type FindTutorDrawerParamListStudent = {
+	FindTutorScreenStudent: undefined;
+};
+
+export type FindTutorScreenParamListStudent = {
 	FindTutorScreenStudent: undefined;
 	TutorDetailsScreenStudent: undefined;
 };
