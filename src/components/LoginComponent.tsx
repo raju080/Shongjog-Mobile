@@ -10,8 +10,8 @@ type LoginComponentPropType = {
 }
 
 const LoginComponent = ({ onLogin, handleSignUp }: LoginComponentPropType) => {
-	const [mobileNum, onChangeMobileNum] = useState<string>();
-	const [password, onChangePassword] = useState<string>();
+	const [mobileNum, onChangeMobileNum] = useState('');
+	const [password, onChangePassword] = useState('');
 
 	return (
 		<View style={styles.container}>

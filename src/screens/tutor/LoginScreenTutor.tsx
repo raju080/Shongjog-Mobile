@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import LoginComponent from '../../components/LoginComponent';
 
+import RegisterBasicInfo from './RegisterBasicInfo';
+
 import { ReactNavigationProps } from '../../types';
 
 const LoginScreenTutor = ({ navigation }: ReactNavigationProps) => {
@@ -14,9 +16,10 @@ const LoginScreenTutor = ({ navigation }: ReactNavigationProps) => {
 		console.log("sign up");
 	}
 	return (
-		<View style={styles.container}>
-			<LoginComponent onLogin={onLogin} handleSignUp={handleSignUp} />
-		</View>
+		// <View style={styles.container}>
+		// 	<LoginComponent onLogin={onLogin} handleSignUp={handleSignUp} />
+		// </View>
+		<RegisterBasicInfo />
 	);
 };
 
