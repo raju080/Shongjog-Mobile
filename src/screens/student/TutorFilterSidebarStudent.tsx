@@ -7,7 +7,7 @@ import { ListItem, Button, CheckBox } from 'react-native-elements';
 import { useForm, Controller } from 'react-hook-form';
 
 import { COLORS } from '../../constants/Colors';
-import { STUDENT_TYPES, SUBJECTS } from '../../shared/filters';
+import { STUDENT_TYPES, STUDENT_CLASSES, SUBJECTS } from '../../shared/filters';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useAppDispatch } from '../../hooks/reactReduxHooks';
 import { toggleFilterDrawerOpen } from '../../store/actionCreators';
@@ -20,26 +20,43 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 	const dispatch = useAppDispatch();
 	// filter view manipulation
 	const [studentTypeFiltersOpen, setStudentTypeFiltersOpen] =
+		useState<boolean>(true);
+	const [studentClassFiltersOpen, setStudentClassFiltersOpen] =
 		useState<boolean>(false);
 	const [subjectFiltersOpen, setSubjectFiltersOpen] = useState<boolean>(false);
+	const [genderFilterOpen, setGenderFilterOpen] = useState<boolean>(false);
 
 	// form values
 	const [studentType, setStudentType] = useState<string>('');
+	const [studentClass, setStudentClass] = useState<string>('');
 	const [subjects, setSubjects] = useState<string[]>([]);
+	const [gender, setGender] = useState<string>('');
+
+	// form control
+	const {
+		control,
+		handleSubmit,
+		getValues,
+		watch,
+		formState: { errors },
+	} = useForm();
 
 	const addSubjectToFilter = (sub: string) => {
 		if (subjects.indexOf(sub) === -1) {
-			console.log('hello');
 			setSubjects(subjects.concat(sub));
-			console.log(subjects);
 		}
 	};
 
 	const handleFilterSubmit = () => {
-		console.log(studentType);
-		console.log(subjects);
 		dispatch(toggleFilterDrawerOpen());
 	};
+
+	const handleFilterReset = () => {
+		setStudentType('');
+		setStudentClass('');
+		setSubjects([]);
+		setGender('');
+	}
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -66,7 +83,30 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 							title={sType}
 							checkedColor='green'
 							checked={studentType === sType}
-							onPress={() => setStudentType(sType)}
+							onPress={() => { setStudentType(sType); setSubjects([]);}}
+						/>
+					))}
+				</ListItem.Accordion>
+				<ListItem.Accordion
+					bottomDivider
+					isExpanded={studentClassFiltersOpen}
+					onPress={() => {
+						setStudentClassFiltersOpen(!studentClassFiltersOpen);
+					}}
+					content={
+						<ListItem>
+							<Text>Student Class</Text>
+						</ListItem>
+					}
+				>
+					{STUDENT_CLASSES[studentType]?.map((sClass, i) => (
+						<CheckBox
+							center
+							key={i}
+							title={sClass}
+							checkedColor='green'
+							checked={studentClass === sClass}
+							onPress={() => setStudentClass(sClass)}
 						/>
 					))}
 				</ListItem.Accordion>
@@ -82,7 +122,7 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 						</ListItem>
 					}
 				>
-					{SUBJECTS.map((subject, i) => (
+					{SUBJECTS[studentClass]?.map((subject, i) => (
 						<CheckBox
 							center
 							key={i}
@@ -90,6 +130,29 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 							checkedColor='green'
 							checked={subjects.indexOf(subject) !== -1}
 							onPress={() => addSubjectToFilter(subject)}
+						/>
+					))}
+				</ListItem.Accordion>
+				<ListItem.Accordion
+					bottomDivider
+					isExpanded={genderFilterOpen}
+					onPress={() => {
+						setGenderFilterOpen(!genderFilterOpen);
+					}}
+					content={
+						<ListItem>
+							<Text>Gender</Text>
+						</ListItem>
+					}
+				>
+					{['male', 'female'].map((gn, i) => (
+						<CheckBox
+							center
+							key={i}
+							title={gn}
+							checkedColor='green'
+							checked={gender === gn}
+							onPress={() => setGender(gn)}
 						/>
 					))}
 				</ListItem.Accordion>
@@ -123,6 +186,11 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 			</ScrollView>
 			<View style={styles.bottomSection}>
 				<Button
+					title='Reset'
+					onPress={handleFilterReset}
+					buttonStyle={styles.resetButton}
+				></Button>
+				<Button
 					title='Apply'
 					onPress={handleFilterSubmit}
 					buttonStyle={styles.filterButton}
@@ -147,11 +215,11 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: '#009B77',
 	},
-  headerText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'white',
-  },
+	headerText: {
+		fontSize: 20,
+		fontWeight: 'bold',
+		color: 'white',
+	},
 	filterSection: {
 		flex: 1,
 		backgroundColor: 'white',
@@ -159,20 +227,23 @@ const styles = StyleSheet.create({
 	locationFilter: {
 		backgroundColor: COLORS.aquaSky,
 	},
-	studentTypeFilter: {
+	studentTypeFilter: {},
+	subjectFilter: {},
+	salaryFilter: {},
 
+	bottomSection: {
+		flexDirection: 'row',
 	},
-	subjectFilter: {
-
-	},
-	salaryFilter: {
-
-	},
-
-	bottomSection: {},
-	filterButton: {
-		backgroundColor: '#955251',
+	resetButton: {
+		backgroundColor: COLORS.red,
 		height: 50,
+		width: 140,
+		borderRadius: 0,
+	},
+	filterButton: {
+		backgroundColor: COLORS.blueIzis,
+		height: 50,
+		width: 150,
 		borderRadius: 0,
 	},
 });

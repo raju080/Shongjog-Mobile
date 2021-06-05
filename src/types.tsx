@@ -55,6 +55,7 @@ export type ProfileTabParamListStudent = {
 
 export type DrawerParamListTutor = {
 	Login: undefined;
+	Register: undefined;
 	Home: undefined;
 	AboutUs: undefined;
 	Settings: undefined;

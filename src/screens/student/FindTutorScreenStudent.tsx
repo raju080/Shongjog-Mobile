@@ -16,7 +16,6 @@ export default function FindTutorScreenStudent({ navigation }: ReactNavigationPr
 	const tutors = useAppSelector((state): TutorTypeStudent[] => state.tutor.tutors);
 	const dispatch = useAppDispatch();
 
-  const [search, setSearch] = useState('');
 
   const handleTutorClick = (tutor: TutorTypeStudent) => {
 		console.log("changing selected tutor " + tutor.name)
@@ -27,51 +26,36 @@ export default function FindTutorScreenStudent({ navigation }: ReactNavigationPr
 	return (
 		<View style={styles.container}>
 			<ListItem bottomDivider>
-				{/* <SearchBar
-					placeholder='Type Here...'
-					onChangeText={setSearch}
-					value={search}
-          platform='android'
-				/> */}
-				<TextInput
+				<Text style={styles.filterHeader}>Tutors List</Text>
+				{/* <TextInput
 					value={search}
 					placeholder='Search'
 					onChangeText={setSearch}
 					style={styles.searchInput}
-				></TextInput>
-				{/* <FilterContext.Consumer>
-					{(value) => (
-						<Button
-							title='Filters'
-							buttonStyle={{
-								width: 80,
-								height: 45,
-								borderRadius: 25,
-								backgroundColor: '#871c4a',
-							}}
-							onPress={() => value.handleDrawerOpen()}
-						></Button>
-					)}
-				</FilterContext.Consumer> */}
-				<Button
-					title='Filters'
-					buttonStyle={{
-						width: 80,
-						height: 45,
-						borderRadius: 25,
-						backgroundColor: '#871c4a',
-					}}
-					onPress={() => dispatch(toggleFilterDrawerOpen())}
-				></Button>
+				></TextInput> */}
+				<View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
+					<Button
+						title='Filters'
+						buttonStyle={{
+							width: 80,
+							height: 45,
+							borderRadius: 25,
+							backgroundColor: '#871c4a',
+						}}
+						onPress={() => dispatch(toggleFilterDrawerOpen())}
+					></Button>
+				</View>
 			</ListItem>
-			<FlatList
-				data={tutors}
-				numColumns={2}
-				renderItem={({ item }) => (
-					<TutorPreviewCardCol tutor={item} onClick={handleTutorClick} />
-				)}
-			/>
-			{/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
+			<View style={styles.container}>
+				<FlatList
+					data={tutors}
+					numColumns={2}
+					renderItem={({ item }) => (
+						<TutorPreviewCardCol tutor={item} onClick={handleTutorClick} />
+					)}
+				/>
+				{/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
+			</View>
 		</View>
 	);
 }
@@ -79,8 +63,11 @@ export default function FindTutorScreenStudent({ navigation }: ReactNavigationPr
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	filterHeader: {
+		fontSize: 20,
+		fontWeight: '700',
 	},
 	title: {
 		fontSize: 20,
@@ -100,5 +87,9 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 16,
 		paddingVertical: 8,
 		fontSize: 14,
+	},
+	filterHeaderView: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
 	},
 });

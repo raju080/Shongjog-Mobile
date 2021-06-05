@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Button, FlatList } from 'react-native';
+import { StyleSheet, Button, FlatList, ImageBackground } from 'react-native';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/reactReduxHooks';
 
@@ -24,7 +24,10 @@ export default function HomeScreenStudent({ navigation }: ReactNavigationProps) 
 
 	return (
 		<View style={styles.container}>
-			{/* <Text style={styles.title}>Home Screen</Text> */}
+			<Text style={styles.title}>Home Screen</Text>
+			{/* <ImageBackground source={require('../../assets/images/backgroundHome.jpg')} style={{
+				width: 
+			}}></ImageBackground> */}
 			{/* {tutors.map((tutor, key) => (
 				<TutorPreviewCardCol key={key} tutor={tutor} navigation={navigation} />
 			))} */}

@@ -11,6 +11,7 @@ import BottomTabNavigatorStudent from './BottomTabNavigatorStudent';
 import { AboutUsScreenNavigator } from './NavigatorStacks';
 import { DrawerParamListTutor } from '../types';
 import BottomTabNavigatorTutor from './BottomTabNavigatorTutor';
+import RegisterScreenTutor from '../screens/tutor/RegisterScreenTutor';
 
 const Drawer = createDrawerNavigator<DrawerParamListTutor>();
 
@@ -33,6 +34,7 @@ export default function DrawerNavigatorTutor() {
 	return (
 		<Drawer.Navigator initialRouteName='Login'>
 			<Drawer.Screen name='Login' component={LoginScreenTutor} />
+			<Drawer.Screen name='Register' component={RegisterScreenTutor} />
 			<Drawer.Screen name='Home' component={BottomTabNavigatorTutor} />
 			<Drawer.Screen name='AboutUs' component={AboutUsScreenNavigator} />
 		</Drawer.Navigator>
