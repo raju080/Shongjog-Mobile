@@ -45,27 +45,88 @@ export type PreferenceType = {
 // student types
 
 export type TutorTypeStudent = {
-	id: number;
+	userId: number;
+	verified: boolean;
+	enabled: boolean;
 	name: string;
+	gender: string;
 	imageUri: string;
-	education: {
-		college: string;
-		version: string;
-		university: string;
-		department: string;
-		levelOrYear: number;
-	};
-	preference: {
-		gender: string;
-		subjects: any;
-		versions: any;
-		availability: any | undefined;
-		remunerations: any;
-	};
+	// education: {
+	// 	college: string;
+	// 	version: string;
+	// 	university: string;
+	// 	department: string;
+	// 	levelOrYear: number;
+	// };
+	ugInstitute: string;
+	ugDepartment: string;
+	// preference: {
+	// 	gender: string;
+	// 	subjects: any;
+	// 	versions: any;
+	// 	availability: any | undefined;
+	// 	remunerations: any;
+	// };
 	rating: number;
-	introText: string;
-	introVideoLink: string | undefined;
-	subjectVideoLinks: { name: string; link: string }[] | undefined;
+	// introText: string;
+	// introVideoLink: string | undefined;
+	// subjectVideoLinks: { name: string; link: string }[] | undefined;
+};
+
+export type TutorEQ = {
+    degree: string;
+    medium?: string;
+    department?: string;
+    group?: string;
+    institute: string;
+    level?: number;
+    term?: number;
+}
+
+export type VideoLink = {
+    title: string;
+    subject: string;
+    videoLink: string;
+}
+
+export type Schedule = {
+	saturday?: string[];
+    sunday?: string[];
+    monday?: string[];
+    tuesday?: string[];
+    wednesday?: string[];
+    thursday?: string[];
+    friday?: string[];
+}
+
+export type Remuneration = {
+	type: string;
+    subjects: string[];
+    from: number;
+    to: number;
+}
+export type Preference = {
+	gender: string;
+    country: string;
+    district: string;
+    areas: string[];
+    schedule: Schedule;
+    remunerations: Remuneration[];
+}
+
+export type TutorDetailsTypeStudent = {
+	userId: string;
+    enabled: boolean;
+    verified: boolean;
+    name: string;
+    gender: string;
+    profilePicture: string;
+    rating: number;
+    educationQualifications: TutorEQ[];
+    introVideoLink?: string;
+    demoVideoLinks?: VideoLink[];
+    introText?: string;
+    preference: Preference;
 };
 
 
@@ -87,7 +148,7 @@ export type TutorTypeTutor = {
 
 // state types student
 export type StateTypeTutorStudent = {
-	selectedTutor: TutorTypeStudent | null;
+	selectedTutor: TutorDetailsTypeStudent | null;
 	tutors: TutorTypeStudent[];
 };
 

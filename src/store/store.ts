@@ -1,4 +1,6 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
+
 import tutorReducerStudent from "./tutorReducerStudent";
 import uIReducerStudent from "./uIReducerStudent";
 
@@ -7,7 +9,7 @@ const rootReducer = combineReducers({
   tutor: tutorReducerStudent,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

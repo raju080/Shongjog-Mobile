@@ -4,16 +4,18 @@ import { Card, Icon, Button } from 'react-native-elements';
 
 import { CustomButton } from './CustomComponents';
 import { tutors, requireTutorImage } from '../shared/tutors';
-import { TutorTypeStudent } from '../types_store';
+import { TutorDetailsTypeStudent, TutorTypeStudent } from '../types_store';
 
 type PropType = {
-	tutor: TutorTypeStudent;
+	tutor: TutorDetailsTypeStudent;
 }
 
 const TutorDetailsHeader = ({tutor}: PropType) => {
 	const handleTuitionRequest = () => {
 		console.log('tuition request')
 	}
+	const ugEQ = tutor.educationQualifications[2];
+
   return (
 		<View style={styles.headerContainer}>
 			<ImageBackground
@@ -39,7 +41,8 @@ const TutorDetailsHeader = ({tutor}: PropType) => {
 							<Image
 								style={styles.tutorImage}
 								// source={{ uri: tutor.imageUri }}
-								source={requireTutorImage(tutor.id)}
+								source={requireTutorImage(tutor.userId)}
+
 							/>
 						</View>
 						<View style={styles.favorite}>
@@ -76,7 +79,7 @@ const TutorDetailsHeader = ({tutor}: PropType) => {
 							onPress={() => null}
 						/>
 						<Text style={styles.universityDeptText}>
-							{tutor.education.department}, {tutor.education.university}
+							{ugEQ?.department}, {ugEQ?.institute}
 						</Text>
 					</View>
 				</View>

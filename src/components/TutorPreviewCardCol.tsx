@@ -40,7 +40,7 @@ const TutorPreviewCardCol = ({ tutor, onClick }: Props) => {
 			<View style={{ alignItems: 'center' }}>
 				<View style={styles.top}>
 					<Image
-						source={requireTutorImage(tutor.id)}
+						source={requireTutorImage(tutor.userId)}
 						style={{
 							height: cardProperties.cardHeight / 2 + 10,
 							width: cardProperties.cardWidth,
@@ -68,7 +68,7 @@ const TutorPreviewCardCol = ({ tutor, onClick }: Props) => {
 							iconStyle={styles.placeIcon}
 						/>
 						<Text style={styles.universityDeptText}>
-							{tutor.education.department}, {tutor.education.university}
+							{tutor.ugDepartment}, {tutor.ugInstitute}
 						</Text>
 					</View>
 				</View>

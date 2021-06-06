@@ -6,12 +6,12 @@ import { Card, ListItem } from 'react-native-elements';
 import TutorDetailsHeader from '../../components/TutorDetailsHeader';
 import { useAppSelector } from '../../hooks/reactReduxHooks';
 
-import { TutorTypeStudent } from '../../types_store';
+import { TutorDetailsTypeStudent, TutorTypeStudent } from '../../types_store';
 
 const TutorDetailsScreenStudent = () => {
 
 	const tutor = useAppSelector(
-		(state): TutorTypeStudent | null => state.tutor.selectedTutor
+		(state): TutorDetailsTypeStudent | null => state.tutor.selectedTutor
 	);
 
 	return (
@@ -23,7 +23,7 @@ const TutorDetailsScreenStudent = () => {
 					<Card.Title>Introduction</Card.Title>
 					<Card.Divider />
 					<View>
-						<Text>{tutor.introText}</Text>
+						<Text>{"Hello I'm Asif the copper. Tuition is my passion. And money is my motivation. Hire me if you wanna cop in BUET like me."}</Text>
 					</View>
 				</Card>
 				<Card>
@@ -41,29 +41,31 @@ const TutorDetailsScreenStudent = () => {
 					<Card.Divider />
 					<ListItem bottomDivider>
 						<Text>
-							HSC: {tutor.preference.remunerations.hsc.from} -{' '}
-							{tutor.preference.remunerations.hsc.to} Tk
+							{tutor.preference.remunerations[0].type}: {tutor.preference.remunerations[0].from} -{' '}
+							{tutor.preference.remunerations[0].to} Tk
 						</Text>
-					</ListItem>
-					<ListItem bottomDivider>
-						<Text>
-							SSC: {tutor.preference.remunerations.ssc.from} -{' '}
-							{tutor.preference.remunerations.ssc.to} Tk
+						</ListItem>
+						{tutor.preference.remunerations[1] ?
+							<ListItem bottomDivider>
+								<Text>
+									{tutor.preference.remunerations[1]?.type}: {tutor.preference.remunerations[1]?.from} -{' '}
+									{tutor.preference.remunerations[1]?.to} Tk
 						</Text>
-					</ListItem>
-				</Card>
-				<Card>
-					<Card.Title>Reviews</Card.Title>
-					<Card.Divider />
-					<ListItem bottomDivider>
-						<Text>Sir is very caring and genius.</Text>
-					</ListItem>
-					<ListItem bottomDivider>
-						<Text>I got chance in BUET because of him. Love you sir.</Text>
-					</ListItem>
-				</Card>
-			</ScrollView>
-		</View>
+							</ListItem> : null
+						}
+					</Card>
+					<Card>
+						<Card.Title>Reviews</Card.Title>
+						<Card.Divider />
+						<ListItem bottomDivider>
+							<Text>Sir is very caring and genius.</Text>
+						</ListItem>
+						<ListItem bottomDivider>
+							<Text>I got chance in BUET because of him. Love you sir.</Text>
+						</ListItem>
+					</Card>
+				</ScrollView>
+			</View>
 	);
 };
 

@@ -26,8 +26,9 @@ export const addTutorsStudent = (tutors: StateTypes.TutorTypeStudent) => ({
 	payload: tutors,
 })
 
-export const fetchTutorsStudent =  () => {
-	const dispatch = useAppDispatch();
+export const fetchTutorsStudent = () => (dispatch) => {
+	// const dispatch = useAppDispatch();
+	console.log('fetching tutors')
 
 	return axios({
 		method: 'GET',
@@ -36,6 +37,7 @@ export const fetchTutorsStudent =  () => {
 	})
 		.then(
 			(response) => {
+				console.log('response get')
 				if (response && response.status === 200) {
 					return response.data;
 				} else {
@@ -51,7 +53,10 @@ export const fetchTutorsStudent =  () => {
 		)
 		.then((response) => {
 			console.log('Response : ')
-			console.log(response)
+			console.log(response.results)
+			response.results.imageUri = ''
+
+			dispatch(addTutorsStudent(response.results));
 		})
 		.catch((error) => {
 			console.log('error : ')
@@ -59,7 +64,7 @@ export const fetchTutorsStudent =  () => {
 		});	
 }
 
-export const changeSelectedTutor = (tutor: StateTypes.TutorTypeStudent) => ({
+export const changeSelectedTutor = (tutor: StateTypes.TutorDetailsTypeStudent) => ({
 	type: ActionTypes.CHANGE_SELECTED_TUTOR,
 	payload: tutor,
 });
@@ -68,12 +73,12 @@ export const addSelectedTutor = (tutor: StateTypes.TutorTypeStudent) => ({
 	type: ActionTypes.ADD_NEW_TUTOR
 })
 
-export const fetchSelectedTutorStudent = (tutorID: number) => {
-	const dispatch = useAppDispatch();
+export const fetchSelectedTutorStudent = (tutorID: number) => ( dispatch ) => {
+	// const dispatch = useAppDispatch();
 
 	return axios({
 		method: 'GET',
-		url: '/tutors',
+		url: '/tutors/' + tutorID,
 		baseURL: baseURL,
 	})
 		.then(
@@ -94,6 +99,7 @@ export const fetchSelectedTutorStudent = (tutorID: number) => {
 		.then((response) => {
 			console.log('Response : ');
 			console.log(response);
+			dispatch(changeSelectedTutor(response))
 		})
 		.catch((error) => {
 			console.log('error : ');

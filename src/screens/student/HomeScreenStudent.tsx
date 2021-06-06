@@ -23,7 +23,7 @@ export default function HomeScreenStudent({ navigation }: ReactNavigationProps) 
 	};
 
 	useEffect(() => {
-		fetchTutorsStudent();
+		dispatch(fetchTutorsStudent());
 	}, []);
 
 	return (

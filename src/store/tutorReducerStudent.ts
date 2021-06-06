@@ -5,7 +5,7 @@ import { tutors } from '../shared/tutors';
 
 const initialState = {
 	selectedTutor: null,
-	tutors: tutors,
+	tutors: [],
 };
 
 const tutorReducerStudent = (

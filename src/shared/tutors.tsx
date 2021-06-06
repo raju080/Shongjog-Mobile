@@ -186,13 +186,17 @@ export const tutors: TutorTypeStudent[] = [
 	},
 ];
 
+export function getRandomInt(max, min = 0) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
 
 export const requireTutorImage = (id: number) => {
-	if (id%3 === 0) {
+	const n = getRandomInt(7);
+	if (n%3 === 0) {
 		return require('../assets/images/newasif.png');
-	} else if (id%3 === 1) {
+	} else if (n%3 === 1) {
 		return require('../assets/images/raju.jpg');
-	} else if (id%3 === 2) {
+	} else if (n%3 === 2) {
 		return require('../assets/images/newtushar.png');
 	}
 }
