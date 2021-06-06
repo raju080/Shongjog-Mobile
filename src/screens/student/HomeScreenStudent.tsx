@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet, Button, FlatList, ImageBackground } from 'react-native';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/reactReduxHooks';
@@ -9,18 +9,22 @@ import TutorPreviewCardCol from '../../components/TutorPreviewCardCol';
 import { ReactNavigationProps } from '../../types';
 import { TutorTypeStudent } from '../../types_store';
 
-import { changeSelectedTutor } from '../../store/actionCreators';
+import { changeSelectedTutor, fetchTutorsStudent } from '../../store/actionCreators';
 
 export default function HomeScreenStudent({ navigation }: ReactNavigationProps) {
 	const tutors = useAppSelector(
 		(state): TutorTypeStudent[] => state.tutor.tutors
 	);
-	const currentTutor = useAppSelector((state) => state.tutor.currentTutor);
+	const currentTutor = useAppSelector((state) => state.tutor.selectedTutor);
 	const dispatch = useAppDispatch();
 
 	const changeTutor = () => {
 		dispatch(changeSelectedTutor(tutors[(currentTutor.id + 1) % 3]));
 	};
+
+	useEffect(() => {
+		fetchTutorsStudent();
+	}, []);
 
 	return (
 		<View style={styles.container}>

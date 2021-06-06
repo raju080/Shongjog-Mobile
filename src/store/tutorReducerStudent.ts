@@ -16,6 +16,9 @@ const tutorReducerStudent = (
 		case ActionTypes.CHANGE_SELECTED_TUTOR:
 			return { ...state, selectedTutor: action.payload };
 
+		case ActionTypes.ADD_TUTORS: 
+			return { ...state, tutors: action.payload }
+
 		default:
 			return state;
 	}
