@@ -13,6 +13,9 @@ import TutorDetailsScreenStudent from '../screens/student/TutorDetailsScreenStud
 import ProfileScreenStudent from '../screens/student/ProfileScreenStudent';
 
 import HomeScreenTutor from '../screens/tutor/HomeScreenTutor';
+import FormAccountInfoTutor from '../screens/tutor/FormAccountInfoTutor';
+import FormPersonalInfoTutor from '../screens/tutor/FormPersonalInfoTutor';
+import FormPreferenceInfoTutor from '../screens/tutor/FormPreferenceInfoTutor';
 import AboutUsScreen from '../screens/AboutUsScreen';
 import MainScreen from '../screens/MainScreen';
 
@@ -29,7 +32,8 @@ import {
 	ProfileTabParamListTutor,
 	LeaderBoardTabParamListTutor,
   AboutUsParamList,
-	ReactNavigationProps
+	ReactNavigationProps,
+	RegisterParamListTutor
 } from '../types';
 import { useIsDrawerOpen } from '@react-navigation/drawer';
 import { toggleFilterDrawerOpen } from '../store/actionCreators';
@@ -162,6 +166,40 @@ export function HomeScreenNavigatorTutor({
 				}}
 			/>
 		</HomeStackTutor.Navigator>
+	);
+}
+
+
+const RegisterStackTutor = createStackNavigator<RegisterParamListTutor>();
+
+export function RegistrationNavigatorTutor({ navigation }: ReactNavigationProps) {
+	return (
+		<RegisterStackTutor.Navigator initialRouteName='FormPersonalInfo'>
+			<RegisterStackTutor.Screen
+				name='FormAccountInfo'
+				component={FormAccountInfoTutor}
+				options={{
+					headerTitle: 'Account Information',
+					headerLeft: () => null,
+				}}
+			/>
+			<RegisterStackTutor.Screen
+				name='FormPersonalInfo'
+				component={FormPersonalInfoTutor}
+				options={{
+					headerTitle: 'Personal Information',
+					headerLeft: () => null,
+				}}
+			/>
+			<RegisterStackTutor.Screen
+				name='FormPreferenceInfo'
+				component={FormPreferenceInfoTutor}
+				options={{
+					headerTitle: 'Preference Information',
+					headerLeft: () => null,
+				}}
+			/>
+		</RegisterStackTutor.Navigator>
 	);
 }
 

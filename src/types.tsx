@@ -61,6 +61,12 @@ export type DrawerParamListTutor = {
 	Settings: undefined;
 };
 
+export type RegisterParamListTutor = {
+	FormAccountInfo: undefined;
+	FormPersonalInfo: undefined;
+	FormPreferenceInfo: undefined;
+};
+
 export type BottomTabParamListTutor = {
 	HomeTutor: undefined;
 	LeaderBoardTutor: undefined;

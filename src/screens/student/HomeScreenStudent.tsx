@@ -13,7 +13,7 @@ import { changeSelectedTutor, fetchTutorsStudent } from '../../store/actionCreat
 
 export default function HomeScreenStudent({ navigation }: ReactNavigationProps) {
 	const tutors = useAppSelector(
-		(state): TutorTypeStudent[] => state.tutor.tutors
+		(state) => state.tutor.tutors
 	);
 	const currentTutor = useAppSelector((state) => state.tutor.selectedTutor);
 	const dispatch = useAppDispatch();
@@ -29,6 +29,7 @@ export default function HomeScreenStudent({ navigation }: ReactNavigationProps) 
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Home Screen</Text>
+			
 			{/* <ImageBackground source={require('../../assets/images/backgroundHome.jpg')} style={{
 				width: 
 			}}></ImageBackground> */}

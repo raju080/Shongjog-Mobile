@@ -19,11 +19,16 @@ import {
 	Card,
 } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
+import ModalSelector from 'react-native-modal-selector';
 
 import { CustomButton } from '../../components/CustomComponents';
 
 import Logo from '../../components/Logo';
 import { Picker } from '@react-native-picker/picker';
+import {COLORS} from '../../constants/Colors';
+import { DISTRICTS } from '../../shared/lists';
+
+
 
 const RegisterScreenTutor = () => {
 	// dropdown states
@@ -42,12 +47,12 @@ const RegisterScreenTutor = () => {
 	} = useForm();
 	const pass = watch('password');
 
-	const [preferences, setGender] = useState('');
-
 	const genders = [
 		{ label: 'Male', value: 'male' },
 		{ label: 'Female', value: 'female' },
 	];
+
+	
 
 	const onSubmit = (data) => console.log(data);
 
@@ -193,13 +198,29 @@ const RegisterScreenTutor = () => {
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							<DropDownPicker
-								open={districtDOpen}
-								value={value}
-								items={genders}
-								setValue={(val) => onChange(val)}
-								setOpen={() => setDistrictDOpen(!districtDOpen)}
-								containerStyle={{ width: 300 }}
+							// <Picker
+							// 	selectedValue={getValues('district')}
+							// 	onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
+							// 	style={styles.formSelect}
+							// 	// dropdownIconColor='black'
+							// 	mode='dropdown'
+							// 	prompt='Select your district'
+							// >
+							// 	{genders.map((item, key) => (
+							// 		<Picker.Item
+							// 			label={item.label}
+							// 			value={item.value}
+							// 			key={key}
+							// 		/>
+							// 	))}
+							// </Picker>
+							<ModalSelector
+								data={DISTRICTS}
+								style={styles.formModalSelect}
+								initValue='Select your district'
+								onChange={(option) => {
+									onChange(option);
+								}}
 							/>
 						)}
 						name='district'
@@ -211,13 +232,13 @@ const RegisterScreenTutor = () => {
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							<DropDownPicker
-								open={areaDOpen}
-								value={value}
-								items={genders}
-								setValue={(val) => onChange(val)}
-								setOpen={() => setAreaDOpen(!areaDOpen)}
-								containerStyle={{ width: 300 }}
+							<ModalSelector
+								data={genders}
+								style={styles.formModalSelect}
+								initValue='Select your area'
+								onChange={(option) => {
+									onChange(option);
+								}}
 							/>
 						)}
 						name='area'
@@ -228,14 +249,20 @@ const RegisterScreenTutor = () => {
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							<DropDownPicker
-								open={genderDOpen}
-								value={value}
-								items={genders}
-								setValue={(val) => onChange(val)}
-								setOpen={() => setGenderDOpen(!genderDOpen)}
-								containerStyle={{ width: 300 }}
-							/>
+							<Picker
+								selectedValue={getValues('gender')}
+								onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
+								style={styles.formSelect}
+								mode='dropdown'
+							>
+								{genders.map((item, key) => (
+									<Picker.Item
+										label={item.label}
+										value={item.value}
+										key={key}
+									/>
+								))}
+							</Picker>
 						)}
 						name='gender'
 						defaultValue=''
@@ -321,44 +348,6 @@ const RegisterScreenTutor = () => {
 				</Card>
 			</Overlay>
 
-			{/* <Tab
-				value={index}
-				onChange={(e) => setIndex(e)}
-				indicatorStyle={{
-					backgroundColor: 'white',
-					height: 3,
-				}}
-				variant='primary'
-			>
-				<Tab.Item
-					title='Recent'
-					titleStyle={{ fontSize: 12 }}
-					icon={{ name: 'timer', type: 'ionicon', color: 'white' }}
-				/>
-				<Tab.Item
-					title='favourite'
-					titleStyle={{ fontSize: 12 }}
-					icon={{ name: 'heart', type: 'ionicon', color: 'white' }}
-				/>
-				<Tab.Item
-					title='cart'
-					titleStyle={{ fontSize: 12 }}
-					icon={{ name: 'cart', type: 'ionicon', color: 'white' }}
-				/>
-			</Tab>
-			{(() => {
-				switch (index) {
-					case 0:
-						return <Text>Recent</Text>;
-					case 1:
-						return <Text>favourites</Text>;
-					case 2:
-						return <Text>Your Cart</Text>;
-					default:
-						return null;
-				}
-			})()} */}
-
 			<CustomButton text='Register' onPress={handleSubmit(onSubmit)} />
 			{/* <View style={styles.signUpTextView}>
 					<Text style={styles.signUpText}>Do not have an account yet?</Text>
@@ -402,6 +391,23 @@ const styles = StyleSheet.create({
 		borderRadius: 25,
 		paddingHorizontal: 16,
 		paddingVertical: 10,
+		fontSize: 16,
+		marginTop: 10,
+		marginBottom: 20,
+	},
+	formSelect: {
+		width: 300,
+		borderWidth: 0.5,
+		backgroundColor: COLORS.light,
+		paddingHorizontal: 16,
+		paddingVertical: 10,
+		fontSize: 16,
+		elevation: 7,
+		marginTop: 10,
+		marginBottom: 20,
+	},
+	formModalSelect: {
+		width: 300,
 		fontSize: 16,
 		marginTop: 10,
 		marginBottom: 20,

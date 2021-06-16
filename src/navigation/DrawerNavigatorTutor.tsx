@@ -8,7 +8,7 @@ import {
 import LoginScreenTutor from '../screens/tutor/LoginScreenTutor';
 
 import BottomTabNavigatorStudent from './BottomTabNavigatorStudent';
-import { AboutUsScreenNavigator } from './NavigatorStacks';
+import { AboutUsScreenNavigator, RegistrationNavigatorTutor } from './NavigatorStacks';
 import { DrawerParamListTutor } from '../types';
 import BottomTabNavigatorTutor from './BottomTabNavigatorTutor';
 import RegisterScreenTutor from '../screens/tutor/RegisterScreenTutor';
