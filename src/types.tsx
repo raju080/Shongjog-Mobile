@@ -42,6 +42,7 @@ export type FindTutorDrawerParamListStudent = {
 };
 
 export type FindTutorScreenParamListStudent = {
+	FindTutorBasicScreenStudent: undefined;
 	FindTutorScreenStudent: undefined;
 	TutorDetailsScreenStudent: undefined;
 };

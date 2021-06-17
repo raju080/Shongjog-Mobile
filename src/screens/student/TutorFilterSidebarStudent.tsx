@@ -87,8 +87,7 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 						/>
 					))}
 				</ListItem.Accordion>
-
-				{/* <ListItem.Accordion
+				<ListItem.Accordion
 					bottomDivider
 					isExpanded={studentClassFiltersOpen}
 					onPress={() => {
@@ -110,7 +109,7 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 							onPress={() => setStudentClass(sClass)}
 						/>
 					))}
-				</ListItem.Accordion> */}
+				</ListItem.Accordion>
 				<ListItem.Accordion
 					bottomDivider
 					isExpanded={subjectFiltersOpen}
@@ -123,7 +122,7 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 						</ListItem>
 					}
 				>
-					{SUBJECTS.map((subject, i) => (
+					{SUBJECTS[studentClass]?.map((subject, i) => (
 						<CheckBox
 							center
 							key={i}

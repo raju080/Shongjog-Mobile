@@ -37,6 +37,7 @@ import {
 } from '../types';
 import { useIsDrawerOpen } from '@react-navigation/drawer';
 import { toggleFilterDrawerOpen } from '../store/actionCreators';
+import GeneralFiltersStudent from '../screens/student/GeneralFiltersStudent';
 
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -95,31 +96,42 @@ export function FindTutorScreenNavigatorStudent({ navigation }: ReactNavigationP
 	}, [isDrawerOpen]);
 
 	return (
-		
-			<FindTutorStackStudent.Navigator>
-				<FindTutorStackStudent.Screen
-					name='FindTutorScreenStudent'
-					component={FindTutorScreenStudent}
-					options={{
-						headerTitle: () => (
-							<Header title='Find Tutors' navigation={navigation} />
-						),
-						headerLeft: () => null,
-						headerRight: () => null,
-						headerStyle: { backgroundColor: HEADER_COLOR },
-					}}
-				/>
+		<FindTutorStackStudent.Navigator>
+			<FindTutorStackStudent.Screen
+				name='FindTutorBasicScreenStudent'
+				component={GeneralFiltersStudent}
+				options={{
+					headerTitle: () => (
+						<Header title='Find Tutors' navigation={navigation} />
+					),
+					headerLeft: () => null,
+					headerRight: () => null,
+					headerStyle: { backgroundColor: HEADER_COLOR },
+				}}
+			/>
+			<FindTutorStackStudent.Screen
+				name='FindTutorScreenStudent'
+				component={FindTutorScreenStudent}
+				options={{
+					headerTitle: () => (
+						<Header title='Find Tutors' navigation={navigation} />
+					),
+					headerLeft: () => null,
+					headerRight: () => null,
+					headerStyle: { backgroundColor: HEADER_COLOR },
+				}}
+			/>
 
-				<FindTutorStackStudent.Screen
-					name='TutorDetailsScreenStudent'
-					component={TutorDetailsScreenStudent}
-					// options={{
-					// 	headerTitle: () => (
-					// 		<Header title='Find Tutors' navigation={navigation} />
-					// 	),
-					// }}
-				/>
-			</FindTutorStackStudent.Navigator>
+			<FindTutorStackStudent.Screen
+				name='TutorDetailsScreenStudent'
+				component={TutorDetailsScreenStudent}
+				// options={{
+				// 	headerTitle: () => (
+				// 		<Header title='Find Tutors' navigation={navigation} />
+				// 	),
+				// }}
+			/>
+		</FindTutorStackStudent.Navigator>
 	);
 }
 
