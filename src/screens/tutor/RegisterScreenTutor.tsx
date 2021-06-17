@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
 	StyleSheet,
@@ -26,17 +26,20 @@ import { CustomButton } from '../../components/CustomComponents';
 import Logo from '../../components/Logo';
 import { Picker } from '@react-native-picker/picker';
 import {COLORS} from '../../constants/Colors';
-import { DISTRICTS } from '../../shared/lists';
+import { AREAS, UNIVERSITIES, COLLEGES } from '../../shared/lists';
+import { ReactNavigationProps } from '../../types';
 
 
-
-const RegisterScreenTutor = () => {
+const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 	// dropdown states
 	const [genderDOpen, setGenderDOpen] = useState(false);
 	const [districtDOpen, setDistrictDOpen] = useState(false);
 	const [areaDOpen, setAreaDOpen] = useState(false);
 	const [addPreferenceOverlayOpen, setAddPreferenceOverlayOpen] =
 		useState(false);
+
+	const [dist, setDist] = useState<{ key: string; label: string } | any>({});
+	const [uni, setUni] = useState<{ key: string; label: string } | any>({});
 
 	const {
 		control,
@@ -46,15 +49,28 @@ const RegisterScreenTutor = () => {
 		formState: { errors },
 	} = useForm();
 	const pass = watch('password');
+	// const dist = watch('district');
 
 	const genders = [
 		{ label: 'Male', value: 'male' },
 		{ label: 'Female', value: 'female' },
 	];
 
-	
+	const districts = Object.keys(AREAS)
+		.sort()
+		.map((d, k) => ({ key: k, label: d }));
+	const universities = Object.keys(UNIVERSITIES)
+		.sort()
+		.map((d, k) => ({ key: k, label: d }));
+	const colleges = COLLEGES.sort().map((d, k) => ({ key: k, label: d }));
+	// let areas = AREAS[dist.label]
+	// 	?.sort()
+	// 	.map((d, k) => ({ key: k, label: d }));
 
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = (data) => {
+		console.log(data);
+		navigation.navigate('Login');
+	};
 
 	const toggleOverlay = () => {
 		setAddPreferenceOverlayOpen(!addPreferenceOverlayOpen);
@@ -215,34 +231,42 @@ const RegisterScreenTutor = () => {
 							// 	))}
 							// </Picker>
 							<ModalSelector
-								data={DISTRICTS}
+								data={districts}
 								style={styles.formModalSelect}
-								initValue='Select your district'
+								initValue={dist ? dist.label : 'Select your district'}
 								onChange={(option) => {
 									onChange(option);
+									setDist(option);
 								}}
 							/>
 						)}
 						name='district'
-						defaultValue=''
 					/>
 
 					{/* Area */}
 					<Text style={styles.formLabel}>Area</Text>
 					<Controller
 						control={control}
-						render={({ field: { onChange, onBlur, value } }) => (
-							<ModalSelector
-								data={genders}
-								style={styles.formModalSelect}
-								initValue='Select your area'
-								onChange={(option) => {
-									onChange(option);
-								}}
-							/>
-						)}
+						render={({ field: { onChange, onBlur, value } }) => {
+							let areas = AREAS[dist?.label]
+								?.sort()
+								.map((d: string, k: string) => ({ key: k, label: d }));
+							return (
+								<ModalSelector
+									data={areas}
+									style={styles.formModalSelect}
+									initValue={
+										getValues('area')
+											? getValues('area').label
+											: 'Select your area'
+									}
+									onChange={(option) => {
+										onChange(option);
+									}}
+								/>
+							);
+						}}
 						name='area'
-						defaultValue=''
 					/>
 
 					<Text style={styles.formLabel}>Gender</Text>
@@ -278,11 +302,20 @@ const RegisterScreenTutor = () => {
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							<TextInput
-								style={styles.formInput}
-								onBlur={onBlur}
-								onChangeText={(value) => onChange(value)}
-								value={value}
+							// <TextInput
+							// 	style={styles.formInput}
+							// 	onBlur={onBlur}
+							// 	onChangeText={(value) => onChange(value)}
+							// 	value={value}
+							// />
+							<ModalSelector
+								data={universities}
+								style={styles.formModalSelect}
+								initValue={uni ? uni.label : 'Select your university'}
+								onChange={(option) => {
+									onChange(option);
+									setUni(option);
+								}}
 							/>
 						)}
 						rules={{
@@ -302,14 +335,25 @@ const RegisterScreenTutor = () => {
 					<Text style={styles.formLabel}>Department</Text>
 					<Controller
 						control={control}
-						render={({ field: { onChange, onBlur, value } }) => (
-							<TextInput
-								style={styles.formInput}
-								onBlur={onBlur}
-								onChangeText={(value) => onChange(value)}
-								value={value}
-							/>
-						)}
+						render={({ field: { onChange, onBlur, value } }) => {
+							let departments = UNIVERSITIES[uni?.label]?.map(
+								(d: string, k: string) => ({ key: k, label: d })
+							);
+							return (
+								<ModalSelector
+									data={departments}
+									style={styles.formModalSelect}
+									initValue={
+										getValues('department')
+											? getValues('department').label
+											: 'Select your department'
+									}
+									onChange={(option) => {
+										onChange(option);
+									}}
+								/>
+							);
+						}}
 						rules={{
 							required: {
 								value: true,
@@ -322,23 +366,46 @@ const RegisterScreenTutor = () => {
 					{errors.department && (
 						<Text style={{ color: 'red' }}>{errors.department.message}</Text>
 					)}
+
+					<Text style={styles.formLabel}>College</Text>
+					<Controller
+						control={control}
+						render={({ field: { onChange, onBlur, value } }) => (
+							// <TextInput
+							// 	style={styles.formInput}
+							// 	onBlur={onBlur}
+							// 	onChangeText={(value) => onChange(value)}
+							// 	value={value}
+							// />
+							<ModalSelector
+								data={colleges}
+								style={styles.formModalSelect}
+								initValue={'Select your college'}
+								onChange={(option) => {
+									onChange(option);
+								}}
+							/>
+						)}
+						name='college'
+						defaultValue=''
+					/>
 				</View>
 
 				{/* Tuition preferences */}
-				<ListItem>
+				{/* <ListItem>
 					<Text style={styles.header}>Tuition Preferences</Text>
-				</ListItem>
+				</ListItem> */}
 
-				<Button
+				{/* <Button
 					title='Add Tuition Preference'
 					style={{
 						marginBottom: 10,
 					}}
 					onPress={() => toggleOverlay()}
-				/>
+				/> */}
 			</ScrollView>
 
-			<Overlay
+			{/* <Overlay
 				isVisible={addPreferenceOverlayOpen}
 				onBackdropPress={toggleOverlay}
 			>
@@ -346,7 +413,7 @@ const RegisterScreenTutor = () => {
 					<Card.Title>Add Tuition Preference</Card.Title>
 					<Card.Divider></Card.Divider>
 				</Card>
-			</Overlay>
+			</Overlay> */}
 
 			<CustomButton text='Register' onPress={handleSubmit(onSubmit)} />
 			{/* <View style={styles.signUpTextView}>
