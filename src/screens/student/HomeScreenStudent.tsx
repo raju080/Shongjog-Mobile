@@ -5,7 +5,11 @@ import { Text, View } from '../../components/Themed';
 import TutorPreviewCardCol from '../../components/TutorPreviewCardCol';
 import { ReactNavigationProps } from '../../types';
 import { TutorTypeStudent } from '../../types_store';
+<<<<<<< HEAD
 import { changeSelectedTutor, fetchSelectedTutorStudent, fetchTutorsStudent } from '../../store/actionCreators';
+=======
+import { changeSelectedTutor, fetchTutorsStudent, fetchSelectedTutorStudent, toggleFilterDrawerOpen } from '../../store/actionCreators';
+>>>>>>> asif
 
 
 export default function HomeScreenStudent({ navigation }: ReactNavigationProps) {
@@ -13,12 +17,12 @@ export default function HomeScreenStudent({ navigation }: ReactNavigationProps) 
 		(state) => state.tutor.tutors
 	);
 
-	const teachers = [
-		{image:require('../../assets/images/newtushar.png')},
-		{image:require('../../assets/images/newtushar.png')},
-		{image:require('../../assets/images/newtushar.png')},
-		{image:require('../../assets/images/newtushar.png')}
-	];
+	// const teachers = [
+	// 	{image:require('../../assets/images/newtushar.png')},
+	// 	{image:require('../../assets/images/newtushar.png')},
+	// 	{image:require('../../assets/images/newtushar.png')},
+	// 	{image:require('../../assets/images/newtushar.png')}
+	// ];
 
 	const currentTutor = useAppSelector((state) => state.tutor.selectedTutor);
 	const dispatch = useAppDispatch();
@@ -52,17 +56,16 @@ export default function HomeScreenStudent({ navigation }: ReactNavigationProps) 
 					<ScrollView>
 					<View>
 						<View style={{flexDirection: 'row'}}>
-							<Text style={styles.text2}>Featured Tutors</Text>
-							<Text style={styles.text3}>Search More</Text>
+							<Text style={styles.text2}>Recommended Tutors for you</Text>
+							<View style={styles.searchMore}>
+								<Text style={styles.text3}>Search More</Text>
+							</View>
 						</View>
 						<FlatList
 							horizontal
-							data = {teachers}
+							data = {tutors}
 							renderItem = {({item}) => (
-								<Image
-									style={{width: 150, height: 150, resizeMode: 'contain', marginLeft: 10}}
-									source={item.image}
-								/>
+								<TutorPreviewCardCol tutor={item} onClick={handleTutorClick} />
 							)
 						}
 						/>
@@ -70,33 +73,47 @@ export default function HomeScreenStudent({ navigation }: ReactNavigationProps) 
 					<View>
 						<View style={{flexDirection: 'row'}}>
 							<Text style={styles.text2}>Featured Tutors</Text>
-							<Text style={styles.text3}>Search More</Text>
+							<View style={styles.searchMore}>
+								<Text style={styles.text3}>Search More</Text>
+							</View>
 						</View>
 						<FlatList
 							horizontal
-							data = {teachers}
+							data = {tutors}
 							renderItem = {({item}) => (
-								<Image
-									style={{width: 150, height: 150, resizeMode: 'contain', marginLeft: 10}}
-									source={item.image}
-								/>
+								<TutorPreviewCardCol tutor={item} onClick={handleTutorClick} />
 							)
 						}
 						/>
 					</View>
 					<View>
 						<View style={{flexDirection: 'row'}}>
-							<Text style={styles.text2}>Featured Tutors</Text>
-							<Text style={styles.text3}>Search More</Text>
+							<Text style={styles.text2}>Tutors From BUET</Text>
+							<View style={styles.searchMore}>
+								<Text style={styles.text3}>Search More</Text>
+							</View>
 						</View>
 						<FlatList
 							horizontal
-							data = {teachers}
+							data = {tutors}
 							renderItem = {({item}) => (
-								<Image
-									style={{width: 150, height: 150, resizeMode: 'contain', marginLeft: 10}}
-									source={item.image}
-								/>
+								<TutorPreviewCardCol tutor={item} onClick={handleTutorClick} />
+							)
+						}
+						/>
+					</View>
+					<View>
+						<View style={{flexDirection: 'row'}}>
+							<Text style={styles.text2}>Tutors From DU</Text>
+							<View style={styles.searchMore}>
+								<Text style={styles.text3}>Search More</Text>
+							</View>
+						</View>
+						<FlatList
+							horizontal
+							data = {tutors}
+							renderItem = {({item}) => (
+								<TutorPreviewCardCol tutor={item} onClick={handleTutorClick} />
 							)
 						}
 						/>
@@ -144,7 +161,11 @@ const styles = StyleSheet.create({
 	text3: {
 		marginTop: 10,
 		fontSize: 16,
-		paddingLeft: 140,
-		color: '#B55A30'
+		color: '#B55A30',
+		alignSelf: 'flex-end',
+		paddingRight: 10
+	},
+	searchMore: {
+		flex: 1,
 	},
 });
