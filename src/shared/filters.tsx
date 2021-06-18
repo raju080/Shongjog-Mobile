@@ -1,31 +1,43 @@
-
+type GenericObject = { [key: string]: any };
 
 export const STUDENT_TYPES = [
-  'Bangla Version', 'English Version', 'English Medium', 'Admission',
+	'Bangla Version',
+	'English Version',
+	'English Medium',
+	'Admission',
 ];
 
 // export const STUDENT_TYPES = [
 //   'ssc', 'hsc', 'admission'
 // ];
 
-export const STUDENT_CLASSES = {
-  'Bangla Version': [
-    'Class 9', 'Class 10', 'SSC', 'College 1st Year', 'College 2nd Year', 'HSC', 
-  ],
-  'English Version': [
-    'Class 9', 'Class 10', 'SSC', 'College 1st Year', 'College 2nd Year', 'HSC', 
-  ],
-  'English Medium': [
-    'Standard 8', 'Standard 9', 'O Level', 'A Level', 
-  ],
-  'Admission': [
-    'Engineering', 'Medical', 'University Science', 'University Commerce', 
-  ],
+export const STUDENT_CLASSES: GenericObject = {
+	'Bangla Version': [
+		'Class 9',
+		'Class 10',
+		'SSC',
+		'College 1st Year',
+		'College 2nd Year',
+		'HSC',
+	],
+	'English Version': [
+		'Class 9',
+		'Class 10',
+		'SSC',
+		'College 1st Year',
+		'College 2nd Year',
+		'HSC',
+	],
+	'English Medium': ['Standard 8', 'Standard 9', 'O Level', 'A Level'],
+	Admission: [
+		'Engineering',
+		'Medical',
+		'University Science',
+		'University Commerce',
+	],
 };
 
-
-
-export const SUBJECTS = {
+export const SUBJECTS: GenericObject = {
 	'Class 9': ['Physics', 'Chemistry', 'Mathematics', 'ICT'],
 	'Class 10': ['Physics', 'Chemistry', 'Mathematics', 'ICT'],
 	SSC: ['Physics', 'Chemistry', 'Mathematics', 'ICT'],
@@ -52,8 +64,6 @@ export const SUBJECTS = {
 	'A Level': ['Accounting', 'Geography', 'Bangla', 'ICT', 'Law', 'Statistics'],
 };
 
-
 // export const SUBJECTS = [
 // 	'Physics', 'Chemistry', 'Higher Math', 'Biology', 'English'
 // ];
-

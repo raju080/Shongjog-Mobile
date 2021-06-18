@@ -1,5 +1,6 @@
+type GenericObject = { [key: string]: any };
 
-export const UNIVERSITIES = {
+export const UNIVERSITIES: GenericObject = {
 	BUET: ['CSE', 'EEE', 'Mechanical', 'Civil'],
 	DU: ['Pharmacy', 'Physics', 'Zoology'],
 	CUET: ['CSE', 'EEE', 'Mechanical', 'Civil'],
@@ -8,7 +9,7 @@ export const UNIVERSITIES = {
 
 export const COLLEGES = ['Notre Dame College, Dhaka', 'Dhaka City College', 'Holly Cross'];
 
-export const AREAS = {
+export const AREAS: GenericObject = {
   "Dhaka": [
     "Azimpur",
     "Badda",

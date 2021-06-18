@@ -67,7 +67,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 	// 	?.sort()
 	// 	.map((d, k) => ({ key: k, label: d }));
 
-	const onSubmit = (data) => {
+	const onSubmit = (data: any) => {
 		console.log(data);
 		navigation.navigate('Login');
 	};

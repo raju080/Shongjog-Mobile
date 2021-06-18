@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Platform, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Platform, StatusBar, TextInput } from 'react-native';
 
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { ListItem, Button, CheckBox } from 'react-native-elements';
@@ -11,6 +11,8 @@ import { STUDENT_TYPES, STUDENT_CLASSES, SUBJECTS } from '../../shared/filters';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useAppDispatch } from '../../hooks/reactReduxHooks';
 import { toggleFilterDrawerOpen } from '../../store/actionCreators';
+import { Dropdown } from 'sharingan-rn-modal-dropdown';
+import { UNIVERSITIES } from '../../shared/lists';
 
 type PropsType = {
 	toggleSidebar: any;
@@ -25,12 +27,18 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 		useState<boolean>(false);
 	const [subjectFiltersOpen, setSubjectFiltersOpen] = useState<boolean>(false);
 	const [genderFilterOpen, setGenderFilterOpen] = useState<boolean>(false);
+	const [salaryFilterOpen, setSalaryFilterOpen] = useState<boolean>(false);
+	const [universityFilterOpen, setUniversityFilterOpen] = useState<boolean>(false);
 
 	// form values
 	const [studentType, setStudentType] = useState<string>('');
 	const [studentClass, setStudentClass] = useState<string>('');
 	const [subjects, setSubjects] = useState<string[]>([]);
 	const [gender, setGender] = useState<string>('');
+
+	const universities = Object.keys(UNIVERSITIES)
+		.sort()
+		.map((d, k) => ({ key: k, label: d, value: d }));
 
 	// form control
 	const {
@@ -47,15 +55,19 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 		}
 	};
 
-	const handleFilterSubmit = () => {
+	const onSubmit = (data: any) => {
+		data.gender = gender;
+		console.log(data);
+		// console.log('gender: ' + gender);
 		dispatch(toggleFilterDrawerOpen());
 	};
 
+
 	const handleFilterReset = () => {
-		setStudentType('');
-		setStudentClass('');
-		setSubjects([]);
-		setGender('');
+		// setStudentType('');
+		// setStudentClass('');
+		// setSubjects([]);
+		// setGender('');
 	}
 
 	return (
@@ -64,7 +76,7 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 				<Text style={styles.headerText}>Filters</Text>
 			</View>
 			<ScrollView style={styles.filterSection}>
-				<ListItem.Accordion
+				{/* <ListItem.Accordion
 					bottomDivider
 					isExpanded={studentTypeFiltersOpen}
 					onPress={() => {
@@ -99,7 +111,7 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 						</ListItem>
 					}
 				>
-					{STUDENT_CLASSES[studentType]?.map((sClass, i) => (
+					{STUDENT_CLASSES[studentType]?.map((sClass: string, i: number) => (
 						<CheckBox
 							center
 							key={i}
@@ -122,7 +134,7 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 						</ListItem>
 					}
 				>
-					{SUBJECTS[studentClass]?.map((subject, i) => (
+					{SUBJECTS[studentClass]?.map((subject: string, i: number) => (
 						<CheckBox
 							center
 							key={i}
@@ -132,7 +144,7 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 							onPress={() => addSubjectToFilter(subject)}
 						/>
 					))}
-				</ListItem.Accordion>
+				</ListItem.Accordion> */}
 				<ListItem.Accordion
 					bottomDivider
 					isExpanded={genderFilterOpen}
@@ -141,24 +153,117 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 					}}
 					content={
 						<ListItem>
-							<Text>Gender</Text>
+							<Text>Gender ({gender})</Text>
 						</ListItem>
 					}
 				>
 					{['male', 'female'].map((gn, i) => (
-						<CheckBox
-							center
+						<Controller
+							control={control}
 							key={i}
-							title={gn}
-							checkedColor='green'
-							checked={gender === gn}
-							onPress={() => setGender(gn)}
+							render={({ field: { onChange, onBlur, value } }) => (
+								<CheckBox
+									center
+									title={gn}
+									checkedColor='green'
+									checked={gender === gn}
+									onPress={() => {
+										if (gender === gn) {
+											onChange('');
+											setGender('');
+										} else {
+											onChange(gn);
+											setGender(gn);
+										}
+									}}
+								/>
+							)}
+							name='gender'
+							defaultValue=''
 						/>
 					))}
 				</ListItem.Accordion>
-				<View style={styles.studentTypeFilter}></View>
-				<View style={styles.subjectFilter}></View>
-				<View style={styles.salaryFilter}></View>
+				<ListItem.Accordion
+					bottomDivider
+					isExpanded={salaryFilterOpen}
+					onPress={() => {
+						setSalaryFilterOpen(!salaryFilterOpen);
+					}}
+					content={
+						<ListItem>
+							<Text>Salary</Text>
+						</ListItem>
+					}
+				>
+					<Controller
+						control={control}
+						render={({ field: { onChange, onBlur, value } }) => (
+							<TextInput
+								style={styles.formInput}
+								placeholder='min salary'
+								onBlur={onBlur}
+								onChangeText={(value) => onChange(value)}
+								value={value}
+							/>
+						)}
+						name='minSalary'
+						defaultValue=''
+					/>
+					<Controller
+						control={control}
+						render={({ field: { onChange, onBlur, value } }) => (
+							<TextInput
+								style={styles.formInput}
+								placeholder='max salary'
+								onBlur={onBlur}
+								onChangeText={(value) => onChange(value)}
+								value={value}
+							/>
+						)}
+						name='maxSalary'
+						defaultValue=''
+					/>
+				</ListItem.Accordion>
+
+				<ListItem.Accordion
+					bottomDivider
+					isExpanded={universityFilterOpen}
+					onPress={() => {
+						setUniversityFilterOpen(!universityFilterOpen);
+					}}
+					content={
+						<ListItem>
+							<Text>University ({getValues('university')})</Text>
+						</ListItem>
+					}
+				>
+					<Controller
+						control={control}
+						render={({ field: { onChange, onBlur, value } }) => (
+							// <ModalSelector
+							// 	data={studentTypes}
+							// 	style={styles.formModalSelect}
+							// 	initValue={
+							// 		sTypeSelected ? sTypeSelected.label : 'Select your version'
+							// 	}
+							// 	onChange={(option) => {
+							// 		onChange(option);
+							// 		setSTypeSelected(option);
+							// 	}}
+							// />
+							<Dropdown
+								label='Select tutor university'
+								data={universities}
+								value={value}
+								onChange={(option) => {
+									onChange(option);
+								}}
+							/>
+						)}
+						name='university'
+						defaultValue=''
+					/>
+				</ListItem.Accordion>
 
 				<View>
 					{/* <ListItem.Accordion
@@ -192,7 +297,7 @@ const TutorFilterSidebarStudent = ({ toggleSidebar }: PropsType) => {
 				></Button>
 				<Button
 					title='Apply'
-					onPress={handleFilterSubmit}
+					onPress={handleSubmit(onSubmit)}
 					buttonStyle={styles.filterButton}
 				></Button>
 			</View>
@@ -230,6 +335,18 @@ const styles = StyleSheet.create({
 	studentTypeFilter: {},
 	subjectFilter: {},
 	salaryFilter: {},
+
+	formInput: {
+		backgroundColor: 'aliceblue',
+		marginHorizontal: 10,
+		marginVertical: 5,
+		paddingHorizontal: 10,
+		fontSize: 12,
+		height: 40,
+		borderColor: 'lightgray',
+		borderWidth: 1,
+		borderRadius: 3,
+	},
 
 	bottomSection: {
 		flexDirection: 'row',
