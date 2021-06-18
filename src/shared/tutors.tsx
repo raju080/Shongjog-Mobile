@@ -155,7 +155,7 @@ export const tutors: TutorTypeStudent[] = [
 		subjectVideoLinks: [],
 	},
 	{
-		id: 2,
+		userId: 2,
 		name: 'Abdur Rashid Tushar',
 		imageUri:
 			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
@@ -186,11 +186,11 @@ export const tutors: TutorTypeStudent[] = [
 	},
 ];
 
-export function getRandomInt(max, min = 0) {
+export function getRandomInt(max: number, min = 0) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-export const requireTutorImage = (id: number) => {
+export const requireTutorImage = (id: string) => {
 	const n = getRandomInt(7);
 	if (n%3 === 0) {
 		return require('../assets/images/newasif.png');

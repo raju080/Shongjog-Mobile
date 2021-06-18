@@ -30,7 +30,7 @@ import { AREAS } from '../../shared/lists';
 import { ReactNavigationProps } from '../../types';
 import { CustomButton } from '../../components/CustomComponents';
 
-const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
+const TuitionRequestScreenStudent = ({ navigation }: ReactNavigationProps) => {
 	const studentTypes = STUDENT_TYPES.map((d, k) => ({ value: d, label: d }));
 
 	const [sTypeSelected, setSTypeSelected] = useState<string>('');
@@ -47,7 +47,7 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 	const [dist, setDist] = useState<{ key: string; label: string } | any>({});
 	const districts = Object.keys(AREAS)
 		.sort()
-		.map((d, k) => ({ key:k, value: d, label: d }));
+		.map((d, k) => ({ key: k, value: d, label: d }));
 
 	const onSubmit = (data: any) => {
 		console.log(data);
@@ -65,17 +65,6 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							// <ModalSelector
-							// 	data={studentTypes}
-							// 	style={styles.formModalSelect}
-							// 	initValue={
-							// 		sTypeSelected ? sTypeSelected.label : 'Select your version'
-							// 	}
-							// 	onChange={(option) => {
-							// 		onChange(option);
-							// 		setSTypeSelected(option);
-							// 	}}
-							// />
 							<Dropdown
 								label='Select your version'
 								data={studentTypes}
@@ -86,10 +75,19 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 								}}
 							/>
 						)}
+						rules={{
+							required: {
+								value: true,
+								message: 'This field is required',
+							},
+						}}
 						name='studentType'
 						defaultValue=''
 					/>
 				</View>
+				{errors.studentType && (
+					<Text style={{ color: 'red' }}>{errors.studentType.message}</Text>
+				)}
 
 				{/* Class */}
 				{/* <Text style={styles.formLabel}>Student Class</Text> */}
@@ -101,18 +99,6 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 								(d: string, k: string) => ({ key: k, value: d, label: d })
 							);
 							return (
-								// <ModalSelector
-								// 	data={classes}
-								// 	style={styles.formModalSelect}
-								// 	initValue={
-								// 		getValues('class')
-								// 			? getValues('class').label
-								// 			: 'Select your class'
-								// 	}
-								// 	onChange={(option) => {
-								// 		onChange(option);
-								// 	}}
-								// />
 								<Dropdown
 									label='Select your class'
 									data={classes}
@@ -124,10 +110,19 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 								/>
 							);
 						}}
+						rules={{
+							required: {
+								value: true,
+								message: 'This field is required',
+							},
+						}}
 						name='class'
 						defaultValue=''
 					/>
 				</View>
+				{errors.class && (
+					<Text style={{ color: 'red' }}>{errors.class.message}</Text>
+				)}
 
 				<View style={styles.multiSelect}>
 					<Controller
@@ -146,10 +141,19 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 								/>
 							);
 						}}
+						rules={{
+							required: {
+								value: true,
+								message: 'This field is required',
+							},
+						}}
 						name='subjects'
 						defaultValue=''
 					/>
 				</View>
+				{errors.subjects && (
+					<Text style={{ color: 'red' }}>{errors.subjects.message}</Text>
+				)}
 
 				{/* District */}
 				{/* <Text style={styles.formLabel}>District</Text> */}
@@ -169,9 +173,18 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 								}}
 							/>
 						)}
+						rules={{
+							required: {
+								value: true,
+								message: 'This field is required',
+							},
+						}}
 						name='district'
 					/>
 				</View>
+				{errors.district && (
+					<Text style={{ color: 'red' }}>{errors.district.message}</Text>
+				)}
 
 				{/* Area */}
 				{/* <Text style={styles.formLabel}>Area</Text> */}
@@ -179,9 +192,11 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => {
-							let areas = AREAS[dist]
-								?.sort()
-								.map((d: string, k: string) => ({ key: k, value: d, label: d }));
+							let areas = AREAS[dist]?.sort().map((d: string, k: string) => ({
+								key: k,
+								value: d,
+								label: d,
+							}));
 							return (
 								<Dropdown
 									label='Select Your Area'
@@ -191,13 +206,22 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 								/>
 							);
 						}}
+						rules={{
+							required: {
+								value: true,
+								message: 'This field is required',
+							},
+						}}
 						name='area'
 					/>
+					{errors.area && (
+						<Text style={{ color: 'red' }}>{errors.area.message}</Text>
+					)}
 				</View>
 			</ScrollView>
 			<Button
 				onPress={handleSubmit(onSubmit)}
-				title='Find Tutors'
+				title='Request Tuition'
 				buttonStyle={styles.submitButton}
 			/>
 			{/* <CustomButton text='Find Tutors' onPress={handleSubmit(onSubmit)} /> */}
@@ -205,7 +229,6 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 	);
 };
 
-export default GeneralFiltersStudent;
 
 const styles = StyleSheet.create({
 	container: {
@@ -253,5 +276,10 @@ const styles = StyleSheet.create({
 		height: 50,
 		borderRadius: 25,
 		marginVertical: 20,
+		backgroundColor: '#871c4a',
 	},
 });
+
+
+export default TuitionRequestScreenStudent;
+

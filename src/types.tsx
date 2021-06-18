@@ -50,6 +50,7 @@ export type FindTutorScreenParamListStudent = {
 
 export type TutorDetailsParamListStudent = {
 	TutorDetailsScreenStudent: undefined;
+	TuitionRequestInitialScreenStudent: undefined;
 };
 
 export type ProfileTabParamListStudent = {

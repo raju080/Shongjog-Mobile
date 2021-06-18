@@ -5,19 +5,24 @@ import { Card, ListItem } from 'react-native-elements';
 
 import TutorDetailsHeader from '../../components/TutorDetailsHeader';
 import { useAppSelector } from '../../hooks/reactReduxHooks';
+import { NavigationProp, ReactNavigationProps } from '../../types';
 
 import { TutorDetailsTypeStudent, TutorTypeStudent } from '../../types_store';
 
-const TutorDetailsScreenStudent = () => {
+const TutorDetailsScreenStudent = ({navigation}: ReactNavigationProps) => {
 
 	const tutor = useAppSelector(
 		(state): TutorDetailsTypeStudent | null => state.tutor.selectedTutor
 	);
 
+	const handleTuitionRequest = () => {
+		navigation.navigate('TuitionRequestInitialScreenStudent');
+	}
+
 	return (
 		tutor === null ? <View></View> :
 		<View style={styles.container}>
-			<TutorDetailsHeader tutor={tutor} />
+			<TutorDetailsHeader tutor={tutor} handleTuitionRequest={handleTuitionRequest} />
 			<ScrollView>
 				<Card>
 					<Card.Title>Introduction</Card.Title>

@@ -8,12 +8,10 @@ import { TutorDetailsTypeStudent, TutorTypeStudent } from '../types_store';
 
 type PropType = {
 	tutor: TutorDetailsTypeStudent;
-}
+	handleTuitionRequest: () => void;
+};
 
-const TutorDetailsHeader = ({tutor}: PropType) => {
-	const handleTuitionRequest = () => {
-		console.log('tuition request')
-	}
+const TutorDetailsHeader = ({tutor, handleTuitionRequest}: PropType) => {
 	const ugEQ = tutor.educationQualifications[2];
 
   return (

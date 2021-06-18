@@ -37,6 +37,7 @@ import { useIsDrawerOpen } from '@react-navigation/drawer';
 import { toggleFilterDrawerOpen } from '../store/actionCreators';
 import GeneralFiltersStudent from '../screens/student/GeneralFiltersStudent';
 import ProfileScreenTutor from '../screens/tutor/ProfileScreenTutor';
+import TuitionRequestScreenStudent from '../screens/student/TuitionRequestScreenStudent';
 
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -66,14 +67,12 @@ export function HomeScreenNavigatorStudent({ navigation }: ReactNavigationProps)
 					headerStyle: { backgroundColor: HEADER_COLOR },
 				}}
 			/>
-			<HomeStackStudent.Screen
+			<FindTutorStackStudent.Screen
 				name='TutorDetailsScreenStudent'
 				component={TutorDetailsScreenNavigatorStudent}
-				// options={{
-				// 	headerTitle: () => (
-				// 		<Header title='Find Tutors' navigation={navigation} />
-				// 	),
-				// }}
+				options={{
+					headerShown: false
+				}}
 			/>
 		</HomeStackStudent.Navigator>
 	);
@@ -133,11 +132,9 @@ export function FindTutorScreenNavigatorStudent({ navigation }: ReactNavigationP
 			<FindTutorStackStudent.Screen
 				name='TutorDetailsScreenStudent'
 				component={TutorDetailsScreenNavigatorStudent}
-				// options={{
-				// 	headerTitle: () => (
-				// 		<Header title='Find Tutors' navigation={navigation} />
-				// 	),
-				// }}
+				options={{
+					headerShown: false,
+				}}
 			/>
 		</FindTutorStackStudent.Navigator>
 	);
@@ -156,9 +153,14 @@ export function TutorDetailsScreenNavigatorStudent({
 				name='TutorDetailsScreenStudent'
 				component={TutorDetailsScreenStudent}
 				options={{
-					headerTitle: () => (
-						<Header title='Find Tutors' navigation={navigation} />
-					),
+					headerTitle: 'Tutor Details',
+				}}
+			/>
+			<TutorDetailsStackStudent.Screen
+				name='TuitionRequestInitialScreenStudent'
+				component={TuitionRequestScreenStudent}
+				options={{
+					headerTitle: 'Tuition Request',
 				}}
 			/>
 		</TutorDetailsStackStudent.Navigator>

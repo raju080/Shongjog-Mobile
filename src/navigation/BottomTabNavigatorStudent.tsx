@@ -17,7 +17,7 @@ import { BottomTabParamListStudent, ReactNavigationProps } from '../types';
 
 import { useAppSelector, useAppDispatch } from '../hooks/reactReduxHooks';
 
-import { HomeScreenNavigatorStudent } from './NavigatorStacks';
+import { HomeScreenNavigatorStudent, ProfileScreenNavigatorStudent } from './NavigatorStacks';
 import FindTutorDrawerNavigatorStudent from './FindTutorDrawerNavigatorStudent';
 import { UIContextStudent } from '../store/contexts';
 
@@ -47,6 +47,15 @@ export default function BottomTabNavigatorStudent({ navigation }: ReactNavigatio
 				options={{
 					tabBarIcon: ({ color }) => (
 						<TabBarIcon name='ios-search' color={color} />
+					),
+				}}
+			/>
+			<BottomTab.Screen
+				name='ProfileStudent'
+				component={ProfileScreenNavigatorStudent}
+				options={{
+					tabBarIcon: ({ color }) => (
+						<TabBarIcon name='person-circle-outline' color={color} />
 					),
 				}}
 			/>
