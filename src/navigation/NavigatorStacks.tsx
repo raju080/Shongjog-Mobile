@@ -13,9 +13,6 @@ import TutorDetailsScreenStudent from '../screens/student/TutorDetailsScreenStud
 import ProfileScreenStudent from '../screens/student/ProfileScreenStudent';
 
 import HomeScreenTutor from '../screens/tutor/HomeScreenTutor';
-import FormAccountInfoTutor from '../screens/tutor/FormAccountInfoTutor';
-import FormPersonalInfoTutor from '../screens/tutor/FormPersonalInfoTutor';
-import FormPreferenceInfoTutor from '../screens/tutor/FormPreferenceInfoTutor';
 import AboutUsScreen from '../screens/AboutUsScreen';
 import MainScreen from '../screens/MainScreen';
 
@@ -38,6 +35,7 @@ import {
 import { useIsDrawerOpen } from '@react-navigation/drawer';
 import { toggleFilterDrawerOpen } from '../store/actionCreators';
 import GeneralFiltersStudent from '../screens/student/GeneralFiltersStudent';
+import ProfileScreenTutor from '../screens/tutor/ProfileScreenTutor';
 
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -181,39 +179,56 @@ export function HomeScreenNavigatorTutor({
 	);
 }
 
+const ProfileStackTutor = createStackNavigator<ProfileTabParamListTutor>();
 
-const RegisterStackTutor = createStackNavigator<RegisterParamListTutor>();
-
-export function RegistrationNavigatorTutor({ navigation }: ReactNavigationProps) {
+export function ProfileScreenNavigatorTutor({ navigation }: ReactNavigationProps) {
 	return (
-		<RegisterStackTutor.Navigator initialRouteName='FormPersonalInfo'>
-			<RegisterStackTutor.Screen
-				name='FormAccountInfo'
-				component={FormAccountInfoTutor}
+		<ProfileStackTutor.Navigator>
+			<ProfileStackTutor.Screen
+				name='ProfileScreenTutor'
+				component={ProfileScreenTutor}
 				options={{
-					headerTitle: 'Account Information',
+					headerTitle: () => <Header title='Profile' navigation={navigation} />,
 					headerLeft: () => null,
 				}}
 			/>
-			<RegisterStackTutor.Screen
-				name='FormPersonalInfo'
-				component={FormPersonalInfoTutor}
-				options={{
-					headerTitle: 'Personal Information',
-					headerLeft: () => null,
-				}}
-			/>
-			<RegisterStackTutor.Screen
-				name='FormPreferenceInfo'
-				component={FormPreferenceInfoTutor}
-				options={{
-					headerTitle: 'Preference Information',
-					headerLeft: () => null,
-				}}
-			/>
-		</RegisterStackTutor.Navigator>
+		</ProfileStackTutor.Navigator>
 	);
 }
+
+
+// const RegisterStackTutor = createStackNavigator<RegisterParamListTutor>();
+
+// export function RegistrationNavigatorTutor({ navigation }: ReactNavigationProps) {
+// 	return (
+// 		<RegisterStackTutor.Navigator initialRouteName='FormPersonalInfo'>
+// 			<RegisterStackTutor.Screen
+// 				name='FormAccountInfo'
+// 				component={FormAccountInfoTutor}
+// 				options={{
+// 					headerTitle: 'Account Information',
+// 					headerLeft: () => null,
+// 				}}
+// 			/>
+// 			<RegisterStackTutor.Screen
+// 				name='FormPersonalInfo'
+// 				component={FormPersonalInfoTutor}
+// 				options={{
+// 					headerTitle: 'Personal Information',
+// 					headerLeft: () => null,
+// 				}}
+// 			/>
+// 			<RegisterStackTutor.Screen
+// 				name='FormPreferenceInfo'
+// 				component={FormPreferenceInfoTutor}
+// 				options={{
+// 					headerTitle: 'Preference Information',
+// 					headerLeft: () => null,
+// 				}}
+// 			/>
+// 		</RegisterStackTutor.Navigator>
+// 	);
+// }
 
 
 /*  
