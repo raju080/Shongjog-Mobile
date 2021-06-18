@@ -5,11 +5,7 @@ import { Text, View } from '../../components/Themed';
 import TutorPreviewCardCol from '../../components/TutorPreviewCardCol';
 import { ReactNavigationProps } from '../../types';
 import { TutorTypeStudent } from '../../types_store';
-<<<<<<< HEAD
 import { changeSelectedTutor, fetchSelectedTutorStudent, fetchTutorsStudent } from '../../store/actionCreators';
-=======
-import { changeSelectedTutor, fetchTutorsStudent, fetchSelectedTutorStudent, toggleFilterDrawerOpen } from '../../store/actionCreators';
->>>>>>> asif
 
 
 export default function HomeScreenStudent({ navigation }: ReactNavigationProps) {
