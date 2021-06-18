@@ -5,6 +5,8 @@ import { AppDispatch } from './store';
 import { useAppDispatch } from '../hooks/reactReduxHooks';
 import axios from 'axios';
 
+import { Action, ActionCreator, Dispatch } from 'redux';
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 
 export const toggleNavDrawerOpen = () => ({
@@ -26,7 +28,7 @@ export const addTutorsStudent = (tutors: StateTypes.TutorTypeStudent) => ({
 	payload: tutors,
 })
 
-export const fetchTutorsStudent = () => (dispatch) => {
+export const fetchTutorsStudent = () => (dispatch: Dispatch) => {
 	// const dispatch = useAppDispatch();
 	console.log('fetching tutors')
 
@@ -73,7 +75,7 @@ export const addSelectedTutor = (tutor: StateTypes.TutorTypeStudent) => ({
 	type: ActionTypes.ADD_NEW_TUTOR
 })
 
-export const fetchSelectedTutorStudent = (tutorID: number) => ( dispatch ) => {
+export const fetchSelectedTutorStudent = (tutorID: number) => ( dispatch: Dispatch ) => {
 	// const dispatch = useAppDispatch();
 
 	return axios({

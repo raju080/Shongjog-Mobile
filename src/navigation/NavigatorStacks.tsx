@@ -30,7 +30,8 @@ import {
 	LeaderBoardTabParamListTutor,
   AboutUsParamList,
 	ReactNavigationProps,
-	RegisterParamListTutor
+	RegisterParamListTutor,
+	TutorDetailsParamListStudent
 } from '../types';
 import { useIsDrawerOpen } from '@react-navigation/drawer';
 import { toggleFilterDrawerOpen } from '../store/actionCreators';
@@ -62,8 +63,17 @@ export function HomeScreenNavigatorStudent({ navigation }: ReactNavigationProps)
 					headerLeft: () => null,
 					headerTitle: () => <Header title='Home' navigation={navigation} />,
 					headerRight: () => null,
-					headerStyle: {backgroundColor: HEADER_COLOR}
+					headerStyle: { backgroundColor: HEADER_COLOR },
 				}}
+			/>
+			<HomeStackStudent.Screen
+				name='TutorDetailsScreenStudent'
+				component={TutorDetailsScreenNavigatorStudent}
+				// options={{
+				// 	headerTitle: () => (
+				// 		<Header title='Find Tutors' navigation={navigation} />
+				// 	),
+				// }}
 			/>
 		</HomeStackStudent.Navigator>
 	);
@@ -122,7 +132,7 @@ export function FindTutorScreenNavigatorStudent({ navigation }: ReactNavigationP
 
 			<FindTutorStackStudent.Screen
 				name='TutorDetailsScreenStudent'
-				component={TutorDetailsScreenStudent}
+				component={TutorDetailsScreenNavigatorStudent}
 				// options={{
 				// 	headerTitle: () => (
 				// 		<Header title='Find Tutors' navigation={navigation} />
@@ -134,6 +144,26 @@ export function FindTutorScreenNavigatorStudent({ navigation }: ReactNavigationP
 }
 
 
+const TutorDetailsStackStudent =
+	createStackNavigator<TutorDetailsParamListStudent>();
+
+export function TutorDetailsScreenNavigatorStudent({
+	navigation,
+}: ReactNavigationProps) {
+	return (
+		<TutorDetailsStackStudent.Navigator>
+			<TutorDetailsStackStudent.Screen
+				name='TutorDetailsScreenStudent'
+				component={TutorDetailsScreenStudent}
+				options={{
+					headerTitle: () => (
+						<Header title='Find Tutors' navigation={navigation} />
+					),
+				}}
+			/>
+		</TutorDetailsStackStudent.Navigator>
+	);
+}
 
 const ProfileStackStudent = createStackNavigator<ProfileTabParamListStudent>();
 

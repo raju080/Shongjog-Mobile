@@ -1,3 +1,6 @@
+import { Action, ActionCreator, Dispatch } from 'redux';
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+
 /**
  *  Tutor Reducer Types
  */
@@ -41,7 +44,6 @@ export type PreferenceType = {
 	remunerations: number[];
 };
 
-
 // student types
 
 export type TutorTypeStudent = {
@@ -74,61 +76,60 @@ export type TutorTypeStudent = {
 };
 
 export type TutorEQ = {
-    degree: string;
-    medium?: string;
-    department?: string;
-    group?: string;
-    institute: string;
-    level?: number;
-    term?: number;
-}
+	degree: string;
+	medium?: string;
+	department?: string;
+	group?: string;
+	institute: string;
+	level?: number;
+	term?: number;
+};
 
 export type VideoLink = {
-    title: string;
-    subject: string;
-    videoLink: string;
-}
+	title: string;
+	subject: string;
+	videoLink: string;
+};
 
 export type Schedule = {
 	saturday?: string[];
-    sunday?: string[];
-    monday?: string[];
-    tuesday?: string[];
-    wednesday?: string[];
-    thursday?: string[];
-    friday?: string[];
-}
+	sunday?: string[];
+	monday?: string[];
+	tuesday?: string[];
+	wednesday?: string[];
+	thursday?: string[];
+	friday?: string[];
+};
 
 export type Remuneration = {
 	type: string;
-    subjects: string[];
-    from: number;
-    to: number;
-}
+	subjects: string[];
+	from: number;
+	to: number;
+};
 export type Preference = {
 	gender: string;
-    country: string;
-    district: string;
-    areas: string[];
-    schedule: Schedule;
-    remunerations: Remuneration[];
-}
+	country: string;
+	district: string;
+	areas: string[];
+	schedule: Schedule;
+	remunerations: Remuneration[];
+};
 
 export type TutorDetailsTypeStudent = {
 	userId: string;
-    enabled: boolean;
-    verified: boolean;
-    name: string;
-    gender: string;
-    profilePicture: string;
-    rating: number;
-    educationQualifications: TutorEQ[];
-    introVideoLink?: string;
-    demoVideoLinks?: VideoLink[];
-    introText?: string;
-    preference: Preference;
+	enabled: boolean;
+	verified: boolean;
+	name: string;
+	gender: string;
+	profilePicture: string;
+	rating: number;
+	educationQualifications: TutorEQ[];
+	introVideoLink?: string;
+	demoVideoLinks?: VideoLink[];
+	introText?: string;
+	preference: Preference;
 };
-
 
 // tutor types
 
@@ -144,7 +145,6 @@ export type TutorTypeTutor = {
 	introVideoLink: string;
 	subjectVideoLinks: { name: string; link: string }[];
 };
-
 
 // state types student
 export type StateTypeTutorStudent = {
@@ -162,3 +162,43 @@ export type GeneralActionType = {
 	type: string;
 	payload: any;
 };
+
+export type ThunkActionType = (dispatch: Dispatch) => ({
+	type: string;
+	payload: any;
+});
+
+// Redux action
+// const reduxAction: ActionCreator<Action> = (text: string) => {
+// 	return {
+// 		type: SET_TEXT,
+// 		text,
+// 	};
+// };
+
+// Redux-Thunk action
+// const thunkAction: ActionCreator<ThunkAction<Action, IState, void>> = (
+// 	text: string
+// ) => {
+// 	return (dispatch: Dispatch<IState>): Action => {
+// 		return dispatch({
+// 			type: SET_TEXT,
+// 			text,
+// 		});
+// 	};
+// };
+
+// Async Redux-Thunk action
+// const asyncThinkAction: ActionCreator<
+// 	ThunkAction<Promise<Action>, IState, void>
+// > = () => {
+// 	return async (dispatch: Dispatch<IState>): Promise<Action> => {
+// 		try {
+// 			const text = await Api.call();
+// 			return dispatch({
+// 				type: SET_TEXT,
+// 				text,
+// 			});
+// 		} catch (e) {}
+// 	};
+// };

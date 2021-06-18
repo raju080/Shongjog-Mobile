@@ -5,7 +5,7 @@ import { Text, View } from '../../components/Themed';
 import TutorPreviewCardCol from '../../components/TutorPreviewCardCol';
 import { ReactNavigationProps } from '../../types';
 import { TutorTypeStudent } from '../../types_store';
-import { changeSelectedTutor, fetchTutorsStudent } from '../../store/actionCreators';
+import { changeSelectedTutor, fetchSelectedTutorStudent, fetchTutorsStudent } from '../../store/actionCreators';
 
 
 export default function HomeScreenStudent({ navigation }: ReactNavigationProps) {
@@ -23,6 +23,12 @@ export default function HomeScreenStudent({ navigation }: ReactNavigationProps) 
 	const currentTutor = useAppSelector((state) => state.tutor.selectedTutor);
 	const dispatch = useAppDispatch();
 
+	const handleTutorClick = (tutor: TutorTypeStudent) => {
+		console.log('changing selected tutor ' + tutor.name);
+		dispatch(fetchSelectedTutorStudent(tutor.userId));
+		navigation.push('TutorDetailsScreenStudent');
+	};
+	
 	const changeTutor = () => {
 		dispatch(changeSelectedTutor(tutors[(currentTutor.id + 1) % 3]));
 	};

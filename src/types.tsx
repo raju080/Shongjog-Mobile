@@ -35,6 +35,7 @@ export type BottomTabParamListStudent = {
 
 export type HomeTabParamListStudent = {
 	HomeScreenStudent: undefined;
+	TutorDetailsScreenStudent: undefined;
 };
 
 export type FindTutorDrawerParamListStudent = {
@@ -44,6 +45,10 @@ export type FindTutorDrawerParamListStudent = {
 export type FindTutorScreenParamListStudent = {
 	FindTutorBasicScreenStudent: undefined;
 	FindTutorScreenStudent: undefined;
+	TutorDetailsScreenStudent: undefined;
+};
+
+export type TutorDetailsParamListStudent = {
 	TutorDetailsScreenStudent: undefined;
 };
 
