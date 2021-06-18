@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StyleSheet, FlatList, TextInput } from 'react-native';
-
 import { useAppSelector, useAppDispatch } from '../../hooks/reactReduxHooks';
 import { Text, View } from '../../components/Themed';
 import { ReactNavigationProps } from '../../types';
@@ -8,7 +7,6 @@ import TutorPreviewCardCol from '../../components/TutorPreviewCardCol';
 import { TutorTypeStudent } from '../../types_store';
 import { ListItem, SearchBar, Button } from 'react-native-elements';
 import { useState } from 'react';
-
 import { FilterContext } from '../../store/contexts';
 import { changeSelectedTutor, fetchSelectedTutorStudent, toggleFilterDrawerOpen } from '../../store/actionCreators';
 
