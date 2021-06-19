@@ -43,8 +43,8 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 	const [addPreferenceOverlayOpen, setAddPreferenceOverlayOpen] =
 		useState(false);
 
-	const [dist, setDist] = useState<{ key: string; label: string } | any>({});
-	const [uni, setUni] = useState<{ key: string; label: string } | any>({});
+	const [dist, setDist] = useState<string>('');
+	const [uni, setUni] = useState<string>('');
 
 	const {
 		control,
@@ -62,20 +62,20 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 	];
 
 	const levels = [
-		{ key: 1, label: '1st',},
-		{ key: 2, label: '2nd',},
-		{ key: 3, label: '3rd',},
-		{ key: 4, label: '4th',},
-		{ key: 5, label: 'Graduated',},
+		{ label: '1st', value: '1st' },
+		{ label: '2nd', value: '2nd' },
+		{ label: '3rd', value: '3rd' },
+		{ label: '4th', value: '4th' },
+		{ label: 'Graduated', value: 'Graduated' },
 	];
 
 	const districts = Object.keys(AREAS)
 		.sort()
-		.map((d, k) => ({ key: k, label: d }));
+		.map((d, k) => ({ value: d, label: d }));
 	const universities = Object.keys(UNIVERSITIES)
 		.sort()
-		.map((d, k) => ({ key: k, label: d }));
-	const colleges = COLLEGES.sort().map((d, k) => ({ key: k, label: d }));
+		.map((d, k) => ({ value: d, label: d }));
+	const colleges = COLLEGES.sort().map((d, k) => ({ value: d, label: d }));
 	// let areas = AREAS[dist.label]
 	// 	?.sort()
 	// 	.map((d, k) => ({ key: k, label: d }));
@@ -223,66 +223,62 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 				{/* Gender */}
 				<View>
 					{/* District */}
-					<Text style={styles.formLabel}>District</Text>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							// <Picker
-							// 	selectedValue={getValues('district')}
-							// 	onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
-							// 	style={styles.formSelect}
-							// 	// dropdownIconColor='black'
-							// 	mode='dropdown'
-							// 	prompt='Select your district'
-							// >
-							// 	{genders.map((item, key) => (
-							// 		<Picker.Item
-							// 			label={item.label}
-							// 			value={item.value}
-							// 			key={key}
-							// 		/>
-							// 	))}
-							// </Picker>
-							<ModalSelector
+							<Dropdown
+								label='Your District'
 								data={districts}
-								style={styles.formModalSelect}
-								initValue={dist ? dist.label : 'Select your district'}
+								value={value}
 								onChange={(option) => {
 									onChange(option);
 									setDist(option);
 								}}
+								mainContainerStyle={styles.formSelect}
 							/>
 						)}
+						rules={{
+							required: {
+								value: true,
+								message: 'This is required.',
+							},
+						}}
 						name='district'
 					/>
+					{errors.district && (
+						<Text style={{ color: 'red' }}>{errors.district.message}</Text>
+					)}
 
-					{/* Area */}
-					<Text style={styles.formLabel}>Area</Text>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => {
-							let areas = AREAS[dist?.label]
-								?.sort()
-								.map((d: string, k: string) => ({ key: k, label: d }));
+							let areas = AREAS[dist]?.map((d: string, k: string) => ({
+								value: d,
+								label: d,
+							}));
 							return (
-								<ModalSelector
+								<Dropdown
+									label='Your Area'
 									data={areas}
-									style={styles.formModalSelect}
-									initValue={
-										getValues('area')
-											? getValues('area').label
-											: 'Select your area'
-									}
-									onChange={(option) => {
-										onChange(option);
-									}}
+									value={value}
+									onChange={onChange}
+									mainContainerStyle={styles.formSelect}
 								/>
 							);
 						}}
+						rules={{
+							required: {
+								value: true,
+								message: 'This is required.',
+							},
+						}}
 						name='area'
 					/>
+					{errors.area && (
+						<Text style={{ color: 'red' }}>{errors.area.message}</Text>
+					)}
 
-					<Text style={styles.formLabel}>Gender</Text>
+					{/* <Text style={styles.formLabel}>Gender</Text>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
@@ -302,8 +298,32 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 							</Picker>
 						)}
 						name='gender'
-						defaultValue=''
+						defaultValue='male'
+					/> */}
+					<Controller
+						control={control}
+						render={({ field: { onChange, onBlur, value } }) => (
+							<Dropdown
+								label='Your Gender'
+								data={genders}
+								value={value}
+								onChange={(option) => {
+									onChange(option);
+								}}
+								mainContainerStyle={styles.formSelect}
+							/>
+						)}
+						rules={{
+							required: {
+								value: true,
+								message: 'This is required.',
+							},
+						}}
+						name='gender'
 					/>
+					{errors.gender && (
+						<Text style={{ color: 'red' }}>{errors.gender.message}</Text>
+					)}
 
 					{/* Tuition preferences */}
 					<ListItem>
@@ -311,119 +331,102 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 					</ListItem>
 
 					{/* University */}
-					<Text style={styles.formLabel}>University</Text>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							// <TextInput
-							// 	style={styles.formInput}
-							// 	onBlur={onBlur}
-							// 	onChangeText={(value) => onChange(value)}
-							// 	value={value}
-							// />
-							<ModalSelector
+							<Dropdown
+								label='Your University'
 								data={universities}
-								style={styles.formModalSelect}
-								initValue={uni ? uni.label : 'Select your university'}
+								value={value}
 								onChange={(option) => {
 									onChange(option);
 									setUni(option);
 								}}
+								mainContainerStyle={styles.formSelect}
 							/>
 						)}
 						rules={{
 							required: {
 								value: true,
-								message: 'This field is required',
+								message: 'This is required.',
 							},
 						}}
 						name='university'
-						defaultValue=''
 					/>
 					{errors.university && (
 						<Text style={{ color: 'red' }}>{errors.university.message}</Text>
 					)}
 
 					{/* Department */}
-					<Text style={styles.formLabel}>Department</Text>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => {
-							let departments = UNIVERSITIES[uni?.label]?.map(
-								(d: string, k: string) => ({ key: k, label: d })
+							let departments = UNIVERSITIES[uni]?.map(
+								(d: string, k: string) => ({ value: d, label: d })
 							);
 							return (
-								<ModalSelector
+								<Dropdown
+									label='Your Department'
 									data={departments}
-									style={styles.formModalSelect}
-									initValue={
-										getValues('department')
-											? getValues('department').label
-											: 'Select your department'
-									}
+									value={value}
 									onChange={(option) => {
 										onChange(option);
 									}}
+									mainContainerStyle={styles.formSelect}
 								/>
 							);
 						}}
 						rules={{
 							required: {
 								value: true,
-								message: 'This field is required',
+								message: 'This is required.',
 							},
 						}}
 						name='department'
-						defaultValue=''
 					/>
 					{errors.department && (
 						<Text style={{ color: 'red' }}>{errors.department.message}</Text>
 					)}
 
-					<Text style={styles.formLabel}>College</Text>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							// <TextInput
-							// 	style={styles.formInput}
-							// 	onBlur={onBlur}
-							// 	onChangeText={(value) => onChange(value)}
-							// 	value={value}
-							// />
-							<ModalSelector
-								data={colleges}
-								style={styles.formModalSelect}
-								initValue={'Select your college'}
+							<Dropdown
+								label='Your Level/Year'
+								data={levels}
+								value={value}
 								onChange={(option) => {
 									onChange(option);
 								}}
+								mainContainerStyle={styles.formSelect}
+							/>
+						)}
+						rules={{
+							required: {
+								value: true,
+								message: 'This is required.',
+							},
+						}}
+						name='levelOrYear'
+					/>
+					{errors.levelOrYear && (
+						<Text style={{ color: 'red' }}>{errors.levelOrYear.message}</Text>
+					)}
+
+					<Controller
+						control={control}
+						render={({ field: { onChange, onBlur, value } }) => (
+							<Dropdown
+								label='Your College'
+								data={colleges}
+								value={value}
+								onChange={(option) => {
+									onChange(option);
+								}}
+								mainContainerStyle={styles.formSelect}
 							/>
 						)}
 						name='college'
-						defaultValue=''
-					/>
-
-					<Text style={styles.formLabel}>Level Or Year</Text>
-					<Controller
-						control={control}
-						render={({ field: { onChange, onBlur, value } }) => (
-							// <TextInput
-							// 	style={styles.formInput}
-							// 	onBlur={onBlur}
-							// 	onChangeText={(value) => onChange(value)}
-							// 	value={value}
-							// />
-							<ModalSelector
-								data={levels}
-								style={styles.formModalSelect}
-								initValue={'Select your Level or year'}
-								onChange={(option) => {
-									onChange(option);
-								}}
-							/>
-						)}
-						name='level'
-						defaultValue=''
 					/>
 				</View>
 
@@ -477,8 +480,7 @@ const styles = StyleSheet.create({
 		color: '#1c313a',
 	},
 	formView: {
-		flex: 1,
-		paddingHorizontal: 20,
+		paddingHorizontal: 10,
 		marginBottom: 10,
 	},
 	formGroup: {},
@@ -487,7 +489,7 @@ const styles = StyleSheet.create({
 		fontWeight: '500',
 	},
 	formInput: {
-		width: 300,
+		width: 340,
 		// backgroundColor: 'rgba(255, 255,255,0.5)',
 		borderWidth: 0.5,
 		// borderBottomWidth: 1,
@@ -499,15 +501,17 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 	},
 	formSelect: {
-		width: 300,
-		borderWidth: 0.5,
-		backgroundColor: COLORS.light,
-		paddingHorizontal: 16,
-		paddingVertical: 10,
-		fontSize: 16,
-		elevation: 7,
-		marginTop: 10,
-		marginBottom: 20,
+		// width: 300,
+		// borderWidth: 0.5,
+		// backgroundColor: COLORS.light,
+		// paddingHorizontal: 16,
+		// paddingVertical: 10,
+		// fontSize: 16,
+		// elevation: 7,
+		// marginTop: 10,
+		// marginBottom: 20,
+		// paddingVertical: 10,
+		marginVertical: 5
 	},
 	formModalSelect: {
 		width: 300,

@@ -163,7 +163,6 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 							onChange={(option) => {
 								onChange(option);
 								setDist(option);
-								console.log(option);
 							}}
 							mainContainerStyle={styles.formSelect}
 						/>
