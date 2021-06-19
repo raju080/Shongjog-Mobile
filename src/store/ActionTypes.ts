@@ -1,9 +1,7 @@
-// UI Reducer action types
 
+// UI Reducer action types
 export const TOGGLE_NAV_DRAWER_OPEN = 'TOGGLE_NAV_DRAWER_OPEN';
 export const TOGGLE_FILTER_DRAWER_OPEN = 'TOGGLE_FILTER_DRAWER_OPEN';
-
-
 
 // Tutor reducer action types
 export const ADD_NEW_TUTOR = 'ADD_NEW_TUTOR';
@@ -16,4 +14,4 @@ export const FILTER_TUTORS = 'FILTER_TUTORS';
 
 
 // Tutor reducer tutor side
-export const REGISTER_TUTOR = 'REGISTER_TUTOR';
+export const ADD_REGISTERED_TUTOR = 'ADD_REGISTERED_TUTOR';

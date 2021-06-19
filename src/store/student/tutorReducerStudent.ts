@@ -1,7 +1,6 @@
-import * as ActionTypes from './ActionTypes';
-import { TutorTypeStudent, StateTypeTutorStudent , GeneralActionType} from '../types_store';
+import * as ActionTypes from '../ActionTypes';
+import { TutorTypeStudent, StateTypeTutorStudent , GeneralActionType} from '../../types_store';
 
-import { tutors } from '../shared/tutors';
 
 const initialState = {
 	selectedTutor: null,

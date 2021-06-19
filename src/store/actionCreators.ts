@@ -9,6 +9,10 @@ import { Action, ActionCreator, Dispatch } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 
+// Student side actions
+// UI actions
+
+
 export const toggleNavDrawerOpen = () => ({
 	type: ActionTypes.TOGGLE_NAV_DRAWER_OPEN,
 	payload: null,
@@ -109,3 +113,50 @@ export const fetchSelectedTutorStudent = (tutorID: number) => ( dispatch: Dispat
 		});	
 }
 
+
+
+// Tutor side actions
+
+
+// Tutor reducer
+
+export const addRegisteredTutor = (tutor: StateTypes.TutorTypeTutor) => ({
+	action: ActionTypes.ADD_REGISTERED_TUTOR,
+	payload: tutor
+})
+
+
+export const fetchRegisteredTutor =
+	(tutorID: number) => (dispatch: Dispatch) => {
+		// const dispatch = useAppDispatch();
+
+		return axios({
+			method: 'GET',
+			url: '/tutors/' + tutorID,
+			baseURL: baseURL,
+		})
+			.then(
+				(response) => {
+					if (response && response.status === 200) {
+						return response.data;
+					} else {
+						let error = new Error(
+							'Error ' + response.status + ': ' + response.statusText
+						);
+						throw error;
+					}
+				},
+				(error) => {
+					throw error;
+				}
+			)
+			.then((response) => {
+				console.log('Response : ');
+				console.log(response);
+				dispatch(changeSelectedTutor(response));
+			})
+			.catch((error) => {
+				console.log('error : ');
+				console.log(error);
+			});
+	};

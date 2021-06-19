@@ -44,7 +44,7 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 		formState: { errors },
 	} = useForm();
 
-	const [dist, setDist] = useState<{ key: string; label: string } | any>({});
+	const [dist, setDist] = useState<string>('');
 	const districts = Object.keys(AREAS)
 		.sort()
 		.map((d, k) => ({ key:k, value: d, label: d }));

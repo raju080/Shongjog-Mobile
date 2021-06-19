@@ -1,11 +1,11 @@
 import { Action } from 'redux';
-import * as ActionTypes from './ActionTypes';
+import * as ActionTypes from '../ActionTypes';
 import {
 	TutorTypeStudent,
 	StateTypeTutorStudent,
 	GeneralActionType,
 	StateTypeUIStudent,
-} from '../types_store';
+} from '../../types_store';
 
 
 const initialState: StateTypeUIStudent = {

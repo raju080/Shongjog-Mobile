@@ -90,6 +90,7 @@ export type LeaderBoardTabParamListTutor = {
 
 export type ProfileTabParamListTutor = {
 	ProfileScreenTutor: undefined;
+	PreferenceScreenTutor: undefined;
 };
 
 // common

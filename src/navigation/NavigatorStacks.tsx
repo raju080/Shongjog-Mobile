@@ -38,6 +38,7 @@ import { toggleFilterDrawerOpen } from '../store/actionCreators';
 import GeneralFiltersStudent from '../screens/student/GeneralFiltersStudent';
 import ProfileScreenTutor from '../screens/tutor/ProfileScreenTutor';
 import TuitionRequestScreenStudent from '../screens/student/TuitionRequestScreenStudent';
+import PreferenceScreenTutor from '../screens/tutor/PreferenceScreenTutor';
 
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -64,7 +65,7 @@ export function HomeScreenNavigatorStudent({ navigation }: ReactNavigationProps)
 					headerLeft: () => null,
 					headerTitle: () => <Header title='Home' navigation={navigation} />,
 					headerRight: () => null,
-					headerStyle: { backgroundColor: HEADER_COLOR },
+					// headerStyle: { backgroundColor: HEADER_COLOR },
 				}}
 			/>
 			<FindTutorStackStudent.Screen
@@ -113,7 +114,7 @@ export function FindTutorScreenNavigatorStudent({ navigation }: ReactNavigationP
 					),
 					headerLeft: () => null,
 					headerRight: () => null,
-					headerStyle: { backgroundColor: HEADER_COLOR },
+					// headerStyle: { backgroundColor: HEADER_COLOR },
 				}}
 			/>
 			<FindTutorStackStudent.Screen
@@ -125,7 +126,7 @@ export function FindTutorScreenNavigatorStudent({ navigation }: ReactNavigationP
 					),
 					headerLeft: () => null,
 					headerRight: () => null,
-					headerStyle: { backgroundColor: HEADER_COLOR },
+					// headerStyle: { backgroundColor: HEADER_COLOR },
 				}}
 			/>
 
@@ -203,8 +204,9 @@ export function HomeScreenNavigatorTutor({
 				name='HomeScreenTutor'
 				component={HomeScreenTutor}
 				options={{
-					headerTitle: () => <Header title='Home' navigation={navigation} />,
 					headerLeft: () => null,
+					headerTitle: () => <Header title='Home' navigation={navigation} />,
+					headerRight: () => null,
 				}}
 			/>
 		</HomeStackTutor.Navigator>
@@ -220,8 +222,16 @@ export function ProfileScreenNavigatorTutor({ navigation }: ReactNavigationProps
 				name='ProfileScreenTutor'
 				component={ProfileScreenTutor}
 				options={{
-					headerTitle: () => <Header title='Profile' navigation={navigation} />,
 					headerLeft: () => null,
+					headerTitle: () => <Header title='Profile' navigation={navigation} />,
+					headerRight: () => null,
+				}}
+			/>
+			<ProfileStackTutor.Screen
+				name='PreferenceScreenTutor'
+				component={PreferenceScreenTutor}
+				options={{
+					headerTitle: 'Preferences',
 				}}
 			/>
 		</ProfileStackTutor.Navigator>

@@ -12,7 +12,7 @@ import { changeSelectedTutor, fetchSelectedTutorStudent, toggleFilterDrawerOpen 
 
 
 export default function FindTutorScreenStudent({ navigation }: ReactNavigationProps) {
-	const tutors = useAppSelector((state): TutorTypeStudent[] => state.tutor.tutors);
+	const tutors = useAppSelector((state): TutorTypeStudent[] => state.tutorStudent.tutors);
 	const dispatch = useAppDispatch();
 
 

@@ -7,9 +7,8 @@ import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 // data types
 export interface Location {
-	country: string;
+	// country: string;
 	district: string;
-	upazilla: string;
 	area: string;
 }
 
@@ -18,20 +17,35 @@ export interface AddressType extends Location {
 	postCode: number;
 }
 
+// export type EducationQualificationType = {
+// 	degree: string;
+// 	institute: string;
+// 	departmentOrGroup: string;
+// 	passYear: number;
+// 	levelOrYear: number;
+// 	termOrSemester: number;
+// };
+
 export type EducationQualificationType = {
-	degree: string;
-	institute: string;
-	departmentOrGroup: string;
-	passYear: number;
-	levelOrYear: number;
-	termOrSemester: number;
+	university: string;
+	department: string;
+	levelOrYear: string;
+	college: string;
 };
 
-export type SubjectType = {
-	id: string;
-	name: string;
-	medium: string;
-	class: string;
+// export type SubjectType = {
+// 	id: string;
+// 	name: string;
+// 	medium: string;
+// 	class: string;
+// };
+
+export type TuitionType = {
+	studentType: string;
+	studentClass: string;
+	subjects: string[];
+	expectedMinRemuneration: number;
+	expectedMaxRemuneration: number;
 };
 
 // define availability later
@@ -39,9 +53,8 @@ export type SubjectType = {
 export type PreferenceType = {
 	gender: string;
 	locations: Location[];
-	subjects: SubjectType[];
-	availability: any;
-	remunerations: number[];
+	tuitions: TuitionType[];
+	schedule: Schedule;
 };
 
 // student types
@@ -133,17 +146,27 @@ export type TutorDetailsTypeStudent = {
 
 // tutor types
 
+type ReviewType = {
+	studentId: string;
+	studentName: string;
+	rating: number;
+	reviewText: string;
+	date: string;
+}
+
 export type TutorTypeTutor = {
-	mobile: number;
+	mobile: string;
 	name: string;
 	email: string;
+	password: string;
 	imageUri: string;
-	address: AddressType;
-	education: EducationQualificationType[];
+	address: Location;
+	education: EducationQualificationType;
 	preference: PreferenceType;
 	introText: string;
 	introVideoLink: string;
 	subjectVideoLinks: { name: string; link: string }[];
+	reviews: ReviewType[];
 };
 
 // state types student
@@ -156,6 +179,17 @@ export type StateTypeUIStudent = {
 	isNavDrawerOpen: boolean;
 	isFilterDrawerOpen: boolean;
 };
+
+
+// state types student
+export type StateTypeTutor = {
+	tutor: TutorTypeTutor;
+};
+
+export type StateTypeUITutor = {
+	isNavDrawerOpen: boolean;
+};
+
 
 // action types student
 export type GeneralActionType = {

@@ -12,7 +12,7 @@ import { TutorDetailsTypeStudent, TutorTypeStudent } from '../../types_store';
 const TutorDetailsScreenStudent = ({navigation}: ReactNavigationProps) => {
 
 	const tutor = useAppSelector(
-		(state): TutorDetailsTypeStudent | null => state.tutor.selectedTutor
+		(state): TutorDetailsTypeStudent | null => state.tutorStudent.selectedTutor
 	);
 
 	const handleTuitionRequest = () => {

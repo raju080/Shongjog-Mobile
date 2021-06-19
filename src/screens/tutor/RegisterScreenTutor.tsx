@@ -28,6 +28,11 @@ import { Picker } from '@react-native-picker/picker';
 import {COLORS} from '../../constants/Colors';
 import { AREAS, UNIVERSITIES, COLLEGES } from '../../shared/lists';
 import { ReactNavigationProps } from '../../types';
+import {
+	Dropdown,
+	GroupDropdown,
+	MultiselectDropdown,
+} from 'sharingan-rn-modal-dropdown';
 
 
 const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
@@ -56,6 +61,14 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 		{ label: 'Female', value: 'female' },
 	];
 
+	const levels = [
+		{ key: 1, label: '1st',},
+		{ key: 2, label: '2nd',},
+		{ key: 3, label: '3rd',},
+		{ key: 4, label: '4th',},
+		{ key: 5, label: 'Graduated',},
+	];
+
 	const districts = Object.keys(AREAS)
 		.sort()
 		.map((d, k) => ({ key: k, label: d }));
@@ -77,7 +90,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 	};
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
 			{/* <View style={styles.logoView}>
 				<View style={styles.logo}>
 					<Logo />
@@ -389,6 +402,29 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 						name='college'
 						defaultValue=''
 					/>
+
+					<Text style={styles.formLabel}>Level Or Year</Text>
+					<Controller
+						control={control}
+						render={({ field: { onChange, onBlur, value } }) => (
+							// <TextInput
+							// 	style={styles.formInput}
+							// 	onBlur={onBlur}
+							// 	onChangeText={(value) => onChange(value)}
+							// 	value={value}
+							// />
+							<ModalSelector
+								data={levels}
+								style={styles.formModalSelect}
+								initValue={'Select your Level or year'}
+								onChange={(option) => {
+									onChange(option);
+								}}
+							/>
+						)}
+						name='level'
+						defaultValue=''
+					/>
 				</View>
 
 				{/* Tuition preferences */}
@@ -422,7 +458,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 						<Text style={styles.signUpButton}> SignUp</Text>
 					</TouchableOpacity>
 				</View> */}
-		</SafeAreaView>
+		</View>
 	);
 };
 

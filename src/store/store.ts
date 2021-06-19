@@ -1,12 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from 'redux-thunk';
 
-import tutorReducerStudent from "./tutorReducerStudent";
-import uIReducerStudent from "./uIReducerStudent";
+import tutorReducerStudent from "./student/tutorReducerStudent";
+import uIReducerStudent from './student/uIReducerStudent';
+import tutorReducerTutor from "./tutor/tutorReducerTutor";
 
 const rootReducer = combineReducers({
   uiStudent: uIReducerStudent,
-  tutor: tutorReducerStudent,
+  tutorStudent: tutorReducerStudent,
+  tutorTutor: tutorReducerTutor,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

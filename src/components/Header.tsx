@@ -40,18 +40,18 @@ const styles = StyleSheet.create({
 	headerTitle: {
 		fontWeight: 'bold',
 		fontSize: 20,
-		// color: '#333',
-		color: 'white'
+		color: '#333',
+		// color: 'white'
 	},
 	heading: {
-		color: 'white',
+		color: '#333',
 		fontSize: 22,
 		fontWeight: 'bold',
 	},
 	menuButton: {
 		fontSize: 30,
 		padding: 10,
-		color: 'white',
+		color: '#333',
 		marginRight: 20,
 	},
 });

@@ -1,190 +1,46 @@
-import { TutorTypeStudent } from '../types_store';
+import { TutorTypeStudent, TutorTypeTutor } from '../types_store';
 
 
-export const tutors: TutorTypeStudent[] = [
-	{
-		id: 0,
-		name: 'Asif Ahmed',
-		imageUri:
-			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		education: {
-			college: 'Government Science College, Dhaka',
-			version: 'Bangla',
-			university: 'BUET',
-			department: 'CSE',
-			levelOrYear: 4,
-		},
-		preference: {
-			gender: 'M',
-			subjects: {
-				hsc: ['physics', 'chemistry', 'mathematics'],
-				ssc: ['physics', 'chemistry', 'mathematics'],
-			},
-			versions: ['english', 'bangla'],
-			availability: '',
-			remunerations: {
-				hsc: { from: 10000, to: 12000 },
-				ssc: { from: 8000, to: 10000 },
-			},
-		},
-		rating: 5,
-		introText:
-			"Hello I'm Asif the copper. Tuition is my passion. And money is my motivation. Hire me if you wanna cop in BUET like me.",
-		introVideoLink: '',
-		subjectVideoLinks: [],
+export const tutor: TutorTypeTutor = {
+	mobile: '01853355578',
+	name: 'Iqbal Hossain Raju',
+	password: 'abc',
+	email: 'iqbalhossainraju47@gmail.com',
+	imageUri: 'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
+	address: {
+		district: 'Dhaka',
+		area: 'Azimpur',
 	},
-	{
-		id: 1,
-		name: 'Iqbal Hossain Raju',
-		imageUri:
-			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		education: {
-			college: 'Notre Dame College, Dhaka',
-			version: 'Bangla',
-			university: 'BUET',
-			department: 'CSE',
-			levelOrYear: 4,
-		},
-		preference: {
-			gender: 'M',
-			subjects: {
-				hsc: ['physics', 'chemistry', 'mathematics'],
-				ssc: ['physics', 'chemistry', 'mathematics'],
-			},
-			versions: ['english', 'bangla'],
-			availability: '',
-			remunerations: {
-				hsc: { from: 10000, to: 12000 },
-				ssc: { from: 8000, to: 10000 },
-			},
-		},
-		rating: 4,
-		introText: "Hello I'm Asif the copper. Hire me",
-		introVideoLink: '',
-		subjectVideoLinks: [],
+	education: {
+		university: 'BUET',
+		department: 'CSE',
+		levelOrYear: '4th',
+		college: 'Notre Dame College, Dhaka'
 	},
-	{
-		id: 2,
-		name: 'Abdur Rashid Tushar',
-		imageUri:
-			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		education: {
-			college: 'Notre Dame College, Dhaka',
-			version: 'Bangla',
-			university: 'BUET',
-			department: 'CSE',
-			levelOrYear: 4,
-		},
-		preference: {
-			gender: 'M',
-			subjects: {
-				hsc: ['physics', 'chemistry', 'mathematics'],
-				ssc: ['physics', 'chemistry', 'mathematics'],
+	preference: {
+		gender: 'any',
+		locations: [
+			{
+				district: 'dhaka', area: 'azimpur'
 			},
-			versions: ['english', 'bangla'],
-			availability: '',
-			remunerations: {
-				hsc: { from: 10000, to: 12000 },
-				ssc: { from: 8000, to: 10000 },
-			},
+		],
+		schedule: {
 		},
-		rating: 4.5,
-		introText: "Hello I'm Asif the copper. Hire me",
-		introVideoLink: '',
-		subjectVideoLinks: [],
+		tuitions: [
+			{
+				studentType: 'Bangla Version',
+				studentClass: 'College 1st Year',
+				subjects: ['Physics', 'Chemistry'],
+				expectedMinRemuneration: 8000,
+				expectedMaxRemuneration: 12000,
+			}
+		],
 	},
-	{
-		id: 0,
-		name: 'Asif Ahmed',
-		imageUri:
-			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		education: {
-			college: 'Government Science College, Dhaka',
-			version: 'Bangla',
-			university: 'BUET',
-			department: 'CSE',
-			levelOrYear: 4,
-		},
-		preference: {
-			gender: 'M',
-			subjects: {
-				hsc: ['physics', 'chemistry', 'mathematics'],
-				ssc: ['physics', 'chemistry', 'mathematics'],
-			},
-			versions: ['english', 'bangla'],
-			availability: '',
-			remunerations: {
-				hsc: { from: 10000, to: 12000 },
-				ssc: { from: 8000, to: 10000 },
-			},
-		},
-		rating: 5,
-		introText:
-			"Hello I'm Asif the copper. Tuition is my passion. And money is my motivation. Hire me if you wanna cop in BUET like me.",
-		introVideoLink: '',
-		subjectVideoLinks: [],
-	},
-	{
-		id: 1,
-		name: 'Iqbal Hossain Raju',
-		imageUri:
-			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		education: {
-			college: 'Notre Dame College, Dhaka',
-			version: 'Bangla',
-			university: 'BUET',
-			department: 'CSE',
-			levelOrYear: 4,
-		},
-		preference: {
-			gender: 'M',
-			subjects: {
-				hsc: ['physics', 'chemistry', 'mathematics'],
-				ssc: ['physics', 'chemistry', 'mathematics'],
-			},
-			versions: ['english', 'bangla'],
-			availability: '',
-			remunerations: {
-				hsc: { from: 10000, to: 12000 },
-				ssc: { from: 8000, to: 10000 },
-			},
-		},
-		rating: 4,
-		introText: "Hello I'm Asif the copper. Hire me",
-		introVideoLink: '',
-		subjectVideoLinks: [],
-	},
-	{
-		userId: 2,
-		name: 'Abdur Rashid Tushar',
-		imageUri:
-			'https://highschooltutors.imgix.net/84323.jpg?auto=compress%2Cformat&facepad=2.5&fit=crop&h=300&w=300&s=22ae96449509f50aaf46cb5fc7ea2a0e',
-		education: {
-			college: 'Notre Dame College, Dhaka',
-			version: 'Bangla',
-			university: 'BUET',
-			department: 'CSE',
-			levelOrYear: 4,
-		},
-		preference: {
-			gender: 'M',
-			subjects: {
-				hsc: ['physics', 'chemistry', 'mathematics'],
-				ssc: ['physics', 'chemistry', 'mathematics'],
-			},
-			versions: ['english', 'bangla'],
-			availability: '',
-			remunerations: {
-				hsc: { from: 10000, to: 12000 },
-				ssc: { from: 8000, to: 10000 },
-			},
-		},
-		rating: 4.5,
-		introText: "Hello I'm Asif the copper. Hire me",
-		introVideoLink: '',
-		subjectVideoLinks: [],
-	},
-];
+	introText: 'Hello I am Asif the copper. Keep kopping.',
+	introVideoLink: '',
+	subjectVideoLinks: [],
+	reviews: [],
+}
 
 export function getRandomInt(max: number, min = 0) {
     return Math.floor(Math.random() * (max - min)) + min;

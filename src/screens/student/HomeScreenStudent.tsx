@@ -10,7 +10,7 @@ import { changeSelectedTutor, fetchSelectedTutorStudent, fetchTutorsStudent } fr
 
 export default function HomeScreenStudent({ navigation }: ReactNavigationProps) {
 	const tutors = useAppSelector(
-		(state) => state.tutor.tutors
+		(state) => state.tutorStudent.tutors
 	);
 
 	// const teachers = [
@@ -20,7 +20,7 @@ export default function HomeScreenStudent({ navigation }: ReactNavigationProps) 
 	// 	{image:require('../../assets/images/newtushar.png')}
 	// ];
 
-	const currentTutor = useAppSelector((state) => state.tutor.selectedTutor);
+	const currentTutor = useAppSelector((state) => state.tutorStudent.selectedTutor);
 	const dispatch = useAppDispatch();
 
 	const handleTutorClick = (tutor: TutorTypeStudent) => {
