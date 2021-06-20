@@ -26,13 +26,14 @@ import { CustomButton } from '../../components/CustomComponents';
 import Logo from '../../components/Logo';
 import { Picker } from '@react-native-picker/picker';
 import {COLORS} from '../../constants/Colors';
-import { AREAS, UNIVERSITIES, COLLEGES } from '../../shared/lists';
+import { AREAS, UNIVERSITIES, COLLEGES, genders, levels } from '../../shared/lists';
 import { ReactNavigationProps } from '../../types';
 import {
 	Dropdown,
 	GroupDropdown,
 	MultiselectDropdown,
 } from 'sharingan-rn-modal-dropdown';
+import { formStyles } from '../../assets/styles/formStyles';
 
 
 const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
@@ -55,19 +56,6 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 	} = useForm();
 	const pass = watch('password');
 	// const dist = watch('district');
-
-	const genders = [
-		{ label: 'Male', value: 'male' },
-		{ label: 'Female', value: 'female' },
-	];
-
-	const levels = [
-		{ label: '1st', value: '1st' },
-		{ label: '2nd', value: '2nd' },
-		{ label: '3rd', value: '3rd' },
-		{ label: '4th', value: '4th' },
-		{ label: 'Graduated', value: 'Graduated' },
-	];
 
 	const districts = Object.keys(AREAS)
 		.sort()
@@ -107,12 +95,12 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 				</ListItem>
 
 				{/* Name */}
-				<Text style={styles.formLabel}>Full Name</Text>
+				<Text style={formStyles.formLabel}>Full Name</Text>
 				<Controller
 					control={control}
 					render={({ field: { onChange, onBlur, value } }) => (
 						<TextInput
-							style={styles.formInput}
+							style={formStyles.formInput}
 							onBlur={onBlur}
 							onChangeText={(value) => onChange(value)}
 							value={value}
@@ -127,12 +115,12 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 				)}
 
 				{/* Mobile number */}
-				<Text style={styles.formLabel}>Mobile Number</Text>
+				<Text style={formStyles.formLabel}>Mobile Number</Text>
 				<Controller
 					control={control}
 					render={({ field: { onChange, onBlur, value } }) => (
 						<TextInput
-							style={styles.formInput}
+							style={formStyles.formInput}
 							onBlur={onBlur}
 							onChangeText={(value) => onChange(value)}
 							value={value}
@@ -147,12 +135,12 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 				)}
 
 				{/* Email */}
-				<Text style={styles.formLabel}>Email</Text>
+				<Text style={formStyles.formLabel}>Email</Text>
 				<Controller
 					control={control}
 					render={({ field: { onChange, onBlur, value } }) => (
 						<TextInput
-							style={styles.formInput}
+							style={formStyles.formInput}
 							onBlur={onBlur}
 							onChangeText={(value) => onChange(value)}
 							value={value}
@@ -163,12 +151,12 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 				/>
 
 				{/* Password */}
-				<Text style={styles.formLabel}>Password</Text>
+				<Text style={formStyles.formLabel}>Password</Text>
 				<Controller
 					control={control}
 					render={({ field: { onChange, onBlur, value } }) => (
 						<TextInput
-							style={styles.formInput}
+							style={formStyles.formInput}
 							onBlur={onBlur}
 							onChangeText={(value) => onChange(value)}
 							value={value}
@@ -186,12 +174,12 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 				)}
 
 				{/* Confirm Password */}
-				<Text style={styles.formLabel}>Confirm Password</Text>
+				<Text style={formStyles.formLabel}>Confirm Password</Text>
 				<Controller
 					control={control}
 					render={({ field: { onChange, onBlur, value } }) => (
 						<TextInput
-							style={styles.formInput}
+							style={formStyles.formInput}
 							onBlur={onBlur}
 							onChangeText={(value) => onChange(value)}
 							value={value}
@@ -234,7 +222,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 									onChange(option);
 									setDist(option);
 								}}
-								mainContainerStyle={styles.formSelect}
+								mainContainerStyle={formStyles.formSelect}
 							/>
 						)}
 						rules={{
@@ -262,7 +250,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 									data={areas}
 									value={value}
 									onChange={onChange}
-									mainContainerStyle={styles.formSelect}
+									mainContainerStyle={formStyles.formSelect}
 								/>
 							);
 						}}
@@ -310,7 +298,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 								onChange={(option) => {
 									onChange(option);
 								}}
-								mainContainerStyle={styles.formSelect}
+								mainContainerStyle={formStyles.formSelect}
 							/>
 						)}
 						rules={{
@@ -342,7 +330,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 									onChange(option);
 									setUni(option);
 								}}
-								mainContainerStyle={styles.formSelect}
+								mainContainerStyle={formStyles.formSelect}
 							/>
 						)}
 						rules={{
@@ -372,7 +360,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 									onChange={(option) => {
 										onChange(option);
 									}}
-									mainContainerStyle={styles.formSelect}
+									mainContainerStyle={formStyles.formSelect}
 								/>
 							);
 						}}
@@ -398,7 +386,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 								onChange={(option) => {
 									onChange(option);
 								}}
-								mainContainerStyle={styles.formSelect}
+								mainContainerStyle={formStyles.formSelect}
 							/>
 						)}
 						rules={{
@@ -423,7 +411,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 								onChange={(option) => {
 									onChange(option);
 								}}
-								mainContainerStyle={styles.formSelect}
+								mainContainerStyle={formStyles.formSelect}
 							/>
 						)}
 						name='college'
@@ -472,7 +460,10 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		backgroundColor: '#fff',
-		marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+		marginTop:
+			StatusBar.currentHeight && Platform.OS === 'android'
+				? StatusBar.currentHeight
+				: 0,
 	},
 	header: {
 		fontSize: 24,
@@ -484,41 +475,6 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	formGroup: {},
-	formLabel: {
-		fontSize: 16,
-		fontWeight: '500',
-	},
-	formInput: {
-		width: 340,
-		// backgroundColor: 'rgba(255, 255,255,0.5)',
-		borderWidth: 0.5,
-		// borderBottomWidth: 1,
-		borderRadius: 25,
-		paddingHorizontal: 16,
-		paddingVertical: 10,
-		fontSize: 16,
-		marginTop: 10,
-		marginBottom: 20,
-	},
-	formSelect: {
-		// width: 300,
-		// borderWidth: 0.5,
-		// backgroundColor: COLORS.light,
-		// paddingHorizontal: 16,
-		// paddingVertical: 10,
-		// fontSize: 16,
-		// elevation: 7,
-		// marginTop: 10,
-		// marginBottom: 20,
-		// paddingVertical: 10,
-		marginVertical: 5
-	},
-	formModalSelect: {
-		width: 300,
-		fontSize: 16,
-		marginTop: 10,
-		marginBottom: 20,
-	},
 	signUpButton: {
 		fontSize: 18,
 		fontWeight: '700',

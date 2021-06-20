@@ -1,5 +1,18 @@
 type GenericObject = { [key: string]: any };
 
+export const genders = [
+	{ label: 'Male', value: 'male' },
+	{ label: 'Female', value: 'female' },
+];
+
+export const levels = [
+	{ label: '1st', value: '1st' },
+	{ label: '2nd', value: '2nd' },
+	{ label: '3rd', value: '3rd' },
+	{ label: '4th', value: '4th' },
+	{ label: 'Graduated', value: 'Graduated' },
+];
+
 export const UNIVERSITIES: GenericObject = {
 	BUET: ['CSE', 'EEE', 'Mechanical', 'Civil'],
 	DU: ['Pharmacy', 'Physics', 'Zoology'],

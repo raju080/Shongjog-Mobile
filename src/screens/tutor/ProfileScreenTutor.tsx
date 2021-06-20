@@ -11,10 +11,11 @@ import {
 
 import { TutorDetailsTypeStudent, TutorTypeTutor } from '../../types_store';
 import { Controller, useForm } from 'react-hook-form';
-import { AREAS, COLLEGES, UNIVERSITIES } from '../../shared/lists';
+import { AREAS, COLLEGES, UNIVERSITIES, levels } from '../../shared/lists';
 import { ReactNavigationProps } from '../../types';
 import { Value } from 'react-native-reanimated';
 import { COLORS } from '../../constants/Colors';
+import { formStyles } from '../../assets/styles/formStyles';
 
 
 const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
@@ -27,6 +28,7 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 		mobileNum: tutor.mobile,
 		email: tutor.email,
 		password: tutor.password,
+		introText: tutor.introText,
 		'address.district': tutor.address.district,
 		'address.area': tutor.address.area,
 		'education.university': tutor.education.university,
@@ -45,18 +47,7 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 		defaultValues: formDefaultValues,
 	});
 
-	const genders = [
-		{ label: 'Male', value: 'male' },
-		{ label: 'Female', value: 'female' },
-	];
-
-	const levels = [
-		{ label: '1st', value: '1st' },
-		{ label: '2nd', value: '2nd' },
-		{ label: '3rd', value: '3rd' },
-		{ label: '4th', value: '4th' },
-		{ label: 'Graduated', value: 'Graduated' },
-	];
+	
 
 	const [dist, setDist] = useState<string>(tutor.address.district);
 	const [uni, setUni] = useState<string>(tutor.education.university);
@@ -98,12 +89,12 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 				</Avatar>
 				<View style={{ paddingLeft: 15 }}>
 					{/* <Text>{tutor.name}</Text> */}
-					<Text style={styles.formLabel}>Full Name</Text>
+					<Text style={formStyles.formLabel}>Full Name</Text>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
 							<TextInput
-								style={styles.formInput}
+								style={formStyles.formInputProfile}
 								onBlur={onBlur}
 								onChangeText={(value) => onChange(value)}
 								value={value}
@@ -117,12 +108,12 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 						<Text style={{ color: 'red' }}>This is required.</Text>
 					)}
 					{/* <Text>{tutor.password}</Text> */}
-					<Text style={styles.formLabel}>Mobile Number</Text>
+					<Text style={formStyles.formLabel}>Mobile Number</Text>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
 							<TextInput
-								style={styles.formInput}
+								style={formStyles.formInputProfile}
 								onBlur={onBlur}
 								onChangeText={(value) => onChange(value)}
 								value={value}
@@ -136,12 +127,12 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 						<Text style={{ color: 'red' }}>This is required.</Text>
 					)}
 					{/* Email */}
-					<Text style={styles.formLabel}>Email</Text>
+					<Text style={formStyles.formLabel}>Email</Text>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
 							<TextInput
-								style={styles.formInput}
+								style={formStyles.formInputProfile}
 								onBlur={onBlur}
 								onChangeText={(value) => onChange(value)}
 								value={value}
@@ -152,6 +143,24 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 					/>
 				</View>
 			</View>
+
+			<View style={formStyles.formGroup}>
+				<Text style={formStyles.formLabel}>Intro Text</Text>
+				<Controller
+					control={control}
+					render={({ field: { onChange, onBlur, value } }) => (
+						<TextInput
+							style={formStyles.formInputProfile}
+							onBlur={onBlur}
+							onChangeText={(value) => onChange(value)}
+							value={value}
+						/>
+					)}
+					name='introText'
+					defaultValue=''
+				/>
+			</View>
+
 			<View style={styles.profileSection}>
 				<Controller
 					control={control}
@@ -164,7 +173,7 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 								onChange(option);
 								setDist(option);
 							}}
-							mainContainerStyle={styles.formSelect}
+							mainContainerStyle={formStyles.formSelect}
 						/>
 					)}
 					name='address.district'
@@ -184,7 +193,7 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 								data={areas}
 								value={value}
 								onChange={onChange}
-								mainContainerStyle={styles.formSelect}
+								mainContainerStyle={formStyles.formSelect}
 							/>
 						);
 					}}
@@ -203,7 +212,7 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 								onChange(option);
 								setUni(option);
 							}}
-							mainContainerStyle={styles.formSelect}
+							mainContainerStyle={formStyles.formSelect}
 						/>
 					)}
 					name='education.university'
@@ -224,7 +233,7 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 								onChange={(option) => {
 									onChange(option);
 								}}
-								mainContainerStyle={styles.formSelect}
+								mainContainerStyle={formStyles.formSelect}
 							/>
 						);
 					}}
@@ -241,7 +250,7 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 							onChange={(option) => {
 								onChange(option);
 							}}
-							mainContainerStyle={styles.formSelect}
+							mainContainerStyle={formStyles.formSelect}
 						/>
 					)}
 					name='education.levelOrYear'
@@ -257,7 +266,7 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 							onChange={(option) => {
 								onChange(option);
 							}}
-							mainContainerStyle={styles.formSelect}
+							mainContainerStyle={formStyles.formSelect}
 						/>
 					)}
 					name='education.college'
@@ -291,23 +300,10 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 10,
 		paddingVertical: 10,
 	},
-	formLabel: {
-		fontSize: 14,
-	},
-	formInput: {
-		borderBottomWidth: 0.5,
-		paddingVertical: 10,
-		paddingHorizontal: 5,
-		fontSize: 14,
-		backgroundColor: '#ffffff',
-	},
 	profileSection: {
 		flex: 1,
 		paddingHorizontal: 15,
 		paddingVertical: 10,
-	},
-	formSelect: {
-		paddingVertical: 5,
 	},
 	buttonContainer: {
 		justifyContent: 'center',

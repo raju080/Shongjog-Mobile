@@ -29,11 +29,13 @@ import { STUDENT_TYPES, STUDENT_CLASSES, SUBJECTS } from '../../shared/filters';
 import { AREAS } from '../../shared/lists';
 import { ReactNavigationProps } from '../../types';
 import { CustomButton } from '../../components/CustomComponents';
+import { formStyles } from '../../assets/styles/formStyles';
+
 
 const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 	const studentTypes = STUDENT_TYPES.map((d, k) => ({ value: d, label: d }));
 
-	const [sTypeSelected, setSTypeSelected] = useState<string>('');
+	const [sTypeSelected, setSTypeSelected] = useState('');
 	const [classSelected, setClassSelected] = useState('');
 
 	const {
@@ -61,7 +63,7 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 			</ListItem>
 			<ScrollView style={styles.formView}>
 				{/* <Text style={styles.formLabel}>Student Category</Text> */}
-				<View style={styles.formModalSelect}>
+				<View style={formStyles.formModalSelect}>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
@@ -93,7 +95,7 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 
 				{/* Class */}
 				{/* <Text style={styles.formLabel}>Student Class</Text> */}
-				<View style={styles.formModalSelect}>
+				<View style={formStyles.formModalSelect}>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => {
@@ -129,7 +131,7 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 					/>
 				</View>
 
-				<View style={styles.multiSelect}>
+				<View style={formStyles.formMultiSelect}>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => {
@@ -153,7 +155,7 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 
 				{/* District */}
 				{/* <Text style={styles.formLabel}>District</Text> */}
-				<View style={styles.formModalSelect}>
+				<View style={formStyles.formModalSelect}>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
@@ -175,13 +177,15 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 
 				{/* Area */}
 				{/* <Text style={styles.formLabel}>Area</Text> */}
-				<View style={styles.formModalSelect}>
+				<View style={formStyles.formModalSelect}>
 					<Controller
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => {
-							let areas = AREAS[dist]
-								?.sort()
-								.map((d: string, k: string) => ({ key: k, value: d, label: d }));
+							let areas = AREAS[dist]?.sort().map((d: string, k: string) => ({
+								key: k,
+								value: d,
+								label: d,
+							}));
 							return (
 								<Dropdown
 									label='Select Your Area'
@@ -224,30 +228,6 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	formGroup: {},
-	formLabel: {
-		fontSize: 16,
-		fontWeight: '500',
-	},
-	formInput: {
-		width: 300,
-		// backgroundColor: 'rgba(255, 255,255,0.5)',
-		borderWidth: 0.5,
-		// borderBottomWidth: 1,
-		borderRadius: 25,
-		paddingHorizontal: 16,
-		paddingVertical: 10,
-		fontSize: 16,
-		marginTop: 10,
-		marginBottom: 20,
-	},
-	multiSelect: {
-		marginVertical: 10,
-		minWidth: 300,
-	},
-	formModalSelect: {
-		minWidth: 300,
-		marginVertical: 10,
-	},
 	submitButton: {
 		width: 300,
 		height: 50,
