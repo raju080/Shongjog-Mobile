@@ -22,6 +22,47 @@ export const UNIVERSITIES: GenericObject = {
 
 export const COLLEGES = ['Notre Dame College, Dhaka', 'Dhaka City College', 'Holly Cross'];
 
+
+export const TUITION_REQUESTS = [
+	{
+		id: '1',
+		studentName: 'Nishan',
+		tutorName: 'Raju',
+		details: {
+			version: 'Bangla Version',
+			class: 'Inter 1st year',
+			subjects: ['Physics', 'Chemistry', 'Math'],
+			district: 'Dhaka',
+			area: 'arambagh',
+		},
+		negotiations: [
+			{
+				user: 'Raju',
+				message: 'Hello',
+			},
+		],
+	},
+	{
+		id: '2',
+		studentName: 'Wasif Towfiq',
+		tutorName: 'Raju',
+		details: {
+			version: 'English Version',
+			class: 'Inter 2nd year',
+			subjects: ['Physics', 'Math'],
+			district: 'Dhaka',
+			area: 'badda',
+		},
+		negotiations: [
+			{
+				user: 'Raju',
+				message: 'Hello',
+			},
+		],
+	},
+];
+
+
 export const AREAS: GenericObject = {
   "Dhaka": [
     "Azimpur",

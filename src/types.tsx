@@ -76,7 +76,7 @@ export type RegisterParamListTutor = {
 
 export type BottomTabParamListTutor = {
 	HomeTutor: undefined;
-	LeaderBoardTutor: undefined;
+	TuitionsTutor: undefined;
 	ProfileTutor: undefined;
 };
 
@@ -84,8 +84,10 @@ export type HomeTabParamListTutor = {
 	HomeScreenTutor: undefined;
 };
 
-export type LeaderBoardTabParamListTutor = {
-	LeaderBoardScreenTutor: undefined;
+export type TuitionsTabParamListTutor = {
+	TuitionsScreenTutor: undefined;
+	TuitionRequestDetailsScreenTutor: undefined;
+	TuitionNegotiationScreenTutor: undefined;
 };
 
 export type ProfileTabParamListTutor = {

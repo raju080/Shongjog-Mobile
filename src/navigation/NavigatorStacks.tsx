@@ -13,6 +13,7 @@ import TutorDetailsScreenStudent from '../screens/student/TutorDetailsScreenStud
 import ProfileScreenStudent from '../screens/student/ProfileScreenStudent';
 
 import HomeScreenTutor from '../screens/tutor/HomeScreenTutor';
+import TuitionsScreenTutor from '../screens/tutor/TuitionsScreenTutor';
 import AboutUsScreen from '../screens/AboutUsScreen';
 import MainScreen from '../screens/MainScreen';
 
@@ -27,7 +28,7 @@ import {
 	ProfileTabParamListStudent,
 	HomeTabParamListTutor,
 	ProfileTabParamListTutor,
-	LeaderBoardTabParamListTutor,
+	TuitionsTabParamListTutor,
   AboutUsParamList,
 	ReactNavigationProps,
 	RegisterParamListTutor,
@@ -39,6 +40,8 @@ import GeneralFiltersStudent from '../screens/student/GeneralFiltersStudent';
 import ProfileScreenTutor from '../screens/tutor/ProfileScreenTutor';
 import TuitionRequestScreenStudent from '../screens/student/TuitionRequestScreenStudent';
 import PreferenceScreenTutor from '../screens/tutor/PreferenceScreenTutor';
+import TuitionRequestDetailsScreenTutor from '../screens/tutor/TuitionRequestDetailsScreenTutor';
+import TuitionNegotiationScreenTutor from '../screens/tutor/TuitionNegotiationScreenTutor';
 
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -210,6 +213,47 @@ export function HomeScreenNavigatorTutor({
 				}}
 			/>
 		</HomeStackTutor.Navigator>
+	);
+}
+
+
+const TuitionsStackTutor = createStackNavigator<TuitionsTabParamListTutor>();
+
+export function TuitionsScreenNavigatorTutor({ navigation }: ReactNavigationProps) {
+	return (
+		<TuitionsStackTutor.Navigator>
+			<TuitionsStackTutor.Screen
+				name='TuitionsScreenTutor'
+				component={TuitionsScreenTutor}
+				options={{
+					headerLeft: () => null,
+					headerTitle: () => (
+						<Header title='Tuitions' navigation={navigation} />
+					),
+					headerRight: () => null,
+				}}
+			/>
+			<TuitionsStackTutor.Screen
+				name='TuitionRequestDetailsScreenTutor'
+				component={TuitionRequestDetailsScreenTutor}
+				options={{
+					headerLeft: () => null,
+					headerTitle: () => (
+						<Header title='Tuition Request Details' navigation={navigation} />
+					),
+					headerRight: () => null,
+				}}
+			/>
+			<TuitionsStackTutor.Screen
+				name='TuitionNegotiationScreenTutor'
+				component={TuitionNegotiationScreenTutor}
+				options={{
+					headerLeft: () => null,
+					headerTitle: () => <Header title='Negotiation' navigation={navigation} />,
+					headerRight: () => null,
+				}}
+			/>
+		</TuitionsStackTutor.Navigator>
 	);
 }
 

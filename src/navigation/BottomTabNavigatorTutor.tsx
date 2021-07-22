@@ -16,7 +16,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import { BottomTabParamListTutor, ReactNavigationProps } from '../types';
 
 import {
-	HomeScreenNavigatorTutor, ProfileScreenNavigatorStudent, ProfileScreenNavigatorTutor,
+	HomeScreenNavigatorTutor, ProfileScreenNavigatorStudent, ProfileScreenNavigatorTutor, TuitionsScreenNavigatorTutor,
 } from './NavigatorStacks';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamListTutor>();
@@ -51,14 +51,20 @@ export default function BottomTabNavigatorTutor({
 				}}
 			/>
 			<BottomTab.Screen
+				name='TuitionsTutor'
+				component={TuitionsScreenNavigatorTutor}
+				options={{
+					tabBarIcon: ({ color }) => (
+						<TabBarIcon name='people-outline' color={color} />
+					),
+				}}
+			/>
+			<BottomTab.Screen
 				name='ProfileTutor'
 				component={ProfileScreenNavigatorTutor}
 				options={{
 					tabBarIcon: ({ color }) => (
-						<TabBarIcon
-							name='person-circle-outline'
-							color={color}
-						/>
+						<TabBarIcon name='person-circle-outline' color={color} />
 					),
 				}}
 			/>
