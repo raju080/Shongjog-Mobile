@@ -11,6 +11,7 @@ import {
 const initialState: StateTypeUIStudent = {
 	isNavDrawerOpen: false,
 	isFilterDrawerOpen: false,
+	isLoggedIn: true,
 };
 
 

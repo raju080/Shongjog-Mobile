@@ -11,7 +11,7 @@ const LoginScreenStudent = ({ navigation }: ReactNavigationProps) => {
 		navigation.navigate('Home');
 	};
 	const handleSignUp = () => {
-		navigation.navigate('Register');
+		navigation.navigate('RegisterScreenStudent');
 	};
 	return (
 		<View style={styles.container}>

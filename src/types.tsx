@@ -18,7 +18,9 @@ export type MainStackParamList = {
 	Tutor: undefined;
 };
 
+// 
 // student
+// 
 
 export type DrawerParamListStudent = {
 	Home: undefined;
@@ -55,10 +57,15 @@ export type TutorDetailsParamListStudent = {
 
 export type ProfileTabParamListStudent = {
 	ProfileScreenStudent: undefined;
+	LoginScreenStudent: undefined;
+	RegisterScreenStudent: undefined;
 };
 
-// tutor
 
+
+// 
+// tutor
+// 
 
 export type DrawerParamListTutor = {
 	Login: undefined;

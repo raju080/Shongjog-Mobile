@@ -42,6 +42,8 @@ import TuitionRequestScreenStudent from '../screens/student/TuitionRequestScreen
 import PreferenceScreenTutor from '../screens/tutor/PreferenceScreenTutor';
 import TuitionRequestDetailsScreenTutor from '../screens/tutor/TuitionRequestDetailsScreenTutor';
 import TuitionNegotiationScreenTutor from '../screens/tutor/TuitionNegotiationScreenTutor';
+import LoginScreenStudent from '../screens/student/LoginScreenStudent';
+import RegisterScreenStudent from '../screens/student/RegistrationScreenStudent';
 
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -183,6 +185,28 @@ export function ProfileScreenNavigatorStudent({ navigation }: ReactNavigationPro
 					headerLeft: () => null,
 					headerTitle: () => (
 						<Header title='Student Profile' navigation={navigation} />
+					),
+					headerRight: () => null,
+				}}
+			/>
+			<ProfileStackStudent.Screen
+				name='LoginScreenStudent'
+				component={LoginScreenStudent}
+				options={{
+					headerLeft: () => null,
+					headerTitle: () => (
+						<Header title='Student Login' navigation={navigation} />
+					),
+					headerRight: () => null,
+				}}
+			/>
+			<ProfileStackStudent.Screen
+				name='RegisterScreenStudent'
+				component={RegisterScreenStudent}
+				options={{
+					headerLeft: () => null,
+					headerTitle: () => (
+						<Header title='Student Register' navigation={navigation} />
 					),
 					headerRight: () => null,
 				}}

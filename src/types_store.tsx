@@ -178,6 +178,7 @@ export type StateTypeTutorStudent = {
 export type StateTypeUIStudent = {
 	isNavDrawerOpen: boolean;
 	isFilterDrawerOpen: boolean;
+	isLoggedIn: boolean;
 };
 
 
@@ -188,6 +189,7 @@ export type StateTypeTutor = {
 
 export type StateTypeUITutor = {
 	isNavDrawerOpen: boolean;
+	isLoggedIn: boolean;
 };
 
 

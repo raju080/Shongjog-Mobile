@@ -8,10 +8,12 @@ import axios from 'axios';
 import { Action, ActionCreator, Dispatch } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
-
+// 
 // Student side actions
-// UI actions
+// 
 
+
+// UI actions
 
 export const toggleNavDrawerOpen = () => ({
 	type: ActionTypes.TOGGLE_NAV_DRAWER_OPEN,
@@ -23,9 +25,22 @@ export const toggleFilterDrawerOpen = () => ({
 	payload: null,
 });
 
+export const loginStudent = () => {
+
+}
+
+export const logoutStudent = () => {
+
+};
 
 
-// Tutor actions
+export const registerStudent = () => {
+
+}
+
+
+
+// Other actions
 
 export const addTutorsStudent = (tutors: StateTypes.TutorTypeStudent) => ({
 	type: ActionTypes.ADD_TUTORS,
@@ -115,8 +130,18 @@ export const fetchSelectedTutorStudent = (tutorID: number) => ( dispatch: Dispat
 
 
 
+// 
 // Tutor side actions
+// 
 
+
+// UI actions
+
+export const loginTutor = () => {};
+
+export const logoutTutor = () => {};
+
+export const registerTutor = () => {};
 
 // Tutor reducer
 
