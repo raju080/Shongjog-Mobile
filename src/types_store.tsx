@@ -155,7 +155,7 @@ type ReviewType = {
 }
 
 export type TutorTypeTutor = {
-	mobile: string;
+	mobileNumber: string;
 	name: string;
 	email: string;
 	password: string;

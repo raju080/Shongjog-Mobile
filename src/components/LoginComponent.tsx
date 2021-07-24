@@ -13,8 +13,6 @@ type LoginComponentPropType = {
 }
 
 const LoginComponent = ({ onLogin, handleSignUp, loginText }: LoginComponentPropType) => {
-	const [mobileNum, onChangeMobileNum] = useState('');
-	const [password, onChangePassword] = useState('');
 
 	const {
 		control,
@@ -35,7 +33,7 @@ const LoginComponent = ({ onLogin, handleSignUp, loginText }: LoginComponentProp
 				</View>
 			</View>
 			<View style={styles.formView}>
-				<Text style={styles.formLabel}>Mobile Number</Text>
+				<Text style={styles.formLabel}>Email</Text>
 				{/* <TextInput
 					value={mobileNum}
 					onChangeText={onChangeMobileNum}
@@ -51,11 +49,11 @@ const LoginComponent = ({ onLogin, handleSignUp, loginText }: LoginComponentProp
 							value={value}
 						/>
 					)}
-					name='mobileNum'
+					name='email'
 					rules={{ required: true }}
 					defaultValue=''
 				/>
-				{errors.mobileNum && (
+				{errors.email && (
 					<Text style={{ color: 'red' }}>This is required.</Text>
 				)}
 

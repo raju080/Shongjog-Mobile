@@ -25,7 +25,7 @@ const ProfileScreenTutor = ({ navigation }: ReactNavigationProps) => {
 
 	let formDefaultValues = {
 		fullName: tutor.name,
-		mobileNum: tutor.mobile,
+		mobileNum: tutor.mobileNumber,
 		email: tutor.email,
 		password: tutor.password,
 		introText: tutor.introText,

@@ -8,6 +8,8 @@ import axios from 'axios';
 import { Action, ActionCreator, Dispatch } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
+import * as apiURLs from '../shared/apiURLs';
+
 // 
 // Student side actions
 // 
@@ -129,6 +131,49 @@ export const fetchSelectedTutorStudent = (tutorID: number) => ( dispatch: Dispat
 }
 
 
+export const filterTutorStudent =
+	(fields: any) => (dispatch: Dispatch) => {
+		// const dispatch = useAppDispatch();
+
+		return axios({
+			method: 'GET',
+			url: apiURLs.filterURL,
+			params: fields,
+			baseURL: baseURL,
+		})
+			.then(
+				(response) => {
+					if (response && response.status === 200) {
+						return response.data;
+					} else {
+						let error = new Error(
+							'Error ' + response.status + ': ' + response.statusText
+						);
+						throw error;
+					}
+				},
+				(error) => {
+					throw error;
+				}
+			)
+			.then((response) => {
+				console.log('Response : ');
+				console.log(response);
+				response.results.imageUri = '';
+				dispatch(addTutorsStudent(response.results));
+			})
+			.catch((error) => {
+				console.log('error : ');
+				console.log(error);
+			});
+	};
+
+
+
+
+
+
+
 
 // 
 // Tutor side actions
@@ -137,11 +182,41 @@ export const fetchSelectedTutorStudent = (tutorID: number) => ( dispatch: Dispat
 
 // UI actions
 
-export const loginTutor = () => {};
+export const loginTutor = (fields: any) => (dispatch: Dispatch) => {
+	return axios({
+		method: 'POST',
+		url: apiURLs.loginURL,
+		data: fields,
+		baseURL: baseURL,
+	})
+		.then(
+			(response) => {
+				if (response && response.status === 200) {
+					return response.data;
+				} else {
+					let error = new Error(
+						'Error ' + response.status + ': ' + response.statusText
+					);
+					throw error;
+				}
+			},
+			(error) => {
+				throw error;
+			}
+		)
+		.then((response) => {
+			console.log('Response : ');
+			console.log(response);
+			dispatch(changeSelectedTutor(response));
+		})
+		.catch((error) => {
+			console.log('error : ');
+			console.log(error);
+		});
+};
 
 export const logoutTutor = () => {};
 
-export const registerTutor = () => {};
 
 // Tutor reducer
 
@@ -149,6 +224,44 @@ export const addRegisteredTutor = (tutor: StateTypes.TutorTypeTutor) => ({
 	action: ActionTypes.ADD_REGISTERED_TUTOR,
 	payload: tutor
 })
+
+
+export const registerTutor =
+	(fields: any) => (dispatch: Dispatch) => {
+		// const dispatch = useAppDispatch();
+
+		return axios({
+			method: 'POST',
+			url: apiURLs.userURL,
+			data: fields,
+			baseURL: baseURL,
+		})
+			.then(
+				(response) => {
+					if (response && response.status === 200) {
+						return response.data;
+					} else {
+						let error = new Error(
+							'Error ' + response.status + ': ' + response.statusText
+						);
+						throw error;
+					}
+				},
+				(error) => {
+					throw error;
+				}
+			)
+			.then((response) => {
+				console.log('Response : ');
+				console.log(response);
+				// dispatch(changeSelectedTutor(response));
+			})
+			.catch((error) => {
+				console.log('error : ');
+				console.log(error);
+			});
+	};
+
 
 
 export const fetchRegisteredTutor =

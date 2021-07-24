@@ -26,9 +26,10 @@ import {
 import ModalSelector from 'react-native-modal-selector';
 import { COLORS } from '../../constants/Colors';
 import { STUDENT_TYPES, STUDENT_CLASSES, SUBJECTS } from '../../shared/filters';
-import { AREAS } from '../../shared/lists';
+import { AREAS, genders } from '../../shared/lists';
 import { ReactNavigationProps } from '../../types';
 import { CustomButton } from '../../components/CustomComponents';
+import { formStyles } from '../../assets/styles/formStyles';
 
 const TuitionRequestScreenStudent = ({ navigation }: ReactNavigationProps) => {
 	const studentTypes = STUDENT_TYPES.map((d, k) => ({ value: d, label: d }));
@@ -218,6 +219,32 @@ const TuitionRequestScreenStudent = ({ navigation }: ReactNavigationProps) => {
 						<Text style={{ color: 'red' }}>{errors.area.message}</Text>
 					)}
 				</View>
+
+				<Controller
+					control={control}
+					render={({ field: { onChange, onBlur, value } }) => (
+						<Dropdown
+							label='Your Gender'
+							data={genders}
+							value={value}
+							onChange={(option) => {
+								onChange(option);
+							}}
+							// mainContainerStyle={formStyles.formSelect}
+						/>
+					)}
+					rules={{
+						required: {
+							value: true,
+							message: 'This is required.',
+						},
+					}}
+					name='gender'
+				/>
+				{errors.gender && (
+					<Text style={{ color: 'red' }}>{errors.gender.message}</Text>
+				)}
+				
 			</ScrollView>
 			<Button
 				onPress={handleSubmit(onSubmit)}

@@ -30,10 +30,14 @@ import { AREAS } from '../../shared/lists';
 import { ReactNavigationProps } from '../../types';
 import { CustomButton } from '../../components/CustomComponents';
 import { formStyles } from '../../assets/styles/formStyles';
+import { useAppDispatch } from '../../hooks/reactReduxHooks';
+import { filterTutorStudent } from '../../store/actionCreators';
 
 
 const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 	const studentTypes = STUDENT_TYPES.map((d, k) => ({ value: d, label: d }));
+
+	const dispatch = useAppDispatch();
 
 	const [sTypeSelected, setSTypeSelected] = useState('');
 	const [classSelected, setClassSelected] = useState('');
@@ -52,7 +56,7 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 		.map((d, k) => ({ key:k, value: d, label: d }));
 
 	const onSubmit = (data: any) => {
-		console.log(data);
+		dispatch(filterTutorStudent(data));
 		navigation.navigate('FindTutorScreenStudent');
 	};
 
@@ -88,7 +92,7 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 								}}
 							/>
 						)}
-						name='studentType'
+						name='type'
 						defaultValue=''
 					/>
 				</View>
@@ -126,7 +130,7 @@ const GeneralFiltersStudent = ({ navigation }: ReactNavigationProps) => {
 								/>
 							);
 						}}
-						name='class'
+						name='studentClass'
 						defaultValue=''
 					/>
 				</View>

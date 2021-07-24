@@ -2,7 +2,7 @@ import { TutorTypeStudent, TutorTypeTutor } from '../types_store';
 
 
 export const tutor: TutorTypeTutor = {
-	mobile: '01853355578',
+	mobileNumber: '01853355578',
 	name: 'Iqbal Hossain Raju',
 	password: 'abc',
 	email: 'iqbalhossainraju47@gmail.com',

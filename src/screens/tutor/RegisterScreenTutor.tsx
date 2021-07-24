@@ -34,6 +34,8 @@ import {
 	MultiselectDropdown,
 } from 'sharingan-rn-modal-dropdown';
 import { formStyles } from '../../assets/styles/formStyles';
+import { useAppDispatch } from '../../hooks/reactReduxHooks';
+import { registerTutor } from '../../store/actionCreators';
 
 
 const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
@@ -46,6 +48,8 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 
 	const [dist, setDist] = useState<string>('');
 	const [uni, setUni] = useState<string>('');
+
+	const dispatch = useAppDispatch();
 
 	const {
 		control,
@@ -69,7 +73,11 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 	// 	.map((d, k) => ({ key: k, label: d }));
 
 	const onSubmit = (data: any) => {
+		data.accountType = 'tutor';
+		data.country = 'Bangladesh';
+		delete data.password2;
 		console.log(data);
+		dispatch(registerTutor(data));
 		navigation.navigate('Login');
 	};
 
@@ -106,7 +114,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 							value={value}
 						/>
 					)}
-					name='fullName'
+					name='name'
 					rules={{ required: true }}
 					defaultValue=''
 				/>
@@ -126,7 +134,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 							value={value}
 						/>
 					)}
-					name='mobileNum'
+					name='mobileNumber'
 					rules={{ required: true }}
 					defaultValue=''
 				/>
@@ -147,8 +155,12 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 						/>
 					)}
 					name='email'
+					rules={{ required: true }}
 					defaultValue=''
 				/>
+				{errors.email && (
+					<Text style={{ color: 'red' }}>This is required.</Text>
+				)}
 
 				{/* Password */}
 				<Text style={formStyles.formLabel}>Password</Text>
@@ -414,8 +426,6 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 						)}
 						name='college'
 					/> */}
-
-					
 				</View>
 
 				{/* Tuition preferences */}
