@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { formStyles } from '../assets/styles/formStyles';
 
 import Logo from '../components/Logo';
 import { CustomButton } from './CustomComponents';
@@ -14,6 +16,14 @@ const LoginComponent = ({ onLogin, handleSignUp, loginText }: LoginComponentProp
 	const [mobileNum, onChangeMobileNum] = useState('');
 	const [password, onChangePassword] = useState('');
 
+	const {
+		control,
+		handleSubmit,
+		getValues,
+		watch,
+		formState: { errors },
+	} = useForm();
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.logoView}>
@@ -26,21 +36,56 @@ const LoginComponent = ({ onLogin, handleSignUp, loginText }: LoginComponentProp
 			</View>
 			<View style={styles.formView}>
 				<Text style={styles.formLabel}>Mobile Number</Text>
-				<TextInput
+				{/* <TextInput
 					value={mobileNum}
 					onChangeText={onChangeMobileNum}
 					style={styles.formInput}
-				></TextInput>
+				></TextInput> */}
+				<Controller
+					control={control}
+					render={({ field: { onChange, onBlur, value } }) => (
+						<TextInput
+							style={styles.formInput}
+							onBlur={onBlur}
+							onChangeText={(value) => onChange(value)}
+							value={value}
+						/>
+					)}
+					name='mobileNum'
+					rules={{ required: true }}
+					defaultValue=''
+				/>
+				{errors.mobileNum && (
+					<Text style={{ color: 'red' }}>This is required.</Text>
+				)}
+
 				<Text style={styles.formLabel}>Password</Text>
-				<TextInput
+				{/* <TextInput
 					value={password}
 					onChangeText={onChangePassword}
 					style={styles.formInput}
-				></TextInput>
-				<CustomButton
-					text='Login'
-					onPress={onLogin}
+				></TextInput> */}
+				<Controller
+					control={control}
+					render={({ field: { onChange, onBlur, value } }) => (
+						<TextInput
+							style={styles.formInput}
+							onBlur={onBlur}
+							onChangeText={(value) => onChange(value)}
+							value={value}
+						/>
+					)}
+					name='password'
+					rules={{ required: true }}
+					defaultValue=''
 				/>
+				{/* {errors.password && (
+					<Text style={{ color: 'red' }}>{errors.password.message}</Text>
+				)} */}
+				{errors.password && (
+					<Text style={{ color: 'red' }}>This is required.</Text>
+				)}
+				<CustomButton text='Login' onPress={handleSubmit(onLogin)} />
 				<View style={styles.signUpTextView}>
 					<Text style={styles.signUpText}>Do not have an account yet?</Text>
 					<TouchableOpacity onPress={handleSignUp}>
