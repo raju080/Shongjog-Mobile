@@ -25,8 +25,14 @@ import { CustomButton } from '../../components/CustomComponents';
 
 import Logo from '../../components/Logo';
 import { Picker } from '@react-native-picker/picker';
-import {COLORS} from '../../constants/Colors';
-import { AREAS, UNIVERSITIES, COLLEGES, genders, levels } from '../../shared/lists';
+import { COLORS } from '../../constants/Colors';
+import {
+	AREAS,
+	UNIVERSITIES,
+	COLLEGES,
+	genders,
+	levels,
+} from '../../shared/lists';
 import { ReactNavigationProps } from '../../types';
 import {
 	Dropdown,
@@ -35,8 +41,7 @@ import {
 } from 'sharingan-rn-modal-dropdown';
 import { formStyles } from '../../assets/styles/formStyles';
 
-
-const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
+const RegisterScreenStudent = ({ navigation }: ReactNavigationProps) => {
 	// dropdown states
 	const [genderDOpen, setGenderDOpen] = useState(false);
 	const [districtDOpen, setDistrictDOpen] = useState(false);
@@ -414,8 +419,6 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 						)}
 						name='college'
 					/> */}
-
-					
 				</View>
 
 				{/* Tuition preferences */}
@@ -453,7 +456,7 @@ const RegisterScreenTutor = ({ navigation }: ReactNavigationProps) => {
 	);
 };
 
-export default RegisterScreenTutor;
+export default RegisterScreenStudent;
 
 const styles = StyleSheet.create({
 	container: {

@@ -28,6 +28,7 @@ export const TUITION_REQUESTS = [
 		id: '1',
 		studentName: 'Nishan',
 		tutorName: 'Raju',
+		status: 'pending',
 		details: {
 			version: 'Bangla Version',
 			class: 'Inter 1st year',
@@ -46,6 +47,7 @@ export const TUITION_REQUESTS = [
 		id: '2',
 		studentName: 'Wasif Towfiq',
 		tutorName: 'Raju',
+		status: 'confirmed',
 		details: {
 			version: 'English Version',
 			class: 'Inter 2nd year',

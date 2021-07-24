@@ -7,9 +7,10 @@ import { CustomButton } from './CustomComponents';
 type LoginComponentPropType = {
   onLogin: any;
   handleSignUp: any;
+	loginText: string;
 }
 
-const LoginComponent = ({ onLogin, handleSignUp }: LoginComponentPropType) => {
+const LoginComponent = ({ onLogin, handleSignUp, loginText }: LoginComponentPropType) => {
 	const [mobileNum, onChangeMobileNum] = useState('');
 	const [password, onChangePassword] = useState('');
 
@@ -20,7 +21,7 @@ const LoginComponent = ({ onLogin, handleSignUp }: LoginComponentPropType) => {
 					<Logo />
 				</View>
 				<View style={styles.loginHeaderView}>
-					<Text style={styles.loginHeader}>Tutor Login</Text>
+					<Text style={styles.loginHeader}>{loginText}</Text>
 				</View>
 			</View>
 			<View style={styles.formView}>

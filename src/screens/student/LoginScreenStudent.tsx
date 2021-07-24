@@ -5,22 +5,22 @@ import LoginComponent from '../../components/LoginComponent';
 
 import { ReactNavigationProps } from '../../types';
 
-const LoginScreenTutor = ({ navigation }: ReactNavigationProps) => {
+const LoginScreenStudent = ({ navigation }: ReactNavigationProps) => {
 	const onLogin = (data: any) => {
 		console.log(data);
 		navigation.navigate('Home');
-	}
+	};
 	const handleSignUp = () => {
 		navigation.navigate('Register');
-	}
+	};
 	return (
 		<View style={styles.container}>
-			<LoginComponent onLogin={onLogin} handleSignUp={handleSignUp} loginText='Tutor Login' />
+			<LoginComponent onLogin={onLogin} handleSignUp={handleSignUp} loginText='Student Login' />
 		</View>
 	);
 };
 
-export default LoginScreenTutor;
+export default LoginScreenStudent;
 
 const styles = StyleSheet.create({
 	container: {

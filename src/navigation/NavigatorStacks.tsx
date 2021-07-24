@@ -180,9 +180,11 @@ export function ProfileScreenNavigatorStudent({ navigation }: ReactNavigationPro
 				name='ProfileScreenStudent'
 				component={ProfileScreenStudent}
 				options={{
+					headerLeft: () => null,
 					headerTitle: () => (
-						<Header title='Find Tutors' navigation={navigation} />
+						<Header title='Student Profile' navigation={navigation} />
 					),
+					headerRight: () => null,
 				}}
 			/>
 		</ProfileStackStudent.Navigator>
